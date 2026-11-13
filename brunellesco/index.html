@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='40' fill='%23110B07'/%3E%3Cg transform='translate(20 20) scale(.8)' fill='%23D4A866'%3E%3Ccircle cx='100' cy='100' r='91' fill='none' stroke='%23D4A866' stroke-width='9'/%3E%3Cpath d='M100 50.5C82 66 60 92 52 138h96C140 92 118 66 100 50.5Z'/%3E%3Crect x='94' y='30' width='12' height='18'/%3E%3Crect x='47' y='142' width='106' height='26'/%3E%3C/g%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brunellesco bar · desde 1976">
+<meta property="og:description" content="Café, desayunos, vermut, whisky y jazz todo el día en Corrientes 1411, Rosario.">
+<meta property="og:image" content="assets/img/poster.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BarOrPub", "name": "Brunellesco", "alternateName": "Brunellesco bar", "foundingDate": "1976", "address": {"@type": "PostalAddress", "streetAddress": "Corrientes 1411", "addressLocality": "Rosario", "addressRegion": "Santa Fe", "postalCode": "S2000", "addressCountry": "AR"}, "geo": {"@type": "GeoCoordinates", "latitude": -32.9533333, "longitude": -60.6441667}, "telephone": "+54 341 594-1005", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:00", "closes": "21:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "07:00", "closes": "13:30"}], "servesCuisine": ["Café", "Desayunos", "Sándwiches"], "sameAs": ["https://www.facebook.com/p/Brunellesco-100069355010010/"]}</script>
+<title>Brunellesco Bar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Brunellesco bar · desde 1976. Café, desayunos, medialunas, vermut, whisky y jazz todo el día en Corrientes 1411, Rosario.">
+<meta name="theme-color" content="#120C08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap">
+<link rel="preload" as="image" href="assets/img/poster.jpg">
+<style>
+/* Layout: intro de lámina (papel + emblema que se abre al video y hace zoom), después bandas a todo ancho
+   que alternan papel con tinta y madera con blanco, rotuladas Ⓐ–Ⓕ como la lámina de S. Maria del Fiore del bar. */
+:root{
+  --paper:#F2ECE2;          /* papel de las láminas */
+  --paper-2:#E8DFD0;
+  --ink:#1A1410;            /* tinta */
+  --ink-soft:#5B4A3C;
+  --line:rgb(26 20 16 / .17);
+  --brand:#6A4122;          /* marrón del logo sobre papel */
+  --accent:#8A5530;
+
+  /* madera del bar: iguales en ambos temas */
+  --wood-950:#110B07;
+  --wood-900:#1C130C;
+  --wood-800:#2A1B10;
+  --wood-700:#432818;
+  --wood-500:#7A4A27;
+  --oak:#C08B55;
+  --brass:#D4A866;          /* dorado de la taza */
+  --mustard:#D99E2B;        /* pared del salón */
+  --on-wood:#F6EFE4;
+  --on-wood-soft:rgb(246 239 228 / .72);
+  --on-wood-line:rgb(246 239 228 / .16);
+  --shade:14 9 5;
+
+  --font-display:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;
+  --font-body:"Roboto","Helvetica Neue",Arial,system-ui,sans-serif;
+  --wrap:1240px;
+  --header-h:68px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#16100C; --paper-2:#1E1611; --ink:#EFE6D8; --ink-soft:#B6A48E; --line:rgb(239 230 216 / .15);
+    --brand:#D4A866; --accent:#D4A866; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16100C; --paper-2:#1E1611; --ink:#EFE6D8; --ink-soft:#B6A48E; --line:rgb(239 230 216 / .15);
+  --brand:#D4A866; --accent:#D4A866; color-scheme:dark;
+}
+@media (max-width:860px){ :root{ --header-h:60px } }
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 8px)}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:90;background:var(--wood-950)}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;line-height:1.08;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+ul,ol,dl,dd,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+:focus-visible{outline:2px solid var(--mustard);outline-offset:3px;border-radius:3px}
+::selection{background:var(--brass);color:var(--wood-950)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip:focus{position:fixed;left:16px;top:calc(env(safe-area-inset-top,0px) + 12px);width:auto;height:auto;clip:auto;margin:0;z-index:120;background:var(--on-wood);color:var(--wood-950);padding:10px 16px;border-radius:4px}
+.wrap{width:100%;max-width:calc(var(--wrap) + 64px);margin-inline:auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+@media (min-width:760px){ .wrap{padding-left:max(32px, env(safe-area-inset-left,0px));padding-right:max(32px, env(safe-area-inset-right,0px))} }
+
+/* ---------- Rótulos de lámina (Ⓐ EXTERIOR FROM N.W.) ---------- */
+.plate-label{display:inline-flex;align-items:center;gap:12px;font:500 12px/1.2 var(--font-display);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.plate-label b{display:grid;place-items:center;flex:none;width:32px;height:32px;border:1.5px solid currentColor;border-radius:50%;font:500 15px/1 var(--font-display);letter-spacing:0}
+.on-wood .plate-label{color:var(--brass)}
+.title{font-weight:600;font-size:clamp(34px, 4.6vw, 62px);letter-spacing:-.025em}
+.title em{font-style:normal;color:var(--accent)}
+.on-wood .title em{color:var(--brass)}
+.lead{font-size:clamp(17px, 1.35vw, 19px);line-height:1.65;color:var(--ink-soft);max-width:58ch}
+.on-wood{background:var(--wood-900);color:var(--on-wood)}
+.on-wood .lead{color:var(--on-wood-soft)}
+.section{padding-block:clamp(72px, 9vw, 132px)}
+.head{display:grid;gap:18px;margin-bottom:clamp(36px, 5vw, 64px)}
+.stack{display:grid;gap:18px}
+
+/* papel de dibujo con retícula muy suave */
+.drafting{background-color:var(--paper);background-image:
+  linear-gradient(color-mix(in srgb, var(--line) 60%, transparent) 1px, transparent 1px),
+  linear-gradient(90deg, color-mix(in srgb, var(--line) 60%, transparent) 1px, transparent 1px);
+  background-size:32px 32px;background-position:-1px -1px}
+.drafting-soft{background-image:
+  linear-gradient(color-mix(in srgb, var(--line) 45%, transparent) 1px, transparent 1px),
+  linear-gradient(90deg, color-mix(in srgb, var(--line) 45%, transparent) 1px, transparent 1px);
+  background-size:32px 32px}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 24px;border-radius:2px;border:1.5px solid transparent;font:600 13px/1 var(--font-display);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-brass{background:var(--brass);color:var(--wood-950)}
+.btn-brass:hover{background:var(--on-wood)}
+.btn-ghost{border-color:rgb(246 239 228 / .6);color:var(--on-wood)}
+.btn-ghost:hover{background:var(--on-wood);color:var(--wood-950)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--accent);color:var(--paper)}
+.btn-line{border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* logo */
+.lk{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--on-wood)}
+.lk-emb{width:40px;height:40px;color:var(--brass)}
+.lk-word{width:132px;height:auto;aspect-ratio:189.7/43.5}
+
+/* ---------- Header ---------- */
+.site-header{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:80;color:var(--on-wood);transition:background-color .35s,opacity .4s,transform .4s,box-shadow .35s}
+.site-header[data-state="intro"]{opacity:0;transform:translateY(-10px);pointer-events:none}
+.site-header[data-state="over"]{background:linear-gradient(180deg, rgb(var(--shade) / .55), rgb(var(--shade) / 0))}
+.site-header[data-state="solid"]{background:rgb(17 11 7 / .94);box-shadow:0 1px 0 var(--on-wood-line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:var(--header-h)}
+.nav ul{display:flex;align-items:center;gap:clamp(14px, 1.9vw, 28px)}
+.nav a{font:500 14px/1 var(--font-display);text-decoration:none;color:var(--on-wood);padding:10px 0;position:relative;opacity:.9}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover{opacity:1}
+.nav a:hover::after,.nav a[aria-current="true"]::after{transform:scaleX(1)}
+.head-right{display:flex;align-items:center;gap:14px}
+.status{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--on-wood-line);border-radius:999px;font:500 12.5px/1 var(--font-body);white-space:nowrap;color:var(--on-wood)}
+.status i{width:8px;height:8px;border-radius:50%;background:#7DB46C;box-shadow:0 0 0 3px rgb(125 180 108 / .2)}
+.status[data-open="false"] i{background:#C9704F;box-shadow:0 0 0 3px rgb(201 112 79 / .2)}
+.menu-btn{display:none;width:44px;height:44px;border:0;background:none;border-radius:50%;place-items:center;cursor:pointer;color:var(--on-wood)}
+.menu-btn svg{width:24px;height:24px}
+.mnav{position:fixed;inset:calc(env(safe-area-inset-top,0px) + var(--header-h)) 0 0 0;z-index:79;background:var(--wood-950);color:var(--on-wood);overflow-y:auto}
+.mnav ul{display:grid}
+.mnav a{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--on-wood-line);font:500 22px/1.2 var(--font-display);text-decoration:none}
+.mnav a b{display:grid;place-items:center;width:30px;height:30px;border:1.5px solid var(--brass);color:var(--brass);border-radius:50%;font:500 14px/1 var(--font-display)}
+.mnav .wrap{padding-block:12px calc(32px + env(safe-area-inset-bottom,0px))}
+.mnav .btn{margin-top:24px;width:100%}
+@media (max-width:1080px){ .nav{display:none} .menu-btn{display:grid} }
+@media (max-width:520px){ .status{display:none} .lk-word{width:116px} .lk-emb{width:36px;height:36px} }
+
+/* ---------- Hero: lámina → ventana → video con scroll ---------- */
+.hero{position:relative;height:520vh;height:520svh;background:var(--wood-950)}
+.hero-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:var(--on-wood);background:var(--wood-950) url("assets/img/poster.jpg") 34% 50%/cover no-repeat}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-shade{position:absolute;inset:0;pointer-events:none;opacity:0;background:
+  linear-gradient(90deg, rgb(var(--shade) / .86) 0%, rgb(var(--shade) / .6) 36%, rgb(var(--shade) / 0) 66%),
+  linear-gradient(0deg, rgb(var(--shade) / .6) 0%, rgb(var(--shade) / 0) 36%)}
+.hero-dim{position:absolute;inset:0;pointer-events:none;background:rgb(var(--shade) / .62);opacity:0}
+.hero-caps{position:absolute;inset:0;display:grid;align-items:center;pointer-events:none}
+.hero-caps .wrap{display:grid;height:100%;align-items:center}
+.cap{grid-area:1/1;max-width:min(600px, 52%);opacity:0;will-change:opacity,transform;text-shadow:0 2px 26px rgb(var(--shade) / .45)}
+.cap-k{display:flex;align-items:center;gap:12px;font:500 12px/1 var(--font-display);letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:20px}
+.cap-k::before{content:"";width:34px;height:1.5px;background:currentColor}
+.cap-t{font:600 clamp(36px, 5vw, 74px)/1.04 var(--font-display);letter-spacing:-.03em}
+.cap-s{font:400 clamp(16px, 1.3vw, 19px)/1.6 var(--font-body);margin-top:18px;max-width:40ch;color:rgb(246 239 228 / .88)}
+.cap-final{justify-self:center;text-align:center;max-width:min(920px, 100%);display:grid;justify-items:center;gap:22px}
+.cap-final .cap-k{margin:0}
+.cap-final .cap-k::after{content:"";width:34px;height:1.5px;background:currentColor}
+.cap-final .cap-t{font-size:clamp(40px, 6.2vw, 92px)}
+.cap-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font:500 14px/1.3 var(--font-body);color:rgb(246 239 228 / .86)}
+.cap-meta span{display:inline-flex;align-items:center;gap:8px}
+.cap-meta svg{width:16px;height:16px;color:var(--mustard)}
+.cap-final .btn-row{justify-content:center;pointer-events:auto}
+.hero[data-final="false"] .cap-final .btn-row{pointer-events:none}
+.hero-mask{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hero-paper{fill:var(--paper)}
+.hero-logo{color:var(--brand)}
+.h-scroll path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s cubic-bezier(.6,0,.2,1) .45s forwards}
+.h-ring{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s cubic-bezier(.6,0,.2,1) .1s forwards}
+.h-ring.thin{animation-delay:.3s}
+.h-dot,.h-dome,.h-word,.h-sub{opacity:0;animation:fadeup .9s cubic-bezier(.2,.7,.2,1) forwards}
+.h-dome{animation-delay:.7s}
+.h-dot{animation-delay:1.4s}
+.h-word{animation-delay:1s}
+.h-sub{animation-delay:1.3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hero-grid{position:absolute;inset:0;pointer-events:none}
+.hero-ui{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
+.hero-hint{position:absolute;left:50%;bottom:calc(40px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:12px;font:500 11px/1 var(--font-display);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.hero-hint i{display:block;width:1.5px;height:42px;background:linear-gradient(var(--ink-soft), transparent);animation:hint 1.9s ease-in-out infinite;transform-origin:top}
+@keyframes hint{0%{transform:scaleY(0);opacity:1}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.hero-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgb(246 239 228 / .16);opacity:0}
+.hero-bar span{display:block;height:100%;background:var(--brass);transform-origin:left;transform:scaleX(0)}
+.hero-meta{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));opacity:0}
+.hero-meta .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;font:500 11.5px/1 var(--font-display);letter-spacing:.2em;text-transform:uppercase}
+.hero-skip{pointer-events:auto;background:none;border:0;color:var(--on-wood);font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;padding:10px 0;display:inline-flex;align-items:center;gap:8px;opacity:.85}
+.hero-skip:hover{opacity:1}
+.hero-skip svg{width:14px;height:14px}
+.hero-count{font-variant-numeric:tabular-nums;opacity:.8}
+@media (max-width:760px){
+  .hero{height:430vh;height:430svh}
+  .hero-caps .wrap{align-items:end;padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+  .cap{max-width:100%;align-self:end}
+  .cap-final{align-self:center}
+  .hero-shade{background:linear-gradient(0deg, rgb(var(--shade) / .86) 0%, rgb(var(--shade) / .5) 40%, rgb(var(--shade) / 0) 68%)}
+  .hero-count{display:none}
+  .cap-final .cap-k::before,.cap-final .cap-k::after{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .h-scroll path,.h-ring{animation:none;stroke-dashoffset:0}
+  .h-dot,.h-dome,.h-word,.h-sub{animation:none;opacity:1}
+  .hero-hint i{animation:none}
+}
+
+/* ---------- Ⓐ El bar ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px, 6vw, 96px);align-items:center}
+.about-copy{display:grid;gap:24px;justify-items:start}
+.about-copy p.lead+p.lead{margin-top:-6px}
+.facts{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));border-top:1.5px solid var(--ink);margin-top:clamp(48px, 6vw, 80px)}
+.facts>div{padding:20px 18px 6px 0;display:grid;gap:6px;align-content:start}
+.facts>div+div{padding-left:18px;border-left:1px solid var(--line)}
+.facts dt{font:500 11.5px/1.3 var(--font-display);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);order:2}
+.facts dd{font:600 clamp(30px, 3.4vw, 46px)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums;order:1}
+.facts dd small{font-size:.5em;font-weight:500;letter-spacing:0;color:var(--accent)}
+.photo{position:relative;margin:0;max-width:100%}
+.photo-frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2);box-shadow:0 30px 60px -30px rgb(20 12 6 / .5)}
+.photo-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.photo figcaption{display:flex;gap:12px;align-items:baseline;margin-top:14px;font:400 14px/1.5 var(--font-body);color:var(--ink-soft)}
+.photo figcaption b{font:500 11px/1 var(--font-display);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.photo .tag{position:absolute;left:-14px;top:24px;z-index:1;background:var(--mustard);color:var(--wood-950);font:600 11.5px/1 var(--font-display);letter-spacing:.18em;text-transform:uppercase;padding:10px 14px}
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .photo{order:-1}
+  .photo .tag{left:0}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts>div:nth-child(3){padding-left:0;border-left:0}
+  .facts>div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+
+/* ---------- Ⓑ Especialidades ---------- */
+.menu-sec{background:var(--wood-900);position:relative;overflow:hidden}
+.menu-sec::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:
+  repeating-linear-gradient(90deg, rgb(255 230 200 / .018) 0 2px, transparent 2px 9px, rgb(0 0 0 / .05) 9px 10px, transparent 10px 23px),
+  radial-gradient(120% 80% at 80% 0%, rgb(122 74 39 / .35), transparent 60%)}
+.menu-sec .wrap{position:relative}
+.menu-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px clamp(32px,6vw,96px);align-items:end}
+.menu-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));border-top:1px solid var(--on-wood-line);border-left:1px solid var(--on-wood-line)}
+.dish{position:relative;display:grid;grid-template-rows:auto auto 1fr;gap:14px;padding:clamp(24px, 3vw, 40px);border-right:1px solid var(--on-wood-line);border-bottom:1px solid var(--on-wood-line);transition:background-color .3s}
+.dish:hover{background:rgb(246 239 228 / .035)}
+.dish-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.dish svg.ico{width:64px;height:64px;color:var(--brass);flex:none}
+.dish-n{font:500 12px/1 var(--font-display);letter-spacing:.2em;color:rgb(246 239 228 / .45);font-variant-numeric:tabular-nums}
+.dish h3{font:600 clamp(22px, 1.9vw, 27px)/1.15 var(--font-display);letter-spacing:-.01em}
+.dish p{color:var(--on-wood-soft);font-size:15.5px;max-width:36ch}
+.dish .when{display:inline-flex;align-self:end;justify-self:start;margin-top:6px;font:500 11.5px/1 var(--font-display);letter-spacing:.16em;text-transform:uppercase;color:var(--brass);border:1px solid rgb(212 168 102 / .4);padding:8px 10px;border-radius:999px}
+.menu-note{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;color:var(--on-wood-soft);font-size:14.5px}
+@media (max-width:980px){ .menu-grid{grid-template-columns:1fr 1fr} .menu-head{grid-template-columns:1fr} }
+@media (max-width:600px){ .menu-grid{grid-template-columns:1fr} .dish{grid-template-columns:auto 1fr;grid-template-rows:auto;column-gap:18px;align-items:start} .dish-top{grid-row:1/4;flex-direction:column} .dish svg.ico{width:52px;height:52px} .dish-n{display:none} }
+
+/* ---------- Ⓒ Un día (sección longitudinal del horario) ---------- */
+.day-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.now-card{display:grid;gap:4px;justify-items:end;text-align:right}
+.now-card b{font:600 clamp(22px, 2.2vw, 30px)/1.1 var(--font-display);letter-spacing:-.01em}
+.now-card span{font-size:14px;color:var(--ink-soft)}
+.now-card .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#5E9A4E;margin-right:8px;vertical-align:middle}
+.now-card[data-open="false"] .dot{background:#B85F3E}
+.ruler-wrap{overflow-x:auto;margin-top:clamp(32px, 4vw, 52px);padding-bottom:6px}
+.ruler{position:relative;padding:0}
+.ruler svg{width:100%;height:auto;overflow:visible}
+.r-axis{stroke:var(--ink);stroke-width:1.5}
+.r-tick{stroke:var(--ink);stroke-width:1}
+.r-tick.minor{stroke:var(--line)}
+.r-num{font:500 12px var(--font-display);fill:var(--ink-soft);font-variant-numeric:tabular-nums}
+.r-band{fill:var(--wood-700)}
+.r-band.we{fill:var(--oak)}
+.r-band-l{font:600 12px var(--font-display);letter-spacing:.14em;fill:var(--on-wood)}
+.r-band-l.dark{fill:var(--wood-950)}
+.r-row-l{font:500 11.5px var(--font-display);letter-spacing:.16em;fill:var(--ink-soft)}
+.r-now line{stroke:var(--mustard);stroke-width:2}
+.r-now rect{fill:var(--mustard)}
+.r-now text{font:600 11.5px var(--font-display);fill:var(--wood-950);letter-spacing:.06em}
+.moments{display:grid;grid-template-columns:repeat(6, minmax(0,1fr));gap:0;margin-top:clamp(28px,3vw,40px);border-top:1.5px solid var(--ink)}
+.moment{display:grid;gap:8px;align-content:start;padding:18px 16px 4px 0}
+.moment+.moment{padding-left:16px;border-left:1px solid var(--line)}
+.moment time{font:600 26px/1 var(--font-display);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.moment h3{font:600 15px/1.25 var(--font-display)}
+.moment p{font-size:14.5px;color:var(--ink-soft)}
+.moment[aria-current="true"] time{color:var(--accent)}
+.moment[aria-current="true"] h3::after{content:" · ahora";color:var(--accent);font-weight:500}
+@media (max-width:980px){ .moments{grid-template-columns:repeat(3, minmax(0,1fr))} .moment:nth-child(4){padding-left:0;border-left:0} .moment:nth-child(n+4){border-top:1px solid var(--line);margin-top:8px} }
+@media (max-width:560px){ .day-top{grid-template-columns:1fr} .now-card{justify-items:start;text-align:left} .moments{grid-template-columns:1fr 1fr} .moment:nth-child(odd){padding-left:0;border-left:0} .moment:nth-child(even){padding-left:16px;border-left:1px solid var(--line)} .moment:nth-child(n+3){border-top:1px solid var(--line);margin-top:8px} .moment:nth-child(4){padding-left:16px;border-left:1px solid var(--line)} }
+
+/* ---------- Ⓓ La cúpula ---------- */
+.dome-sec{background:var(--wood-950);overflow:hidden;position:relative}
+.dome-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px, 6vw, 96px);align-items:center}
+.dome-copy{display:grid;gap:24px;justify-items:start}
+.dome-fig{position:relative;margin:34px;aspect-ratio:960/1200;max-width:calc(100% - 68px);width:calc(100% - 68px);background:#F3EEE5;box-shadow:0 0 0 16px #F8F4EC, 0 0 0 17px #D9CFBF, 0 0 0 32px #3B2416, 0 0 0 34px #22140B, 0 50px 80px -24px rgb(0 0 0 / .75)}
+.dome-fig::after{content:"";position:absolute;inset:-16px;pointer-events:none;background:linear-gradient(115deg, rgb(255 255 255 / .16), transparent 40%)}
+.ink-art{position:absolute;inset:0;background:var(--on-wood);-webkit-mask:url("assets/img/dome.webp") center/contain no-repeat;mask:url("assets/img/dome.webp") center/contain no-repeat}
+.dome-fig .ink-art{inset:3%;background:#241A12;clip-path:inset(var(--undrawn, 0%) 0 0 0)}
+.callout{position:absolute;z-index:1;display:flex;align-items:center;gap:8px;font:500 11px/1.25 var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:#7A4A27;white-space:nowrap}
+.callout span{background:#F3EEE5;padding:3px 5px}
+.callout::before{content:"";width:var(--len, 0px);height:1px;background:currentColor;order:var(--o, 0)}
+.callout b{display:grid;place-items:center;width:22px;height:22px;border:1px solid currentColor;border-radius:50%;font-size:11px;letter-spacing:0;background:#F3EEE5}
+.c-left{flex-direction:row-reverse}
+.dome-facts{display:grid;grid-template-columns:1fr 1fr;width:100%;border-top:1px solid var(--on-wood-line);margin-top:8px}
+.dome-facts>div{padding:18px 16px 18px 0;border-bottom:1px solid var(--on-wood-line)}
+.dome-facts>div:nth-child(even){padding-left:16px;border-left:1px solid var(--on-wood-line)}
+.dome-facts dd{font:600 clamp(26px, 2.6vw, 36px)/1 var(--font-display);letter-spacing:-.02em;color:var(--on-wood);font-variant-numeric:tabular-nums}
+.dome-facts dt{margin-top:8px;font:500 11.5px/1.35 var(--font-display);letter-spacing:.16em;text-transform:uppercase;color:var(--on-wood-soft)}
+.plate-strip{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px, 4vw, 56px);align-items:center;margin-top:clamp(56px, 7vw, 96px);padding-top:clamp(40px, 5vw, 64px);border-top:1px solid var(--on-wood-line)}
+.plate-thumb{position:relative;width:clamp(180px, 22vw, 280px);aspect-ratio:690/1290;max-width:100%;background:#EFE7D8;box-shadow:0 0 0 10px #F7F2EA, 0 0 0 22px #3A2516, 0 30px 50px -20px rgb(0 0 0 / .7);margin:22px}
+.plate-thumb .ink-art{background:#2A1E15;-webkit-mask-image:url("assets/img/plate.webp");mask-image:url("assets/img/plate.webp")}
+.plate-copy{display:grid;gap:16px;justify-items:start}
+.plate-copy h3{font:600 clamp(24px, 2.4vw, 32px)/1.15 var(--font-display);letter-spacing:-.01em}
+.plate-copy .legend{display:flex;flex-wrap:wrap;gap:10px 18px;color:var(--on-wood-soft);font:500 12px/1.2 var(--font-display);letter-spacing:.12em;text-transform:uppercase}
+.plate-copy .legend span{display:inline-flex;align-items:center;gap:8px}
+.plate-copy .legend b{display:grid;place-items:center;width:22px;height:22px;border:1px solid var(--brass);color:var(--brass);border-radius:50%;font-size:11px;letter-spacing:0}
+@media (max-width:900px){
+  .dome-grid{grid-template-columns:1fr}
+  .dome-fig{max-width:min(460px, calc(100% - 68px));justify-self:center}
+  .plate-strip{grid-template-columns:1fr;justify-items:center;text-align:left}
+  .callout{font-size:10px;letter-spacing:.1em}
+}
+@media (max-width:480px){ .callout span{display:none} }
+
+/* ---------- Ⓔ Opiniones ---------- */
+.reviews-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:clamp(36px, 6vw, 88px);align-items:start}
+.score{display:grid;gap:18px;position:sticky;top:calc(var(--header-h) + 32px)}
+.score-big{display:flex;align-items:flex-end;gap:14px}
+.score-big b{font:600 clamp(72px, 8vw, 112px)/.85 var(--font-display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.stars{display:flex;gap:3px;color:var(--mustard);padding-bottom:8px}
+.stars svg{width:20px;height:20px}
+.score small{font-size:14.5px;color:var(--ink-soft)}
+.dist{display:grid;gap:8px;margin-top:6px}
+.dist div{display:grid;grid-template-columns:22px minmax(0,1fr) 40px;align-items:center;gap:10px;font:500 13px/1 var(--font-body);font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.dist i{display:block;height:8px;background:var(--line);position:relative;overflow:hidden}
+.dist i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--accent)}
+.dist div span:last-child{text-align:right}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1.5px solid var(--ink)}
+.quote{display:grid;gap:18px;align-content:space-between;padding:28px 28px 28px 0;border-bottom:1px solid var(--line)}
+.quote:nth-child(even){padding-left:28px;padding-right:0;border-left:1px solid var(--line)}
+.quote blockquote{margin:0;font:400 clamp(19px, 1.6vw, 23px)/1.42 var(--font-display);letter-spacing:-.005em}
+.quote blockquote::before{content:"“";display:block;font:600 52px/.6 var(--font-display);color:var(--accent);margin-bottom:10px}
+.quote figcaption{font:500 12px/1.4 var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.quote.wide{grid-column:1/-1;padding-left:0;border-left:0;padding-right:0}
+.quote.wide blockquote{font-size:clamp(17px, 1.3vw, 19px);color:var(--ink-soft);font-family:var(--font-body)}
+.quote.wide blockquote::before{display:none}
+.rev-actions{margin-top:28px}
+@media (max-width:900px){ .reviews-grid{grid-template-columns:1fr} .score{position:static} }
+@media (max-width:620px){ .quotes{grid-template-columns:1fr} .quote,.quote:nth-child(even){padding:24px 0;border-left:0} }
+
+/* ---------- Ⓕ Planta / Cómo llegar ---------- */
+.visit-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(36px, 6vw, 88px);align-items:start}
+.plan{position:relative;margin:0;background:var(--paper);border:1.5px solid var(--ink);padding:clamp(12px, 2vw, 22px)}
+.plan svg{width:100%;height:auto}
+.p-block{fill:var(--paper-2);stroke:var(--ink);stroke-width:1.2}
+.p-hatch{stroke:var(--line);stroke-width:1}
+.p-street{font:600 11px var(--font-display);letter-spacing:.2em;fill:var(--ink-soft);text-transform:uppercase}
+.p-street.main{fill:var(--ink)}
+.p-pin circle.r{fill:none;stroke:var(--accent);stroke-width:1.5}
+.p-pin circle.c{fill:var(--accent)}
+.p-pin rect.lbl{fill:var(--paper);stroke:var(--ink);stroke-width:1}
+.p-pin text{font:600 13px var(--font-display);fill:var(--ink)}
+.p-pin text.s{font:500 10.5px var(--font-display);letter-spacing:.14em;fill:var(--ink-soft)}
+.p-meta{font:500 10.5px var(--font-display);letter-spacing:.18em;fill:var(--ink-soft)}
+.p-north path{fill:var(--ink)}
+.p-north circle{fill:none;stroke:var(--ink);stroke-width:1.2}
+.p-scale rect{fill:var(--ink)}
+.p-scale rect.w{fill:var(--paper)}
+.p-scale rect.o{fill:none;stroke:var(--ink)}
+.plan figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;font:500 11.5px/1.3 var(--font-display);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.info{display:grid;gap:0;border-top:1.5px solid var(--ink)}
+.info>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.info dt{font:500 11.5px/1.7 var(--font-display);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.info dd{min-width:0;font-size:16.5px}
+.info dd strong{font:600 20px/1.25 var(--font-display);letter-spacing:-.01em;display:block}
+.hours{display:grid;gap:6px;font-variant-numeric:tabular-nums}
+.hours div{display:flex;justify-content:space-between;gap:12px;padding:4px 8px;margin-inline:-8px}
+.hours div[aria-current="true"]{background:var(--paper-2);font-weight:500}
+.hours div[aria-current="true"] span:first-child::after{content:" · hoy";color:var(--accent);font-weight:500}
+.phone-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.phone-row a{font:600 20px/1.2 var(--font-display);text-decoration:none;font-variant-numeric:tabular-nums}
+.copy-btn{border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 12px;font:500 12px/1 var(--font-display);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+.copy-btn:hover{border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line);padding:7px 11px;border-radius:999px;font-size:13.5px;color:var(--ink-soft)}
+.visit-actions{margin-top:28px}
+@media (max-width:960px){ .visit-grid{grid-template-columns:1fr} }
+@media (max-width:480px){ .info>div{grid-template-columns:1fr;gap:6px} }
+
+/* ---------- Footer ---------- */
+.foot{background:var(--wood-950);color:var(--on-wood);padding-block:clamp(64px, 8vw, 104px) calc(28px + env(safe-area-inset-bottom,0px))}
+.foot-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;padding-bottom:clamp(40px, 5vw, 64px);border-bottom:1px solid var(--on-wood-line)}
+.foot-logo{width:min(360px, 80vw);color:var(--brass)}
+.foot-cols{display:flex;flex-wrap:wrap;gap:24px 56px;font-size:15px;color:var(--on-wood-soft)}
+.foot-cols h3{font:500 11.5px/1 var(--font-display);letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+.foot-cols a{text-decoration:none}
+.foot-cols a:hover{color:var(--on-wood);text-decoration:underline;text-underline-offset:3px}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font:500 11.5px/1.5 var(--font-display);letter-spacing:.16em;text-transform:uppercase;color:rgb(246 239 228 / .5)}
+@media (max-width:760px){ .foot-top{grid-template-columns:1fr} }
+
+/* entrada suave de secciones (siempre parten visibles) */
+.rise{transition:transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s}
+.js .rise[data-pending]{transform:translateY(18px);opacity:.001}
+@media (prefers-reduced-motion: reduce){ .js .rise[data-pending]{transform:none;opacity:1} }
+</style>
+</head>
+<body>
+<a class="sr-only skip" href="#el-bar">Saltar al contenido</a>
+
+<!-- Sprite del logo: emblema dibujado + letras trazadas de la taza de la casa -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="bz-emblem" viewBox="2 2 196 196">
+      <g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="100" cy="100" r="91" stroke-width="7"/><circle cx="100" cy="100" r="80.5" stroke-width="2.4"/></g>
+      <g fill="currentColor">
+        <path d="M100 17.5c1.9 0 3.4 1.5 3.4 3.4 0 1.4-.8 2.6-2 3.1l3 10.5h-8.8l3-10.5c-1.2-.5-2-1.7-2-3.1 0-1.9 1.5-3.4 3.4-3.4z"/>
+        <rect x="92.5" y="35" width="15" height="3.2" rx=".8"/><path d="M94 39.5h12v8.5H94z"/>
+        <path fill-rule="evenodd" d="M100 50.5C82 66 60 92 52 138h96C140 92 118 66 100 50.5ZM98.6 56.5C86.5 72 76.5 98 73.5 135.5h-4.1C72.6 99 83.2 72.3 98.6 56.5ZM101.4 56.5C113.5 72 123.5 98 126.5 135.5h4.1C127.4 99 116.8 72.3 101.4 56.5ZM98.4 58.5h3.2v77h-3.2z"/>
+        <rect x="47" y="138.5" width="106" height="5" rx="1.2"/>
+        <path fill-rule="evenodd" d="M53 146h94v20H53zM66 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM93.8 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM121.6 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM57 149h4v14h-4zM139 149h4v14h-4z"/>
+        <rect x="46" y="168" width="108" height="4.5" rx="1.2"/>
+      </g>
+    </symbol>
+    <symbol id="bz-scrolls" viewBox="-100 4 400 192">
+      <g id="bz-scroll-l"><g fill="none" stroke="currentColor" stroke-width="6.2" stroke-linecap="round"><path d="M12 122C-2 142-33 146-46 128C-58 111-46 88-27 91C-12 93-11 112-24 114C-32 115-35 106-30 102"/><path d="M23 147C6 172-40 182-70 166C-90 155-90 131-73 129C-60 128-58 145-68 147C-74 148-77 141-73 137"/></g><g fill="currentColor"><circle cx="-30" cy="102" r="5.2"/><circle cx="-73" cy="137" r="4.6"/></g></g>
+      <use href="#bz-scroll-l" transform="translate(200 0) scale(-1 1)"/>
+    </symbol>
+    <symbol id="bz-word" viewBox="0 0 189.7 43.5"><path fill="currentColor" d="M68.3 43.1C67.7 42.4 67.7 42.4 67.7 39.1C67.8 37.5 67.7 35.5 67.7 34.8C67.6 33.1 67.2 25.9 67.1 22.7C66.9 17.3 66.7 15.9 65.9 15.3C65.4 14.9 64.6 15.2 64.1 16C63.8 16.5 63.9 21.1 64.3 27.9C64.4 29.1 64.6 31.5 64.7 33.1C64.7 34.6 64.9 36.6 65 37.5C65.3 40.9 65.3 42.1 65.2 42.4C64.8 43.1 63.7 43.4 62.5 43.2C62.1 43.1 61 43.1 60.2 43C57.2 42.9 57.3 43.1 57.2 38.5C57.2 36.5 57.2 33.4 57.1 31.6C57 29.8 56.9 27.4 56.8 26.2C56.6 21.6 56.5 20.2 56.3 18.2C56.2 17.1 56 15.7 55.9 15.2C55.7 13.7 55.7 11.7 55.8 11.3C56.1 10.5 56.2 10.4 59.7 10.5C63.2 10.5 63.2 10.5 63.7 11C64.2 11.4 64.3 11.4 65.2 11C67.8 9.6 71.7 10.2 73.6 12.2C74.8 13.6 74.8 13.7 74.8 20.3C74.9 25.3 74.9 27.4 75.3 33.6C75.4 34.7 75.5 36.2 75.6 37.1C76.2 40.7 76.3 42.1 75.8 42.9L75.5 43.5L72.1 43.5C68.8 43.5 68.8 43.5 68.3 43.1ZM81 43.3C81 43.3 80.7 43.2 80.5 43.1C79.4 42.8 77.8 41.2 77.4 40C77.3 39.8 77.3 38.3 77.3 36.2C77.2 33.2 77.1 28.6 76.7 22.6C76.7 21.7 76.5 20 76.4 18.9C76 15.7 76.1 14.7 76.5 13.8C77.9 11 81.1 10 87.6 10.5C90.2 10.7 91.1 11 92.4 12C94.7 13.7 94.9 14.2 94.9 19.9C94.9 21.2 95 22.5 95.1 23.1C95.2 24.5 95.2 26.3 95.1 26.8C94.7 27.6 93.8 27.7 88.9 27.8C84.9 27.8 85 27.8 84.8 28.2C84.5 28.8 84.8 37.8 85.2 39.2C85.4 40 86.2 40.2 87.2 39.9C87.9 39.6 87.9 39.2 87.6 32C87.5 29.4 87.3 29.5 91.2 29.6C95.7 29.6 95.3 29.3 95.4 33.2C95.5 34.8 95.5 36.9 95.6 38C95.6 39.9 95.6 39.9 95.2 40.5C94.6 41.5 93.9 42.2 93 42.8C92.6 43.1 92.2 43.3 92.2 43.4C92 43.6 81.2 43.5 81 43.3ZM97.7 43.1C97.2 42.5 97.2 42.4 97.3 37.9C97.4 34.5 97.4 34 97.3 32.6C97.1 31.5 97.1 29.5 97 24.9C96.9 19.5 96.9 18.4 96.7 17.1C96.3 14.1 96.1 11.9 96 8.3C95.8 3.2 95.5 3.6 100 3.5C104.6 3.5 104.6 3.5 104.5 5.8C104.4 7.8 104.5 21.1 104.6 24.2C104.7 25.9 104.7 28.9 104.8 30.9C104.9 35.3 105 37.6 105.3 39.7C105.7 42.7 105.7 42.5 104.7 43.2C104.3 43.5 104.3 43.5 101.2 43.5C98.1 43.5 98.1 43.5 97.7 43.1ZM107.8 43.1C106.7 42.8 106.6 42.6 107 40.2C107.2 38.7 107.3 36.3 107.3 35.1C107.1 32 107 28 106.9 24.1C106.8 21.7 106.8 19.1 106.7 18.2C106.6 16.6 106.4 13.5 106.2 10.6C106.1 9.7 106 8.3 105.8 7.5C105.5 5 105.6 4 106.1 3.6C106.7 3.2 113 2.9 113.7 3.2C114.2 3.5 114.2 3.7 114.3 7.9C114.3 11.5 114.3 12.8 114 17.8C113.7 22.4 114.1 34.7 114.6 38C115.4 43 115.3 43.1 110.9 43.2C109.4 43.2 108 43.2 107.8 43.1ZM121.5 43.1C119.5 42.9 117.2 41.6 116.5 40.2C116 39.3 116.1 38.6 116.7 34.6C116.8 33.8 116.8 33.3 116.7 32.4C116.5 30.5 116.4 27.9 116.4 25.1C116.3 22 116.2 20.4 115.8 18C115.5 15.2 115.5 15.2 115.7 14.3C116.1 12.3 118 10.6 120.4 10.1C122.7 9.5 127.7 9.4 129.5 9.8C131.4 10.3 132.9 11.4 133.7 12.8C134.1 13.6 134.1 13.6 134.1 17.5C134.2 19.6 134.2 22.3 134.3 23.4C134.3 26 134.3 26.1 132.9 26.4C132.3 26.5 129.4 26.7 126.6 26.7C123.6 26.8 123.6 26.8 123.6 30C123.6 32.8 123.8 37.2 123.9 38C124.1 39.1 124.6 39.5 125.5 39.2C126.5 38.9 126.6 38.5 126.6 33.4C126.7 28.4 126.5 28.7 128.9 28.7C129.7 28.7 130.9 28.6 131.7 28.5C133.4 28.4 133.9 28.4 134.2 28.8C134.5 29.3 134.4 38.3 134.1 38.9C133.4 40.3 131.3 42.1 130 42.3C129.8 42.4 129.4 42.5 129.1 42.6C128.7 42.7 128 42.8 127.4 42.8C126.8 42.9 125.6 43 124.8 43.1C123 43.2 122.7 43.2 121.5 43.1ZM42.7 42.8C42.1 42.7 41.1 42.4 40.1 41.8C38.2 40.9 37.4 38.3 37.2 33.1C37.1 32.3 37 31.1 37 30.2C36.8 27.6 36.7 24.4 36.6 20.7C36.6 18.6 36.5 16.6 36.4 15.8C36.3 15.1 36.1 13.9 36 13.1C35.8 10.9 35.9 10 36.6 9.8C36.8 9.8 38.2 9.8 39.7 9.8C43.9 9.9 43.7 9.6 43.8 14.6C43.9 17.7 44.1 21.7 44.3 24.7C44.4 25.4 44.5 27.5 44.6 29.2C44.9 37.2 45.2 38.3 46.5 38.2C47.5 38.2 47.9 37.5 47.8 35.9C47.8 34.3 47.6 30.2 47.5 29.2C47.4 28 47.2 25.5 47.1 23.2C47.1 22.1 47 20.7 46.9 20.1C46.9 19.5 46.8 18.2 46.7 17.2C46.6 16.1 46.5 14.6 46.5 13.8C46.1 10 45.9 10.1 50.6 10.3C54.6 10.4 54.2 9.9 54.3 15.5C54.4 19.8 54.5 23.6 54.7 26C54.8 26.6 54.8 28 54.9 29.1C55.1 32.9 55.4 36.6 55.8 40C56 42.5 55.9 42.7 53.8 42.8C50.6 42.9 48.2 42.6 47.8 42.1C47.6 41.8 47.3 41.9 46.4 42.3C45.1 42.9 44.2 43 42.7 42.8ZM140.2 41.9C139.1 41.7 137.9 41.1 137.1 40.2C135.8 38.8 135.9 39 135.8 35.6C135.8 34 135.8 31.8 135.8 30.8C135.6 28.4 135.8 28.2 138 28C138.6 28 139.1 27.9 139.2 27.9C139.2 27.8 139.6 27.8 140.1 27.7C141.7 27.5 142 27.2 140.9 26.7C137.4 25.2 136 23.9 135.7 21.8C135.6 21 135.4 16.5 135.5 14.7C135.6 10.1 138.9 8.1 146.6 8.2C150.3 8.2 152.6 9.4 153.3 11.5C153.5 12.5 153.6 20 153.3 20.4C152.9 21 151.5 21.3 148.6 21.4C145.7 21.5 145.9 21.7 145.8 17.2C145.7 12.8 145.5 12.1 144.6 12.1C143.7 12.1 143.5 12.7 143.3 16.1C143 20.6 143.3 21 147.3 22.6C147.7 22.8 148.3 23 148.6 23.2C148.9 23.4 149.5 23.6 149.9 23.8C152.8 25 153.6 26.2 153.5 29.8C153.5 30.8 153.5 32.7 153.6 34C153.7 37.2 153.5 38.1 152.2 39.4C150.5 41.1 148.8 41.7 146.1 41.7C145.3 41.7 144.1 41.8 143.6 41.8C142.5 42 141 42 140.2 41.9ZM23.5 41.1C19.9 40.7 19.9 40.8 19.9 36.3C19.9 34.5 19.9 32.5 19.8 31.7C19.7 30.3 19.3 24.3 19.1 21.7C19 19.5 18.6 15.8 18.5 15.1C18.4 14.3 18.1 11 18.1 10C18.1 8.7 18.5 8.3 19.6 8.4C19.9 8.5 21.1 8.5 22.2 8.6C24.4 8.7 24.7 8.8 25.2 9.2C25.7 9.6 25.7 9.6 26.6 9.2C29.5 7.9 33.6 9.6 34.6 12.4C34.8 13.2 34.8 13.5 34.9 15.5C34.9 16.7 35 17.9 35 18.1C35.6 23.2 35.8 22.9 32 22.8C27.8 22.6 28.1 22.9 27.9 18.8C27.7 15 27.5 13.8 26.8 13.6C26.2 13.5 25.5 14.6 25.5 15.6C25.5 16.5 25.8 19.9 25.9 21.2C26 21.9 26.1 22.7 26.1 23.2C26.2 23.7 26.2 24.6 26.3 25.4C26.4 26.1 26.4 27.3 26.5 28.1C26.7 31 26.9 33.2 27.1 34.8C27.5 38.6 27.6 40.2 27.3 40.6C26.9 41.2 26 41.3 23.5 41.1ZM159.6 40.6C157.9 40.3 156.1 39.1 155.3 37.7C155 37.2 155 37.2 154.9 25.4C154.9 12.1 154.9 12.1 155.5 10.9C157.1 7.8 160.2 6.6 166.6 6.6C168.9 6.6 168.9 6.6 169.7 6.9C170.9 7.5 171.6 8.3 172.1 9.5C172.4 10.6 172.4 19.3 172.1 19.8C171.7 20.4 169.9 20.9 167.5 21.1C164.9 21.3 164.9 21.3 165.1 17.4C165.2 14.3 165 11.2 164.6 10.7C164.3 10.4 163.2 10.7 162.9 11.2C162.5 11.9 162.2 32.5 162.5 35.4C162.6 36.5 163.2 36.9 164.1 36.4C164.8 35.9 164.9 35.5 165 30.6C165.1 25.5 164.9 25.9 167.5 25.6C168.3 25.5 169.5 25.3 170.2 25.2C172.3 25 172.3 24.8 172.2 29.9C172.2 34.3 172.1 34.8 171.7 35.9C170.9 37.5 169.9 38.5 168.3 39.4C167.1 40.1 167.2 40 164.9 40.3C164 40.4 162.9 40.5 162.6 40.6C161.9 40.7 160.2 40.7 159.6 40.6ZM13.2 40.2C12.2 40.1 11.8 40 11 39.4C10.2 38.9 10 38.8 9.3 39C8 39.4 4.9 39.2 3.7 38.6C3.2 38.4 2.9 37.8 2.9 36.7C2.8 36.2 2.7 35.1 2.7 34.1C2.6 33.1 2.5 31.9 2.4 31.5C2.4 31 2.3 29.7 2.2 28.6C1.9 26 1.4 18.7 1.1 14.7C1 12.6 0.7 9.5 0.6 7.3C0.5 6.3 0.4 4.9 0.3 4C0.2 3.1 0.1 2.1 0.1 1.6C-0.1 -0.1 -0.3 -0 3.2 0L6.4 0L6.6 0.5C7 1.1 7.2 2.8 7.2 4.7C7.2 5.7 7.4 7.2 7.6 7.4C7.8 7.6 7.9 7.6 8.5 7.4C9.2 7.2 11.3 7.2 12.3 7.5C15.4 8.3 17 11 17 15.2C17 18 17.3 24 17.6 28C17.7 28.9 17.8 30.4 17.9 31.3C18 32.2 18.1 33.6 18.2 34.3C18.5 37.7 18.1 38.8 15.8 40C15.2 40.3 14.5 40.3 13.2 40.2ZM177.2 38.2C175.4 37.7 174 36.3 173.6 34.6C173.4 33.9 173.4 25.9 173.6 24.2C173.7 23.6 173.7 20.8 173.7 17.6C173.7 10.1 173.6 10.4 174.3 9C175.5 6.3 178.1 4.7 181.6 4.4C182.3 4.3 183 4.3 183.3 4.2C186.2 3.6 188.8 5.2 189.5 7.8C189.8 9 189.5 27.9 189.1 32.1C188.8 35.3 186 37.9 182.6 37.9C181.8 37.9 181.4 38 180.8 38.1C179.6 38.5 178.3 38.6 177.2 38.2ZM145.4 37.8C145.7 37.6 145.8 37.3 145.9 35.3C146.1 31.2 145.9 29.1 145 28.6C144.1 28 143.7 28.1 143.5 28.8C143.4 29.4 143.4 36.6 143.5 37.3C143.7 38.1 144.6 38.4 145.4 37.8ZM11.1 35.3C11.6 34.7 11.6 33.1 11.1 27.3C10.9 25.9 10.8 24.1 10.5 19.8C10.1 13.4 9.8 12 8.7 11.6C7.4 11.1 7.3 12.4 8.1 22.6C8.2 23.6 8.4 26.2 8.6 28.5C9 33.8 9.2 34.7 9.9 35.3C10.3 35.7 10.8 35.7 11.1 35.3ZM182 34.1C182.7 33.4 182.8 32.3 182.9 24.6C183 21.5 183 17.6 183.1 15.8C183.2 10.1 182.9 8.4 181.9 8.4C180.8 8.4 180.7 9 180.6 17.8C180.6 21.4 180.5 24.4 180.5 24.5C180.3 24.7 180.4 33.5 180.5 33.8C180.8 34.4 181.5 34.6 182 34.1ZM86.9 23.2C87.3 22.9 87.3 19.1 86.9 15.9C86.7 14.4 86 13.9 85 14.3C84.2 14.7 84.1 15.2 84.2 18.6C84.4 23.4 84.3 23.3 85.9 23.3C86.4 23.3 86.8 23.3 86.9 23.2ZM125.9 22.7C126.5 22.4 126.5 22.2 126.5 19.4C126.3 14.2 126.1 13.2 125 13.2C124 13.2 123.7 13.9 123.5 16.1C123.3 18 123.5 22.1 123.7 22.4C124 22.9 125 23 125.9 22.7Z"/></symbol>
+    <symbol id="bz-bar" viewBox="0 0 60.5 27"><path fill="currentColor" d="M26.2 26.8C25 26.5 24.1 26 23.1 24.9C21.4 23.2 21.6 20.1 23.4 18.4C24.3 17.6 27.7 16 28.5 16C28.8 16 30.4 15.5 31.4 15.1C32.4 14.7 33.2 14 33.3 13.4C33.6 12 33 9.5 32.3 8.8C30.8 7.6 27.4 8.3 27.6 9.8C28 12.3 27.7 13.2 26.2 13.7C24.4 14.3 23.1 13.4 23.2 11.6C23.2 9.8 24.2 8.8 27.1 7.7C29.1 6.9 34.2 7 35.7 7.8C38.4 9.2 38.6 9.6 38.7 16.2C38.7 18.9 38.8 21.3 38.9 21.6C39.3 23.6 39.6 23.9 41 23.3C42.8 22.5 42.9 23.6 41.2 25.2C39.1 27.2 36.1 27.2 33.9 25.2C33.6 25 33.3 24.8 33.3 24.8C33.1 24.8 32 25.4 31.5 25.8C30.1 26.8 28.1 27.2 26.2 26.8ZM9.9 26.7C9.1 26.5 7.5 25.7 7 25.2C5.9 24.3 5.6 24.3 4.8 25C3.7 26 2.6 26.4 1.9 26C1.4 25.8 1.3 25.5 1.3 24.1C1.3 23.5 1.2 21.4 1.2 19.5C1.1 17.5 1 14 0.9 11.7C0.7 5.1 0.5 2.3 0.1 0.8C0.1 0.5 0 0.2 0 0.1C0 0 0.8 0 2.6 0L5.2 0L5.2 3.6C5.3 8.1 5.4 8.8 6 8.9C6.3 9 6.5 8.9 7 8.5C7.2 8.3 7.7 8 8 7.8C8.4 7.6 8.7 7.4 8.8 7.4C9 7.2 10.5 6.9 11.6 6.8C14.7 6.7 17.9 9.6 18.9 13.3C19.1 14 19.3 14.7 19.4 14.9C19.7 15.6 19.7 17.9 19.4 19.5C18.7 23.2 15.8 26.3 12.8 26.6C11.2 26.8 10.4 26.8 9.9 26.7ZM44.6 25.7C43.6 25.4 43.9 24.6 45 24.4C46.4 24.2 46.4 24.2 46.5 20.8C46.6 19.2 46.6 17.1 46.7 16C46.9 13.4 46.9 10 46.7 9.4C46.6 8.9 46.4 8.8 45.4 8.4C44.3 8 44.3 7.1 45.4 7.1C45.5 7.1 46.4 7 47.2 6.8C52 5.8 52 5.8 52.1 7.2C52.3 8.5 52.6 8.6 53.6 7.6C54.3 6.8 55.7 5.9 56.3 5.7C57.1 5.5 58.8 5.6 59.3 5.9C60.3 6.6 60.7 8.3 60.3 9.5C59.4 11.8 57 12.2 55.7 10.2C55 9.2 54.5 9.4 53.4 11C52.3 12.8 52.3 12.7 52.3 17.7C52.4 23.7 52.4 23.6 53.9 23.9C55.6 24.2 55.4 25.2 53.6 25.5C52.4 25.7 45.1 25.9 44.6 25.7ZM11.1 24.3C13.1 23.4 14.1 20.1 13.8 15.4C13.5 11.6 11.5 9.1 8.8 9.1C8.1 9.1 7 10 6.3 11.2C5.7 12.2 6 18.6 6.8 21.2C7.4 23.4 9.6 25 11.1 24.3ZM31.2 23.8C32.8 23.1 33.6 21.3 33.6 18.3C33.6 15.8 32.3 15.4 29.7 17.1C27.7 18.4 27 21.2 28.3 23.1C29 24.1 30 24.4 31.2 23.8Z"/></symbol>
+    <symbol id="bz-desde" viewBox="0 0 99.9 16.8"><path fill="currentColor" d="M44.3 16.7C43.6 16.5 42.7 16 42.3 15.5C41.7 14.8 41.4 14.6 41 14.9C38.7 16.8 37.3 17.1 36.1 16.1C35.5 15.5 35.4 15.5 34.3 16.1C32.5 16.9 31.3 16.8 30.2 15.7C28.3 13.7 29.1 10.6 32 8.7C33.2 7.9 35.4 7.4 36.5 7.7C37.2 7.9 37.5 7.7 37.6 7.2C38.2 4.6 38.2 4.3 37.7 3.8C36.9 2.8 37.2 2.4 38.8 2.2C39.3 2.2 39.8 2.1 40 2C40.9 1.7 41.5 2 41.5 2.7C41.5 3.7 40.7 7.2 40.4 8.2C40.1 8.8 39.9 9.9 39.5 11.8C39.4 12.1 39.3 12.7 39.1 13.1C38.8 14.3 38.9 14.5 40 14.2C41 14 41.3 13.6 41.7 12.3C42.6 9 46.9 6.8 49.5 8.1C50.6 8.7 50.9 10.1 50.1 11C49.4 11.9 49 12 46.4 12.5C44.9 12.7 44.7 12.8 44.7 13.5C44.7 15.2 46.1 15.4 48.4 14.2C49.6 13.6 49.8 13.6 49.8 14C49.8 15.4 46.1 17.1 44.3 16.7ZM23.1 16.3C21.5 16.1 20.3 15.2 20.3 14.1C20.3 13.6 20.6 13.3 21.1 13.3C21.5 13.3 21.7 13.4 22.2 14.1C23 15.1 24.3 15.5 24.9 14.9C25.4 14.3 25.1 13.8 23.7 12.7C22.3 11.5 22.1 11.3 21.8 10.7C21 8.9 22.3 7.6 24.9 7.6C27.1 7.6 28.2 8.1 28.2 9.4C28.2 10.4 27.5 10.5 26.5 9.7C25.6 9 25.4 8.9 25 8.9C24.4 8.9 24.2 9.5 24.7 10C25.2 10.5 26.4 11.5 26.9 11.9C28.5 13.1 28.2 14.9 26.2 16C25.4 16.4 24.6 16.5 23.1 16.3ZM59.7 16.3C58.6 16.1 58.6 15.6 59.7 15.1C60.7 14.7 61 14.3 61.2 13.6C62.1 10.1 62.5 8.2 62.6 6.8C62.6 5.8 62.6 5.7 61.8 5.5C60 4.9 60.6 4.2 64.3 2.8C66 2.1 66.6 2.5 66.1 4.1C66 4.3 65.9 5.1 65.8 6C65.7 6.8 65.5 7.8 65.5 8.1C65.1 9.6 64.4 13.3 64.4 14C64.4 14.4 64.6 14.7 65.2 15C65.7 15.3 65.9 15.7 65.5 16C65.2 16.3 60.9 16.5 59.7 16.3ZM14.8 16C13.9 15.8 13.2 15.4 12 14.3C11.6 14 11.3 13.8 11.2 13.8C11.1 13.8 11.1 13.2 11.3 12.5C11.3 12.1 11.5 11.5 11.6 11.1C12 9.1 13.8 7.7 16.4 7.3C18.2 7 20 8.1 20 9.6C20 10.6 18.8 11.2 15.9 11.7C14.6 11.9 14.1 12.5 14.5 13.3C15.2 14.5 16.8 14.7 18.1 13.9C19 13.3 19.4 13.3 19.4 13.9C19.4 15 16.6 16.3 14.8 16ZM69.9 16C69.5 15.9 69.8 15.4 70.7 14.8C72.2 13.9 74.6 11.8 74.8 11.1C74.9 10.7 74.8 10.6 74.1 10.7C73 10.8 72.2 10.8 71.7 10.5C68.5 9 69.3 4.1 73 2.3C77.1 0.3 81 3.5 79.5 7.6C78 11.6 72 16.9 69.9 16ZM7.4 15.5C7.1 15.4 6.8 15.1 6.5 14.9C5.9 14.3 5.9 14.3 4.9 14.8C2.4 15.9 0.2 14.3 0 11.4C-0.1 8.1 2.7 5.8 6 6.5C7.3 6.8 7.4 6.7 7.6 4.8C7.7 3.2 7.7 3.2 7.2 2.6C6.4 1.6 6.9 1.1 8.8 1.1C11.1 1.1 11.3 1.7 10.1 6.3C9.5 9.1 9.2 10.7 9.1 12C9.1 13.5 9 13.5 10.1 13.5C10.9 13.6 10.9 13.6 10.9 13.9C11 14.8 8.6 15.9 7.4 15.5ZM81.2 15.5C80.6 15.2 80.5 14.5 81.1 13.7C81.3 13.4 81.6 12.9 81.8 12.6C82.2 11.8 83.3 10 83.8 9.5C84.5 8.5 87.3 4.5 87.4 4.2C87.6 3.8 87.3 3.7 86.7 3.8C86.3 3.8 85.6 3.8 85.1 3.9C83.8 3.9 83.2 4.1 82.4 4.7C81.2 5.6 80.7 4.7 81.4 3C82 1.6 82.1 1.6 86.9 1.4C91.6 1.3 91.6 1.3 90.3 3.3C88.2 6.4 86.7 8.8 85.7 10.8C85.1 11.8 84.6 12.8 84.4 13C84.3 13.3 84 13.7 83.9 14C83.2 15.2 82.1 15.9 81.2 15.5ZM34.5 14.4C35.5 13.9 36.7 11.7 36.7 10.3C36.7 9.2 35.3 8.6 34.3 9.3C31.5 11.3 31.6 15.6 34.5 14.4ZM92.1 14.5C87.7 12.8 90.1 5.7 96.5 1.2C97 0.8 98.9 0 99.3 0C100.4 -0 100.1 0.7 98.5 1.8C96.6 2.9 94.8 4.8 94.8 5.5C94.8 5.8 94.8 5.8 95.9 5.7C97.5 5.6 98.2 6 99 7.1C99.5 7.9 99.5 9.6 99 10.7C97.8 13.2 94.1 15.2 92.1 14.5ZM4.8 12.9C6 12.3 7 9.5 6.4 8.5C5.5 7.2 3.7 7.9 3.1 9.7C2.5 12 3.3 13.6 4.8 12.9ZM94.9 12.6C96.4 11.5 97 8.4 95.8 7.6C95.3 7.3 94.6 7.4 94 7.9C92 9.9 92.8 14.1 94.9 12.6ZM47.4 10.1C47.7 9.9 47.5 9.5 47.2 9.5C46.6 9.5 45.5 10.4 45.6 10.7C45.7 10.9 47 10.4 47.4 10.1ZM16.4 10.2C17.4 9.7 17.6 9.1 16.9 8.7C16.3 8.5 16 8.5 15.4 9.2C14.3 10.3 15 10.9 16.4 10.2ZM75.5 9.1C76.6 8.1 76.8 3.9 75.7 3.5C74.8 3.1 73.6 3.8 73 5.1C72.7 5.9 72.6 7.8 72.9 8.4C73.4 9.2 74.8 9.6 75.5 9.1Z"/></symbol>
+    <symbol id="bz-logo" viewBox="-2 -2 193.7 144.4">
+      <use href="#bz-scrolls" x="34.85" y="-1.2" width="120" height="57.6"/>
+      <use href="#bz-emblem" x="65.45" y="-1.8" width="58.8" height="58.8"/>
+      <use href="#bz-word" x="0" y="53" width="189.7" height="43.5"/>
+      <use href="#bz-bar" x="76.1" y="103.5" width="37.5" height="16.74"/>
+      <use href="#bz-desde" x="55.9" y="126.25" width="77.9" height="13.1"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header" data-state="intro">
+  <div class="wrap">
+    <a class="lk" href="#top" aria-label="Brunellesco bar, inicio">
+      <svg class="lk-emb" aria-hidden="true"><use href="#bz-emblem"/></svg>
+      <svg class="lk-word" viewBox="0 0 189.7 43.5" aria-hidden="true"><use href="#bz-word"/></svg>
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <ul>
+        <li><a href="#el-bar">El bar</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#la-cupula">La cúpula</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#visitanos">Cómo llegar</a></li>
+      </ul>
+    </nav>
+    <div class="head-right">
+      <span class="status" data-status data-open="true"><i aria-hidden="true"></i><span data-status-text>Abierto</span></span>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menú">
+        <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" hidden><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Menú" hidden>
+  <div class="wrap">
+    <ul>
+      <li><a href="#el-bar"><b>A</b>El bar</a></li>
+      <li><a href="#especialidades"><b>B</b>Especialidades</a></li>
+      <li><a href="#horarios"><b>C</b>Horarios</a></li>
+      <li><a href="#la-cupula"><b>D</b>La cúpula</a></li>
+      <li><a href="#opiniones"><b>E</b>Opiniones</a></li>
+      <li><a href="#visitanos"><b>F</b>Cómo llegar</a></li>
+    </ul>
+    <a class="btn btn-brass" href="https://www.google.com/maps/search/?api=1&amp;query=Brunellesco%2C%20Corrientes%201411%2C%20Rosario" target="_blank" rel="noopener">Abrir en Google Maps</a>
+  </div>
+</nav>
+
+<main>
+<h1 class="sr-only">Brunellesco bar, desde 1976 · Café, desayunos y jazz en Corrientes 1411, Rosario</h1>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" aria-label="Presentación" data-final="false">
+  <div class="hero-stage">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-dim" aria-hidden="true"></div>
+
+    <div class="hero-caps">
+      <div class="wrap">
+        <div class="cap" data-cap="0.30 0.47">
+          <p class="cap-k">Corrientes 1411 · Rosario</p>
+          <p class="cap-t">Café desde las 7 de la mañana.</p>
+          <p class="cap-s">Desayunos abundantes para los que entran antes del trabajo, con las medialunas que las reseñas nombran primero.</p>
+        </div>
+        <div class="cap" data-cap="0.48 0.64">
+          <p class="cap-k">Todo el día</p>
+          <p class="cap-t">Jazz de fondo, madera y charla.</p>
+          <p class="cap-s">Un salón chico, con láminas de la cúpula de Florencia colgadas en todas las paredes.</p>
+        </div>
+        <div class="cap" data-cap="0.65 0.80">
+          <p class="cap-k">A la tarde</p>
+          <p class="cap-t">Vermut o whisky en la barra.</p>
+          <p class="cap-s">La misma barra de madera desde 1976.</p>
+        </div>
+        <div class="cap cap-final" data-cap="0.84 2">
+          <p class="cap-k">Brunellesco bar · desde 1976</p>
+          <p class="cap-t">Café, jazz y madera en el centro de Rosario.</p>
+          <p class="cap-meta">
+            <span><svg aria-hidden="true"><use href="#i-star"/></svg>4,7 en Google · 638 reseñas</span>
+            <span><svg aria-hidden="true"><use href="#i-pin"/></svg>Corrientes 1411</span>
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-brass" href="#visitanos">Cómo llegar <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="#especialidades">Ver especialidades</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Papel con el logo: el aro del emblema es la ventana al video -->
+    <svg class="hero-mask" aria-hidden="true" focusable="false">
+      <defs>
+        <mask id="heroHole" maskUnits="userSpaceOnUse" x="-50000" y="-50000" width="100000" height="100000">
+          <rect x="-50000" y="-50000" width="100000" height="100000" fill="#fff"/>
+          <circle class="hole" cx="0" cy="0" r="0" fill="#000"/>
+        </mask>
+        <pattern id="heroGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M32 0H0V32" fill="none" stroke="currentColor" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <g mask="url(#heroHole)" class="paper-g">
+        <rect class="hero-paper" x="-50000" y="-50000" width="100000" height="100000"/>
+        <rect class="grid-r" x="-50000" y="-50000" width="100000" height="100000" fill="url(#heroGrid)" style="color:var(--line)"/>
+      </g>
+      <g class="hero-logo">
+        <g class="h-emb" transform="translate(64.85 -2.4) scale(.3)">
+          <g class="h-scroll" fill="none" stroke="currentColor" stroke-width="6.2" stroke-linecap="round">
+            <path pathLength="1" d="M12 122C-2 142-33 146-46 128C-58 111-46 88-27 91C-12 93-11 112-24 114C-32 115-35 106-30 102"/>
+            <path pathLength="1" d="M23 147C6 172-40 182-70 166C-90 155-90 131-73 129C-60 128-58 145-68 147C-74 148-77 141-73 137"/>
+            <g transform="translate(200 0) scale(-1 1)">
+              <path pathLength="1" d="M12 122C-2 142-33 146-46 128C-58 111-46 88-27 91C-12 93-11 112-24 114C-32 115-35 106-30 102"/>
+              <path pathLength="1" d="M23 147C6 172-40 182-70 166C-90 155-90 131-73 129C-60 128-58 145-68 147C-74 148-77 141-73 137"/>
+            </g>
+          </g>
+          <g class="h-dot" fill="currentColor"><circle cx="-30" cy="102" r="5.2"/><circle cx="-73" cy="137" r="4.6"/><circle cx="230" cy="102" r="5.2"/><circle cx="273" cy="137" r="4.6"/></g>
+          <circle class="h-ring" pathLength="1" cx="100" cy="100" r="91" fill="none" stroke="currentColor" stroke-width="7" transform="rotate(-90 100 100)"/>
+          <circle class="h-ring thin" pathLength="1" cx="100" cy="100" r="80.5" fill="none" stroke="currentColor" stroke-width="2.4" transform="rotate(-90 100 100)"/>
+          <g class="h-dome-wrap"><g class="h-dome" fill="currentColor">
+            <path d="M100 17.5c1.9 0 3.4 1.5 3.4 3.4 0 1.4-.8 2.6-2 3.1l3 10.5h-8.8l3-10.5c-1.2-.5-2-1.7-2-3.1 0-1.9 1.5-3.4 3.4-3.4z"/>
+            <rect x="92.5" y="35" width="15" height="3.2" rx=".8"/><path d="M94 39.5h12v8.5H94z"/>
+            <path fill-rule="evenodd" d="M100 50.5C82 66 60 92 52 138h96C140 92 118 66 100 50.5ZM98.6 56.5C86.5 72 76.5 98 73.5 135.5h-4.1C72.6 99 83.2 72.3 98.6 56.5ZM101.4 56.5C113.5 72 123.5 98 126.5 135.5h4.1C127.4 99 116.8 72.3 101.4 56.5ZM98.4 58.5h3.2v77h-3.2z"/>
+            <rect x="47" y="138.5" width="106" height="5" rx="1.2"/>
+            <path fill-rule="evenodd" d="M53 146h94v20H53zM66 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM93.8 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM121.6 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM57 149h4v14h-4zM139 149h4v14h-4z"/>
+            <rect x="46" y="168" width="108" height="4.5" rx="1.2"/>
+          </g></g>
+        </g>
+        <g class="h-word"><use href="#bz-word" x="0" y="53" width="189.7" height="43.5"/></g>
+        <g class="h-sub">
+          <use href="#bz-bar" x="76.1" y="103.5" width="37.5" height="16.74"/>
+          <use href="#bz-desde" x="55.9" y="126.25" width="77.9" height="13.1"/>
+        </g>
+      </g>
+    </svg>
+
+    <div class="hero-ui">
+      <p class="hero-hint" aria-hidden="true"><span>Deslizá para entrar</span><i></i></p>
+      <div class="hero-meta">
+        <div class="wrap">
+          <button class="hero-skip" type="button" data-skip>Saltar intro <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
+          <span class="hero-count" aria-hidden="true">Corrientes 1411 · <span data-clock>--:--</span></span>
+        </div>
+      </div>
+      <div class="hero-bar" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Ⓐ EL BAR ================= -->
+<section class="section drafting-soft" id="el-bar" style="background-color:var(--paper)">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy rise">
+        <p class="plate-label"><b>A</b>El bar · desde 1976</p>
+        <h2 class="title">Un bar chico, de madera, con <em>jazz todo el día.</em></h2>
+        <p class="lead">Brunellesco abre a las 7 de la mañana en Corrientes 1411, a metros de 9 de Julio. Es un salón chico, con barra de madera, banquetas altas y láminas de arquitectura en todas las paredes.</p>
+        <p class="lead">A la mañana se llena con los que desayunan antes de ir a trabajar. Las porciones son abundantes, los precios son buenos y el dueño atiende en persona. A la tarde se arma la barra para un vermut o un whisky.</p>
+        <div class="btn-row">
+          <a class="btn btn-ink" href="#especialidades">Qué se pide <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="#horarios">Horarios</a>
+        </div>
+      </div>
+      <figure class="photo rise">
+        <span class="tag">En el salón</span>
+        <div class="photo-frame"><img src="assets/img/cuadros-bar.jpg" alt="Dos láminas enmarcadas de la cúpula de Santa Maria del Fiore colgadas sobre la pared amarilla del bar" loading="lazy" width="1600" height="1200"></div>
+        <figcaption><b>Fig. A</b>La cúpula de Brunelleschi, en lámina y en corte, sobre la pared amarilla del salón.</figcaption>
+      </figure>
+    </div>
+    <dl class="facts rise">
+      <div><dt>Año de apertura</dt><dd>1976</dd></div>
+      <div><dt>Abre todos los días</dt><dd>7:00</dd></div>
+      <div><dt>638 reseñas en Google</dt><dd>4,7<small> ★</small></dd></div>
+      <div><dt>Música de fondo</dt><dd>Jazz</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================= Ⓑ ESPECIALIDADES ================= -->
+<section class="section menu-sec on-wood" id="especialidades">
+  <div class="wrap">
+    <div class="head menu-head rise">
+      <div class="stack">
+        <p class="plate-label"><b>B</b>Especialidades</p>
+        <h2 class="title">Lo que se pide en la barra, <em>de la mañana a la noche.</em></h2>
+      </div>
+      <p class="lead">Seis cosas que aparecen una y otra vez en las reseñas. La carta completa y los precios del día están en el local.</p>
+    </div>
+    <ul class="menu-grid">
+      <li class="dish">
+        <div class="dish-top">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 29h31v6.5C46 44 39.6 50 30.5 50S15 44 15 35.5Z"/><path d="M46 32.5h2.8a5.3 5.3 0 0 1 0 10.6H44"/><path d="M8 52.5h47"/><path d="M11 52.5c2.6 3.4 9 5 20.5 5S49.4 55.9 52 52.5"/><path d="M24 23c-2.4-3 2.4-5 0-8.5M31 23c-2.4-3 2.4-5 0-8.5M38 23c-2.4-3 2.4-5 0-8.5"/><path d="M19.5 33.5h22" opacity=".45"/></svg>
+          <span class="dish-n">B·1</span>
+        </div>
+        <h3>Café en la taza de la casa</h3>
+        <p>Espresso, cortado, lágrima o café con leche, servidos en la taza blanca con el emblema dorado.</p>
+        <span class="when">Todo el día</span>
+      </li>
+      <li class="dish">
+        <div class="dish-top">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 40c2.5-10 8-16.5 14-19.5 3.5-1.8 7.2-2.5 11-2.5s7.5.7 11 2.5c6 3 11.5 9.5 14 19.5-3.3 1.6-6.8 1.4-9.6-.6-3.6 4.4-9.4 6.6-15.4 6.6s-11.8-2.2-15.4-6.6C13.8 41.4 10.3 41.6 7 40Z"/><path d="M21 20.5c-1 6.5.2 13.5 3.6 18.9M43 20.5c1 6.5-.2 13.5-3.6 18.9M32 18v27.5"/><path d="M13 44.5c4.5 6 11.5 9 19 9s14.5-3 19-9" opacity=".45"/></svg>
+          <span class="dish-n">B·2</span>
+        </div>
+        <h3>Medialunas</h3>
+        <p>Las que más nombran las reseñas. Se piden de a varias, para el café de la mañana o la merienda.</p>
+        <span class="when">Desayuno y merienda</span>
+      </li>
+      <li class="dish">
+        <div class="dish-top">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 33h48c0 11.5-10.2 19.5-24 19.5S8 44.5 8 33Z"/><path d="M24 52.5v3.5h16v-3.5"/><circle cx="20" cy="28" r="4.5"/><circle cx="31" cy="25.5" r="5.5"/><circle cx="43" cy="28" r="4.5"/><path d="M45 21.5 55 9.5"/><path d="M12.5 38.5c3.5 5 10.5 8 19.5 8" opacity=".45"/></svg>
+          <span class="dish-n">B·3</span>
+        </div>
+        <h3>Desayunos completos</h3>
+        <p>Bowls y tostadas en porciones generosas, con jugo y café. El lugar es chico: conviene llegar temprano.</p>
+        <span class="when">Desde las 7:00</span>
+      </li>
+      <li class="dish">
+        <div class="dish-top">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 25.5 31 14l24 11.5-22 11.5Z"/><path d="M9 25.5v6l24 11.5 22-11.5v-6"/><path d="M9 31.5v6L33 49l22-11.5v-6" opacity=".45"/><path d="M19 24.5l6 3M27 20.5l8 4M35 24l8 4"/></svg>
+          <span class="dish-n">B·4</span>
+        </div>
+        <h3>Tostados y sándwiches</h3>
+        <p>Para el mediodía o para acompañar el café: algo rápido en la barra, sin apuro.</p>
+        <span class="when">Mediodía</span>
+      </li>
+      <li class="dish">
+        <div class="dish-top">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 15h34l-3.4 36.5a4.5 4.5 0 0 1-4.5 4H22.9a4.5 4.5 0 0 1-4.5-4Z"/><path d="M17.6 33.5h28.8"/><path d="m25.5 24 9.5-2.6 2.6 9.5-9.5 2.6Z"/><path d="M19.5 44.5h25M20 49.5h24" opacity=".45"/></svg>
+          <span class="dish-n">B·5</span>
+        </div>
+        <h3>Vermut y whisky</h3>
+        <p>Cuando cae la tarde, la barra cambia de ritmo: un vermut con soda o un whisky con hielo, como en el video.</p>
+        <span class="when">Después de las 18:00</span>
+      </li>
+      <li class="dish">
+        <div class="dish-top">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="34" r="21"/><circle cx="30" cy="34" r="6.5"/><circle cx="30" cy="34" r="1.4" fill="currentColor"/><path d="M30 19a15 15 0 0 1 15 15M30 24a10 10 0 0 1 10 10" opacity=".45"/><path d="M53 9v20.5"/><path d="M53 9l5 3"/><circle cx="50" cy="30" r="3.2"/></svg>
+          <span class="dish-n">B·6</span>
+        </div>
+        <h3>Jazz</h3>
+        <p>Suena todo el día, a volumen de conversación. Es lo primero que se escucha al entrar.</p>
+        <span class="when">7:00 a 21:00</span>
+      </li>
+    </ul>
+    <div class="menu-note">
+      <p>Wi-Fi y aire acondicionado en el salón.</p>
+      <a class="btn btn-ghost" href="#visitanos">Cómo llegar <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Ⓒ UN DÍA / HORARIOS ================= -->
+<section class="section drafting" id="horarios">
+  <div class="wrap">
+    <div class="day-top rise">
+      <div class="head" style="margin:0">
+        <p class="plate-label"><b>C</b>Sección longitudinal de un día</p>
+        <h2 class="title">De 7 a 21, <em>a escala.</em></h2>
+        <p class="lead">El horario del bar dibujado como un corte: cada marca es una hora. De lunes a viernes abre todo el día; los sábados y domingos, de mañana.</p>
+      </div>
+      <div class="now-card" data-now-card data-open="true">
+        <span><i class="dot"></i><span data-now-label>Hora de Rosario</span></span>
+        <b data-now-title>—</b>
+        <span data-now-sub></span>
+      </div>
+    </div>
+    <div class="ruler-wrap rise">
+      <div class="ruler">
+        <svg viewBox="0 0 1000 192" data-ruler-svg role="img" aria-label="Horario: lunes a viernes de 7 a 21 horas; sábados y domingos de 7 a 13:30.">
+          <g data-ruler></g>
+        </svg>
+      </div>
+    </div>
+    <ol class="moments rise">
+      <li class="moment" data-from="7" data-to="10"><time>7:00</time><h3>Abre la persiana</h3><p>Café y desayuno antes de entrar a trabajar.</p></li>
+      <li class="moment" data-from="10" data-to="12.5"><time>10:00</time><h3>Media mañana</h3><p>Medialunas y un cortado en la barra.</p></li>
+      <li class="moment" data-from="12.5" data-to="16"><time>12:30</time><h3>Mediodía</h3><p>Tostados y sándwiches para la pausa.</p></li>
+      <li class="moment" data-from="16" data-to="18.5"><time>16:30</time><h3>Merienda</h3><p>Café con leche y algo dulce.</p></li>
+      <li class="moment" data-from="18.5" data-to="21"><time>18:30</time><h3>Vermut y whisky</h3><p>La barra de la tarde, con jazz.</p></li>
+      <li class="moment" data-from="21" data-to="24"><time>21:00</time><h3>Cierre</h3><p>Hasta mañana a las 7.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= Ⓓ LA CÚPULA ================= -->
+<section class="section dome-sec on-wood" id="la-cupula">
+  <div class="wrap">
+    <div class="dome-grid">
+      <div class="dome-copy rise">
+        <p class="plate-label"><b>D</b>Construcción de la cúpula</p>
+        <h2 class="title">El nombre viene de <em>Florencia.</em></h2>
+        <p class="lead">Filippo Brunelleschi levantó entre 1420 y 1436 la cúpula de Santa Maria del Fiore, la más grande de su tiempo, sin una cimbra de madera que la sostuviera. Su dibujo cuelga en todas las paredes del bar y es el emblema de la taza.</p>
+        <dl class="dome-facts">
+          <div><dd>1420–1436</dd><dt>Años de obra</dt></div>
+          <div><dd>≈ 45 m</dd><dt>De diámetro interior</dt></div>
+          <div><dd>+4 mill.</dd><dt>Ladrillos en espina de pez</dt></div>
+          <div><dd>8</dd><dt>Costillas de mármol</dt></div>
+        </dl>
+      </div>
+      <figure class="dome-fig" aria-label="Dibujo en corte de la cúpula de Brunelleschi, el mismo que cuelga en el bar">
+        <div class="ink-art"></div>
+        <span class="callout" style="left:56%;top:9%;--len:34px;--o:-1"><b>1</b><span>Linterna</span></span>
+        <span class="callout" style="left:2%;top:40%"><b>2</b><span>Costilla</span></span>
+        <span class="callout c-left" style="right:2%;top:46%"><b>3</b><span>Doble cáscara</span></span>
+        <span class="callout" style="left:2%;top:90%"><b>4</b><span>Óculo del tambor</span></span>
+      </figure>
+    </div>
+
+    <div class="plate-strip">
+      <div class="plate-thumb" role="img" aria-label="Lámina S. Maria del Fiore, Florencia, con vista exterior, sección longitudinal, construcción de la cúpula, fachada, planta e interior"><div class="ink-art"></div></div>
+      <div class="plate-copy rise">
+        <p class="plate-label"><b>D</b>Lámina 356 · Italian Gothic</p>
+        <h3>S. Maria del Fiore: Florencia. La lámina del salón que ordena esta página.</h3>
+        <p class="lead">Cada sección de este sitio lleva una letra, como las figuras de la lámina que cuelga junto a la barra.</p>
+        <p class="legend">
+          <span><b>A</b>Exterior</span><span><b>B</b>Sección longitudinal</span><span><b>C</b>Construcción</span><span><b>E</b>Fachada</span><span><b>F</b>Planta</span><span><b>G</b>Interior</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Ⓔ OPINIONES ================= -->
+<section class="section" id="opiniones" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="head rise">
+      <p class="plate-label"><b>E</b>Opiniones</p>
+      <h2 class="title">Lo que dicen <em>los que vuelven.</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="score rise">
+        <div class="score-big"><b>4,7</b>
+          <span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg style="opacity:.55"><use href="#i-star"/></svg></span>
+        </div>
+        <small>Promedio de 638 reseñas en Google Maps.</small>
+        <div class="dist" role="img" aria-label="Distribución: 488 de cinco estrellas, 109 de cuatro, 20 de tres, 10 de dos y 11 de una.">
+          <div><span>5</span><i style="--w:76.5%"></i><span>488</span></div>
+          <div><span>4</span><i style="--w:17.1%"></i><span>109</span></div>
+          <div><span>3</span><i style="--w:3.1%"></i><span>20</span></div>
+          <div><span>2</span><i style="--w:1.6%"></i><span>10</span></div>
+          <div><span>1</span><i style="--w:1.7%"></i><span>11</span></div>
+        </div>
+        <div class="rev-actions"><a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Brunellesco%2C%20Corrientes%201411%2C%20Rosario" target="_blank" rel="noopener">Ver reseñas en Google</a></div>
+      </div>
+      <div class="quotes">
+        <figure class="quote rise"><blockquote>El lugar es chiquito pero las porciones son abundantes y muy ricas.</blockquote><figcaption>Guía de cafés de Rosario · Morfar</figcaption></figure>
+        <figure class="quote rise"><blockquote>Hermoso lugar, tranquilo, buena música, y buena atención.</blockquote><figcaption>Reseña en Facebook</figcaption></figure>
+        <figure class="quote rise"><blockquote>El precio es excelente y la atención también.</blockquote><figcaption>Guía de cafés de Rosario · Morfar</figcaption></figure>
+        <figure class="quote rise"><blockquote>Abre a las 7 para desayunar antes de ir a trabajar.</blockquote><figcaption>@eugeposti · vía Morfar</figcaption></figure>
+        <figure class="quote wide rise"><blockquote>En resumen, las reseñas destacan el desayuno abundante, la calidad de la comida, la atención, los precios accesibles y la decoración clásica con jazz. El consejo que más se repite es llegar temprano, porque el salón es chico y se llena.</blockquote><figcaption>Resumen de reseñas publicadas en Google y Wanderlog</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Ⓕ PLANTA / CÓMO LLEGAR ================= -->
+<section class="section drafting-soft" id="visitanos" style="background-color:var(--paper)">
+  <div class="wrap">
+    <div class="head rise">
+      <p class="plate-label"><b>F</b>Planta · Cómo llegar</p>
+      <h2 class="title">Corrientes 1411, <em>casi 9 de Julio.</em></h2>
+    </div>
+    <div class="visit-grid">
+      <figure class="plan rise">
+        <svg viewBox="0 0 640 470" role="img" aria-label="Plano del centro de Rosario con Brunellesco sobre calle Corrientes, a metros de 9 de Julio, entre Paraguay y Entre Ríos.">
+          <g data-plan></g>
+        </svg>
+        <figcaption><span>Fig. F · Planta del barrio</span><span>Centro · Rosario, Santa Fe</span></figcaption>
+      </figure>
+      <div>
+        <dl class="info rise">
+          <div><dt>Dirección</dt><dd><strong>Corrientes 1411</strong>S2000 Rosario, Santa Fe</dd></div>
+          <div><dt>Horario</dt><dd>
+            <div class="hours" data-hours>
+              <div data-days="1,2,3,4,5"><span>Lunes a viernes</span><span>7:00 – 21:00</span></div>
+              <div data-days="6"><span>Sábado</span><span>7:00 – 13:30</span></div>
+              <div data-days="0"><span>Domingo</span><span>7:00 – 13:30</span></div>
+            </div>
+          </dd></div>
+          <div><dt>Teléfono</dt><dd><div class="phone-row"><a href="tel:+543415941005" data-phone>0341 594-1005</a><button class="copy-btn" type="button" data-copy="0341 594-1005">Copiar</button></div></dd></div>
+          <div><dt>En el salón</dt><dd><div class="chips"><span>Wi-Fi</span><span>Aire acondicionado</span><span>Acceso para silla de ruedas</span></div></dd></div>
+        </dl>
+        <div class="btn-row visit-actions">
+          <a class="btn btn-ink" href="https://www.google.com/maps/search/?api=1&amp;query=Brunellesco%2C%20Corrientes%201411%2C%20Rosario" target="_blank" rel="noopener">Abrir en Google Maps <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="https://www.facebook.com/p/Brunellesco-100069355010010/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <svg class="foot-logo" viewBox="-2 -2 193.7 144.4" role="img" aria-label="Brunellesco bar, desde 1976"><use href="#bz-logo"/></svg>
+      <div class="foot-cols">
+        <div><h3>Dirección</h3><p>Corrientes 1411<br>Rosario, Santa Fe</p></div>
+        <div><h3>Horario</h3><p>Lun a vie 7:00–21:00<br>Sáb y dom 7:00–13:30</p></div>
+        <div><h3>Contacto</h3><p>0341 594-1005<br><a href="https://www.facebook.com/p/Brunellesco-100069355010010/" target="_blank" rel="noopener">Facebook</a></p></div>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>Brunellesco bar · desde 1976</span><span>Sitio por Web Point</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Hora de Rosario (UTC-3, sin horario de verano) ---------- */
+  const SCHED = { 0: [7, 13.5], 1: [7, 21], 2: [7, 21], 3: [7, 21], 4: [7, 21], 5: [7, 21], 6: [7, 13.5] };
+  const DAYS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const fmt = (h) => { const H = Math.floor(h), M = Math.round((h - H) * 60); return H + ':' + String(M).padStart(2, '0'); };
+  function rosarioNow() {
+    const d = new Date(Date.now() - 3 * 3600e3);
+    return { day: d.getUTCDay(), h: d.getUTCHours() + d.getUTCMinutes() / 60, hh: d.getUTCHours(), mm: d.getUTCMinutes() };
+  }
+  function status() {
+    const n = rosarioNow(), [o, c] = SCHED[n.day];
+    if (n.h >= o && n.h < c) return { open: true, short: 'Abierto · cierra ' + fmt(c), title: 'Abierto ahora', sub: 'Cierra a las ' + fmt(c) + ' (' + DAYS[n.day] + ')', n };
+    if (n.h < o) return { open: false, short: 'Cerrado · abre ' + fmt(o), title: 'Abre a las ' + fmt(o), sub: 'Hoy ' + DAYS[n.day] + ', hasta las ' + fmt(c), n };
+    const nd = (n.day + 1) % 7;
+    return { open: false, short: 'Cerrado · abre mañana 7:00', title: 'Cerrado ahora', sub: 'Abre mañana ' + DAYS[nd] + ' a las ' + fmt(SCHED[nd][0]), n };
+  }
+  function paintStatus() {
+    const s = status();
+    $$('[data-status]').forEach((el) => { el.dataset.open = s.open; $('[data-status-text]', el).textContent = s.short; });
+    const card = $('[data-now-card]');
+    if (card) { card.dataset.open = s.open; $('[data-now-label]', card).textContent = 'Rosario · ' + String(s.n.hh).padStart(2, '0') + ':' + String(s.n.mm).padStart(2, '0'); $('[data-now-title]', card).textContent = s.title; $('[data-now-sub]', card).textContent = s.sub; }
+    const clock = $('[data-clock]'); if (clock) clock.textContent = String(s.n.hh).padStart(2, '0') + ':' + String(s.n.mm).padStart(2, '0');
+    $$('[data-hours] [data-days]').forEach((r) => r.setAttribute('aria-current', r.dataset.days.split(',').map(Number).includes(s.n.day) ? 'true' : 'false'));
+    $$('.moment').forEach((m) => { const on = s.open && s.n.h >= +m.dataset.from && s.n.h < +m.dataset.to; m.setAttribute('aria-current', on ? 'true' : 'false'); });
+    drawRuler(s);
+  }
+
+  /* ---------- Regla de horario (a escala: 6 a 22 h) ---------- */
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  function drawRuler(s) {
+    const g = $('[data-ruler]'); if (!g) return; g.textContent = '';
+    const svg = $('[data-ruler-svg]'), cw = Math.max(300, Math.round(svg.parentNode.clientWidth || 1000));
+    const narrow = cw < 640; svg.setAttribute('viewBox', `0 0 ${cw} 192`);
+    const X0 = narrow ? 2 : 120, X1 = cw - (narrow ? 20 : 45), H0 = 6, H1 = 22, x = (h) => X0 + (h - H0) / (H1 - H0) * (X1 - X0);
+    const AX = 146;
+    el('line', { x1: X0, x2: X1, y1: AX, y2: AX, class: 'r-axis' }, g);
+    for (let h = H0; h <= H1; h += 0.5) {
+      const full = h % 1 === 0;
+      el('line', { x1: x(h), x2: x(h), y1: AX, y2: AX + (full ? 10 : 5), class: 'r-tick' + (full ? '' : ' minor') }, g);
+      if (full && h % (narrow ? 4 : 2) === 0) { const t = el('text', { x: x(h), y: AX + 28, 'text-anchor': 'middle', class: 'r-num' }, g); t.textContent = h + ':00'; }
+    }
+    const row = (y, label, a, b, cls, txt) => {
+      if (!narrow) { const l = el('text', { x: 0, y: y + 19, class: 'r-row-l' }, g); l.textContent = label; }
+      el('rect', { x: x(a), y, width: x(b) - x(a), height: 28, class: 'r-band ' + cls }, g);
+      const t = el('text', { x: x(a) + 10, y: y + 19, class: 'r-band-l' + (cls ? ' dark' : '') }, g); t.textContent = narrow ? label + ' · ' + txt : txt;
+    };
+    row(40, 'LUN A VIE', 7, 21, '', '7:00 – 21:00');
+    row(84, 'SÁB Y DOM', 7, 13.5, 'we', '7:00 – 13:30');
+    if (s.n.h >= H0 && s.n.h <= H1) {
+      const ng = el('g', { class: 'r-now' }, g), nx = x(s.n.h);
+      el('line', { x1: nx, x2: nx, y1: 26, y2: AX + 6 }, ng);
+      const lab = String(s.n.hh).padStart(2, '0') + ':' + String(s.n.mm).padStart(2, '0');
+      const w = 92, rx = clamp(nx - w / 2, X0 - 10, X1 - w + 10);
+      el('rect', { x: rx, y: 4, width: w, height: 22, rx: 2 }, ng);
+      const t = el('text', { x: rx + w / 2, y: 19, 'text-anchor': 'middle' }, ng); t.textContent = 'AHORA ' + lab;
+    }
+  }
+
+  /* ---------- Plano (calles del centro, a mano alzada técnica) ---------- */
+  function drawPlan() {
+    const g = $('[data-plan]'); if (!g) return;
+    const rot = el('g', { transform: 'rotate(-8 320 235)' }, g);
+    // manzanas: columnas entre Paraguay | Corrientes | Entre Ríos | Mitre ; filas entre Mendoza | 3 de Febrero | 9 de Julio | Zeballos | Montevideo
+    const colsX = [-60, 100, 300, 500, 700], rowsY = [-40, 70, 180, 290, 400, 510], S = 26;
+    for (let c = 0; c < colsX.length - 1; c++) for (let r = 0; r < rowsY.length - 1; r++) {
+      const bx = colsX[c] + S / 2, by = rowsY[r] + S / 2, bw = colsX[c + 1] - colsX[c] - S, bh = rowsY[r + 1] - rowsY[r] - S;
+      el('rect', { x: bx, y: by, width: bw, height: bh, class: 'p-block' }, rot);
+      for (let k = 14; k < bw + bh; k += 14) {
+        const x1 = bx + Math.min(k, bw), y1 = by + Math.max(0, k - bw), x2 = bx + Math.max(0, k - bh), y2 = by + Math.min(k, bh);
+        if (Math.abs(x1 - x2) > 4) el('line', { x1, y1, x2, y2, class: 'p-hatch' }, rot);
+      }
+    }
+    const vLab = [[100, 'Paraguay', false], [300, 'Corrientes', true], [500, 'Entre Ríos', false]];
+    vLab.forEach(([x0, t, main]) => { const tx = el('text', { x: 0, y: 0, class: 'p-street' + (main ? ' main' : ''), transform: `translate(${x0 + 4} 262) rotate(-90)` }, rot); tx.textContent = t; });
+    const hLab = [[70, 'Mendoza'], [180, '3 de Febrero'], [290, '9 de Julio'], [400, 'Zeballos']];
+    hLab.forEach(([y0, t]) => { const tx = el('text', { x: 116, y: y0 + 4, class: 'p-street' + (t === '9 de Julio' ? ' main' : '') }, rot); tx.textContent = t; });
+    // pin en Corrientes, apenas al sur de 9 de Julio
+    const pin = el('g', { class: 'p-pin', transform: 'translate(300 304)' }, rot);
+    el('rect', { x: 26, y: -24, width: 150, height: 44, class: 'lbl' }, pin);
+    el('circle', { r: 22, class: 'r' }, pin); el('circle', { r: 7, class: 'c' }, pin);
+    const n1 = el('text', { x: 36, y: -4 }, pin); n1.textContent = 'Brunellesco';
+    const n2 = el('text', { x: 36, y: 12, class: 's' }, pin); n2.textContent = 'CORRIENTES 1411';
+    // norte y escala (sin rotar la escala)
+    const north = el('g', { class: 'p-north', transform: 'translate(596 46) rotate(-8)' }, g);
+    el('circle', { r: 20 }, north); el('path', { d: 'M0 -15 6 6 0 2 -6 6Z' }, north);
+    const nt = el('text', { x: 0, y: -24, 'text-anchor': 'middle', class: 'p-meta' }, north); nt.textContent = 'N';
+    const sc = el('g', { class: 'p-scale', transform: 'translate(24 440)' }, g);
+    el('rect', { x: 0, y: 0, width: 50, height: 6 }, sc); el('rect', { x: 50, y: 0, width: 50, height: 6, class: 'w' }, sc); el('rect', { x: 0, y: 0, width: 100, height: 6, class: 'o' }, sc);
+    const st = el('text', { x: 110, y: 7, class: 'p-meta' }, sc); st.textContent = '≈ 100 M';
+  }
+
+  /* ---------- Header / menú ---------- */
+  const header = $('.site-header');
+  const menuBtn = $('.menu-btn'), mnav = $('#mnav');
+  const setMenu = (open) => {
+    menuBtn.setAttribute('aria-expanded', open); mnav.hidden = !open;
+    $('.i-open', menuBtn).hidden = open; $('.i-close', menuBtn).hidden = !open;
+    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    if (open) header.dataset.state = 'solid'; else onScroll();
+  };
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  mnav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !mnav.hidden) { setMenu(false); menuBtn.focus(); } });
+
+  /* ---------- Copiar teléfono ---------- */
+  $$('[data-copy]').forEach((b) => b.addEventListener('click', () => {
+    const txt = b.dataset.copy, done = () => { b.textContent = 'Copiado'; setTimeout(() => (b.textContent = 'Copiar'), 1600); };
+    const fallback = () => { const a = $('[data-phone]'); const r = document.createRange(); r.selectNodeContents(a); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Seleccionado'; setTimeout(() => (b.textContent = 'Copiar'), 1600); };
+    try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
+  }));
+
+  /* ---------- Hero ---------- */
+  const hero = $('.hero'), stage = $('.hero-stage'), canvas = $('.hero-canvas'), ctx = canvas.getContext('2d');
+  const mask = $('.hero-mask'), hole = $('.hole', mask), logo = $('.hero-logo', mask), dome = $('.h-dome-wrap', mask), paperG = $('.paper-g', mask);
+  const shade = $('.hero-shade'), dim = $('.hero-dim'), hint = $('.hero-hint'), meta = $('.hero-meta'), bar = $('.hero-bar'), barFill = $('.hero-bar span');
+  const caps = $$('.cap').map((c) => { const [a, b] = c.dataset.cap.split(' ').map(Number); return { c, a, b, final: c.classList.contains('cap-final') }; });
+  const N = 120, IW = 1280, IH = 720;
+  // logo en unidades propias: ancho 189.7, centro del aro (94.85, 27.6), radio interior 24.15
+  const LW = 189.7, LH = 140.4, CX = 94.85, CY = 27.6, RIN = 24.0;
+  let W = 0, H = 0, dpr = 1, set = 'd', imgs = [], ready = new Uint8Array(N), p = 0, raf = 0, lastKey = '';
+  const src = (i) => `assets/frames/${set}/${String(i).padStart(3, '0')}.webp`;
+
+  function load(i) {
+    return new Promise((res) => {
+      const im = new Image(); im.decoding = 'async'; im.src = src(i); imgs[i] = im;
+      const ok = () => { ready[i] = 1; schedule(); res(); };
+      im.onload = () => (im.decode ? im.decode().catch(() => {}) : Promise.resolve()).then(ok);
+      im.onerror = () => res();
+    });
+  }
+  function startLoading() {
+    set = Math.max(innerWidth, innerHeight) * Math.min(2, devicePixelRatio || 1) >= 1400 ? 'd' : 'm';
+    load(0).then(() => {
+      let next = 1; const worker = async () => { while (next < N) { const i = next++; await load(i); } };
+      for (let k = 0; k < 6; k++) worker();
+    });
+  }
+  const nearest = (i) => { for (let d = 0; d < N; d++) { if (i - d >= 0 && ready[i - d]) return i - d; if (i + d < N && ready[i + d]) return i + d; } return -1; };
+
+  function geometry() {
+    const narrow = W < 760;
+    const lw = Math.min(narrow ? W * 0.84 : 560, (H * (narrow ? 0.5 : 0.6)) * LW / LH);
+    const k = lw / LW;
+    const ox = (W - lw) / 2, oy = H * (narrow ? 0.44 : 0.47) - (LH * k) / 2;
+    const cx = ox + CX * k, cy = oy + CY * k, r = RIN * k;
+    const far = Math.max(Math.hypot(cx, cy), Math.hypot(W - cx, cy), Math.hypot(cx, H - cy), Math.hypot(W - cx, H - cy));
+    return { k, ox, oy, cx, cy, r, smax: (far / r) * 1.12, narrow };
+  }
+  let G = null;
+  function resize() {
+    dpr = Math.min(2, devicePixelRatio || 1);
+    W = stage.clientWidth; H = stage.clientHeight;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    G = geometry(); lastKey = ''; schedule();
+  }
+
+  function render() {
+    raf = 0; if (!G) return;
+    const t = p;
+    // fases
+    const open = reduce ? 1 : smooth(0.0, 0.06, t);
+    const zt = reduce ? 1 : smooth(0.05, 0.30, t);
+    const s = Math.exp(Math.log(G.smax) * zt);
+    const fpos = reduce ? (N - 1) : clamp((t - 0.02) / 0.94) * (N - 1);
+    const key = [W, H, open.toFixed(4), zt.toFixed(4), fpos.toFixed(3)].join('|');
+    if (key !== lastKey) {
+      lastKey = key;
+      // --- video ---
+      const fi = Math.floor(fpos), fr = fpos - fi, a = nearest(fi);
+      if (a >= 0) {
+        const z = lerp(1.38, 1.0, zt);
+        const cover = Math.max(W / IW, H / IH) * z, dw = IW * cover, dh = IH * cover;
+        // foco: logo de la taza al inicio; luego centro (desktop) o paneo taza → vaso (móvil)
+        const scrub = smooth(0.32, 0.92, t);
+        let fx = G.narrow ? lerp(0.335, 0.72, scrub) : lerp(0.335, 0.5, smooth(0.18, 0.40, t));
+        let fy = lerp(0.53, 0.5, zt);
+        const ax = lerp(G.cx, W / 2, zt), ay = lerp(G.cy, H / 2, zt);
+        let dx = ax - fx * dw, dy = ay - fy * dh;
+        dx = Math.min(0, Math.max(W - dw, dx)); dy = Math.min(0, Math.max(H - dh, dy));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.globalAlpha = 1; ctx.drawImage(imgs[a], dx, dy, dw, dh);
+        const b = (a === fi && fi + 1 < N && ready[fi + 1] && fr > 0.02) ? fi + 1 : -1;
+        if (b >= 0) { ctx.globalAlpha = fr; ctx.drawImage(imgs[b], dx, dy, dw, dh); ctx.globalAlpha = 1; }
+      }
+      // --- papel + logo ---
+      const showMask = zt < 0.999;
+      mask.style.display = showMask ? '' : 'none';
+      if (showMask) {
+        const T = `translate(${G.cx} ${G.cy}) scale(${s}) translate(${-G.cx} ${-G.cy})`;
+        logo.setAttribute('transform', `${T} translate(${G.ox} ${G.oy}) scale(${G.k})`);
+        hole.setAttribute('cx', G.cx); hole.setAttribute('cy', G.cy);
+        hole.setAttribute('r', Math.max(0, G.r * s * open));
+        dome.style.opacity = 1 - smooth(0.0, 0.75, open);
+        logo.style.opacity = 1 - smooth(0.82, 1, zt);
+      }
+    }
+    // --- UI y textos ---
+    hint.style.opacity = 1 - smooth(0.0, 0.03, t);
+    const uiOn = smooth(0.26, 0.32, t);
+    meta.style.opacity = uiOn; bar.style.opacity = uiOn;
+    barFill.style.transform = `scaleX(${clamp((t - 0.3) / 0.7)})`;
+    shade.style.opacity = smooth(0.28, 0.36, t) * (1 - smooth(0.80, 0.86, t));
+    dim.style.opacity = smooth(0.80, 0.9, t);
+    for (const c of caps) {
+      const fadeIn = smooth(c.a, c.a + 0.04, t), fadeOut = c.final ? 0 : smooth(c.b - 0.04, c.b, t);
+      const o = reduce ? (c.final ? 1 : 0) : fadeIn * (1 - fadeOut);
+      c.c.style.opacity = o;
+      c.c.style.transform = reduce ? 'none' : `translateY(${(1 - fadeIn) * 26 - fadeOut * 26}px)`;
+    }
+    hero.dataset.final = (reduce || t > 0.86) ? 'true' : 'false';
+  }
+  function schedule() { if (!raf) raf = requestAnimationFrame(render); }
+
+  function progress() {
+    const r = hero.getBoundingClientRect(), span = r.height - innerHeight;
+    return span <= 0 ? 1 : clamp(-r.top / span);
+  }
+  function onScroll() {
+    p = reduce ? 1 : progress();
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    if (mnav.hidden) header.dataset.state = (!reduce && p < 0.27) ? 'intro' : (heroBottom > innerHeight * 0.4 ? 'over' : 'solid');
+    schedule();
+    // sección activa en la navegación
+    let cur = '';
+    for (const s of ['el-bar', 'especialidades', 'horarios', 'la-cupula', 'opiniones', 'visitanos']) { const e = document.getElementById(s); if (e && e.getBoundingClientRect().top < innerHeight * 0.4) cur = s; }
+    $$('.nav a').forEach((a) => a.setAttribute('aria-current', a.getAttribute('href') === '#' + cur ? 'true' : 'false'));
+    // dibujo de la cúpula que se "termina de entintar" al entrar
+    const fig = $('.dome-fig');
+    if (fig && !reduce) { const fr = fig.getBoundingClientRect(); const v = clamp((innerHeight - fr.top) / (fr.height * 0.9 + innerHeight * 0.25)); fig.style.setProperty('--undrawn', ((1 - smooth(0, 1, v)) * 55).toFixed(1) + '%'); }
+  }
+  $('[data-skip]').addEventListener('click', () => document.getElementById('el-bar').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+
+  if (reduce) { hero.style.height = '100svh'; }
+  let tick = false;
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(() => { tick = false; onScroll(); }); } }, { passive: true });
+  addEventListener('resize', () => { resize(); onScroll(); drawRuler(status()); });
+
+  /* ---------- Entrada de bloques ---------- */
+  const rises = $$('.rise');
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.removeAttribute('data-pending'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    rises.forEach((r) => { if (r.getBoundingClientRect().top > innerHeight) { r.setAttribute('data-pending', ''); io.observe(r); } });
+  }
+
+  drawPlan();
+  paintStatus(); setInterval(paintStatus, 30000);
+  resize(); onScroll(); startLoading();
+})();
+</script>
+</body>
+</html>
