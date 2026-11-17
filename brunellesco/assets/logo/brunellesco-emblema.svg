@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="color:#6A4122" viewBox="2 2 196 196">
+<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="100" cy="100" r="91" stroke-width="7"/>
+  <circle cx="100" cy="100" r="80.5" stroke-width="2.4"/>
+</g>
+<g fill="currentColor">
+  <!-- lantern -->
+  <path d="M100 17.5c1.9 0 3.4 1.5 3.4 3.4 0 1.4-.8 2.6-2 3.1l3 10.5h-8.8l3-10.5c-1.2-.5-2-1.7-2-3.1 0-1.9 1.5-3.4 3.4-3.4z"/>
+  <rect x="92.5" y="35" width="15" height="3.2" rx=".8"/>
+  <path d="M94 39.5h12v8.5H94z"/>
+  <!-- dome webs (pointed shell), ribs knocked out -->
+  <path fill-rule="evenodd" d="M100 50.5C82 66 60 92 52 138h96C140 92 118 66 100 50.5Z
+     M98.6 56.5C86.5 72 76.5 98 73.5 135.5h-4.1C72.6 99 83.2 72.3 98.6 56.5Z
+     M101.4 56.5C113.5 72 123.5 98 126.5 135.5h4.1C127.4 99 116.8 72.3 101.4 56.5Z
+     M98.4 58.5h3.2v77h-3.2z"/>
+  <!-- cornice + drum -->
+  <rect x="47" y="138.5" width="106" height="5" rx="1.2"/>
+  <path fill-rule="evenodd" d="M53 146h94v20H53z
+     M66 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0z
+     M93.8 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0z
+     M121.6 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0z
+     M57 149h4v14h-4z M139 149h4v14h-4z"/>
+  <rect x="46" y="168" width="108" height="4.5" rx="1.2"/>
+</g></svg>
