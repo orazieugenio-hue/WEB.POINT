@@ -146,8 +146,8 @@ ul,ol{list-style:none}
 @media (max-width:520px){ .status{display:none} .lk-word{width:116px} .lk-emb{width:36px;height:36px} }
 
 /* ---------- Hero: un solo canvas (papel, logo y video) ---------- */
-.hero{position:relative;height:470vh;height:470svh;background:var(--wood-950)}
-.hero-stage{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;color:var(--on-wood);background:var(--paper);contain:strict}
+.hero{position:relative;height:520vh;height:520svh;background:var(--wood-950)}
+.hero-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:var(--on-wood);background:var(--paper)}
 .hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-shade,.hero-dim,.cap{will-change:opacity}
 .hero-shade{position:absolute;inset:0;pointer-events:none;opacity:0;background:
@@ -184,7 +184,7 @@ ul,ol{list-style:none}
 .hero-count{font-variant-numeric:tabular-nums;opacity:.8}
 .vh-probe{position:fixed;left:0;top:0;width:1px;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
 @media (max-width:760px){
-  .hero{height:400vh;height:400svh}
+  .hero{height:430vh;height:430svh}
   .hero-caps .wrap{align-items:end;padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
   .cap{max-width:100%;align-self:end}
   .cap-final{align-self:center}
@@ -930,7 +930,7 @@ ul,ol{list-style:none}
   const probe = document.createElement('div'); probe.className = 'vh-probe'; probe.setAttribute('aria-hidden', 'true'); document.body.appendChild(probe);
   let svh = probe.offsetHeight || innerHeight;
   const scenes = [];
-  const scene = (el, stage, render) => { const s = { el, stage, render, top: 0, len: 1, cur: -1, tgt: 0 }; scenes.push(s); return s; };
+  const scene = (el, stage, render, smoothed) => { const s = { el, stage, render, smoothed, top: 0, len: 1, cur: -1, tgt: 0 }; scenes.push(s); return s; };
   const NAV_IDS = ['la-cupula', 'especialidades', 'horarios', 'historia', 'opiniones', 'visitanos'];
   const navLinks = $$('.nav a');
   let navTops = [], heroEnd = 0, lastNav = null, lastState = null, loopOn = false, lastFrameT = 0;
@@ -961,7 +961,7 @@ ul,ol{list-style:none}
     if (introRunning) { introT = clamp((now - introStart) / 2300); if (introT >= 1) introRunning = false; heroDirty = true; busy = true; }
     for (const s of scenes) {
       if (s.cur === s.tgt) continue;
-      if (s.cur < 0) s.cur = s.tgt;
+      if (s.cur < 0 || !s.smoothed) s.cur = s.tgt;
       else { s.cur += (s.tgt - s.cur) * k; if (Math.abs(s.tgt - s.cur) < 0.0005) s.cur = s.tgt; }
       s.render(s.cur); busy = true;
       if (s === heroScene) heroDirty = false;
@@ -984,8 +984,9 @@ ul,ol{list-style:none}
   const sprite = $('#sprite');
   const scrLen = SCR.map((d) => { const e = document.createElementNS(NS, 'path'); e.setAttribute('d', d); sprite.appendChild(e); let L = 300; try { L = e.getTotalLength(); } catch (err) {} e.remove(); return L; });
   const DOTS = [[-30, 102, 5.2], [-73, 137, 4.6], [230, 102, 5.2], [273, 137, 4.6]];
-  const BLEND = !coarse;
-  const MAXDPR = coarse ? 1.5 : 2;   // menos píxeles que pintar en tablets y celulares
+  const BLEND = true;
+  const MAXDPR = 2;
+  const DRAW_DPR = coarse ? 1.5 : 2;   // la lámina a lápiz pinta menos píxeles en pantallas táctiles
   let W = 0, H = 0, dpr = 1, G = null, imgs = [], ready = new Uint8Array(N), set = 'd';
   let COL = { paper: '#F2ECE2', brand: '#6A4122', trace: 'rgba(138,85,48,.2)' };
   const paperCv = document.createElement('canvas');
@@ -1126,7 +1127,7 @@ ul,ol{list-style:none}
     const fin = (reduce || t > 0.86) ? 'true' : 'false';
     if (hero.dataset.final !== fin) hero.dataset.final = fin;
   }
-  const heroScene = scene(hero, stage, heroRender);
+  const heroScene = scene(hero, stage, heroRender, false);
 
   /* ---------- Ⓐ La cúpula a lápiz ---------- */
   const dsec = $('#la-cupula'), dstage = $('.draw-stage'), sheetWrap = $('.sheet-wrap'), sheet = $('.sheet');
@@ -1265,7 +1266,7 @@ void main(){
   }
   function drawSizes() {
     sw = sheetWrap.clientWidth; sh = sheetWrap.clientHeight; pw = pencil.clientWidth || 124; ph = pencil.clientHeight || 22;
-    ddpr = Math.min(MAXDPR, devicePixelRatio || 1);
+    ddpr = Math.min(DRAW_DPR, devicePixelRatio || 1);
     gw = Math.round(sw * 0.9); gh = Math.round(sh * 0.9);
     const cw = Math.max(1, Math.round(gw * ddpr)), ch = Math.max(1, Math.round(gh * ddpr));
     if (glc.width !== cw || glc.height !== ch) { glc.width = cw; glc.height = ch; }
@@ -1293,7 +1294,7 @@ void main(){
     if (pos) { const x = (0.05 + 0.9 * pos[0]) * sw, y = (0.05 + 0.9 * pos[1]) * sh; pencil.style.transform = `translate3d(${x.toFixed(1)}px,${(y - ph / 2).toFixed(1)}px,0) rotate(-38deg)`; }
     setO(pencil, on, '_o');
   }
-  const drawScene = scene(dsec, dstage, drawRender);
+  const drawScene = scene(dsec, dstage, drawRender, true);
   const dimg = new Image(); dimg.decoding = 'async'; dimg.src = 'assets/img/dome-draw.png';
   dimg.onload = () => { initGL(dimg); lastT = -1; drawRender(Math.max(0, drawScene.cur)); };
   dimg.onerror = () => { glFallback(); drawRender(Math.max(0, drawScene.cur)); };
