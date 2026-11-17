@@ -17,7 +17,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap">
-<link rel="preload" as="image" href="assets/img/poster.jpg">
 <style>
 /* Layout: intro de lámina (papel + emblema que se abre al video y hace zoom), después bandas a todo ancho
    que alternan papel con tinta y madera con blanco, rotuladas Ⓐ–Ⓕ como la lámina de S. Maria del Fiore del bar. */
@@ -27,6 +26,7 @@
   --ink:#1A1410;            /* tinta */
   --ink-soft:#5B4A3C;
   --line:rgb(26 20 16 / .17);
+  --trace:rgba(138,85,48,.2);    /* trazos de los planos de la cúpula */
   --brand:#6A4122;          /* marrón del logo sobre papel */
   --accent:#8A5530;
 
@@ -51,12 +51,12 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#16100C; --paper-2:#1E1611; --ink:#EFE6D8; --ink-soft:#B6A48E; --line:rgb(239 230 216 / .15);
+    --paper:#16100C; --paper-2:#1E1611; --ink:#EFE6D8; --ink-soft:#B6A48E; --line:rgb(239 230 216 / .15); --trace:rgba(212,168,102,.12);
     --brand:#D4A866; --accent:#D4A866; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#16100C; --paper-2:#1E1611; --ink:#EFE6D8; --ink-soft:#B6A48E; --line:rgb(239 230 216 / .15);
+  --paper:#16100C; --paper-2:#1E1611; --ink:#EFE6D8; --ink-soft:#B6A48E; --line:rgb(239 230 216 / .15); --trace:rgba(212,168,102,.12);
   --brand:#D4A866; --accent:#D4A866; color-scheme:dark;
 }
 @media (max-width:860px){ :root{ --header-h:60px } }
@@ -94,15 +94,12 @@ ul,ol{list-style:none}
 .head{display:grid;gap:18px;margin-bottom:clamp(36px, 5vw, 64px)}
 .stack{display:grid;gap:18px}
 
-/* papel de dibujo con retícula muy suave */
-.drafting{background-color:var(--paper);background-image:
-  linear-gradient(color-mix(in srgb, var(--line) 60%, transparent) 1px, transparent 1px),
-  linear-gradient(90deg, color-mix(in srgb, var(--line) 60%, transparent) 1px, transparent 1px);
-  background-size:32px 32px;background-position:-1px -1px}
-.drafting-soft{background-image:
-  linear-gradient(color-mix(in srgb, var(--line) 45%, transparent) 1px, transparent 1px),
-  linear-gradient(90deg, color-mix(in srgb, var(--line) 45%, transparent) 1px, transparent 1px);
-  background-size:32px 32px}
+/* trazados de los planos de la cúpula (corte, planta, linterna, ladrillos) en lugar de cuadrícula */
+.traces{position:relative;isolation:isolate}
+.traces::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--trace);
+  -webkit-mask:url("assets/img/trazos.svg") var(--tx, 0px) var(--ty, 0px)/1500px 1500px repeat;
+  mask:url("assets/img/trazos.svg") var(--tx, 0px) var(--ty, 0px)/1500px 1500px repeat}
+@media (max-width:760px){ .traces::before{-webkit-mask-size:1050px 1050px;mask-size:1050px 1050px} }
 
 /* botones */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 24px;border-radius:2px;border:1.5px solid transparent;font:600 13px/1 var(--font-display);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
@@ -148,15 +145,16 @@ ul,ol{list-style:none}
 @media (max-width:1080px){ .nav{display:none} .menu-btn{display:grid} }
 @media (max-width:520px){ .status{display:none} .lk-word{width:116px} .lk-emb{width:36px;height:36px} }
 
-/* ---------- Hero: lámina → ventana → video con scroll ---------- */
-.hero{position:relative;height:520vh;height:520svh;background:var(--wood-950)}
-.hero-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:var(--on-wood);background:var(--wood-950) url("assets/img/poster.jpg") 34% 50%/cover no-repeat}
+/* ---------- Hero: un solo canvas (papel, logo y video) ---------- */
+.hero{position:relative;height:470vh;height:470svh;background:var(--wood-950)}
+.hero-stage{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;color:var(--on-wood);background:var(--paper);contain:strict}
 .hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-shade,.hero-dim,.cap{will-change:opacity}
 .hero-shade{position:absolute;inset:0;pointer-events:none;opacity:0;background:
   linear-gradient(90deg, rgb(var(--shade) / .86) 0%, rgb(var(--shade) / .6) 36%, rgb(var(--shade) / 0) 66%),
   linear-gradient(0deg, rgb(var(--shade) / .6) 0%, rgb(var(--shade) / 0) 36%)}
 .hero-dim{position:absolute;inset:0;pointer-events:none;background:rgb(var(--shade) / .62);opacity:0}
-.hero-caps{position:absolute;inset:0;display:grid;align-items:center;pointer-events:none}
+.hero-caps{position:absolute;left:0;right:0;top:0;height:100vh;height:100svh;display:grid;align-items:center;pointer-events:none}
 .hero-caps .wrap{display:grid;height:100%;align-items:center}
 .cap{grid-area:1/1;max-width:min(600px, 52%);opacity:0;will-change:opacity,transform;text-shadow:0 2px 26px rgb(var(--shade) / .45)}
 .cap-k{display:flex;align-items:center;gap:12px;font:500 12px/1 var(--font-display);letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-bottom:20px}
@@ -172,34 +170,21 @@ ul,ol{list-style:none}
 .cap-meta svg{width:16px;height:16px;color:var(--mustard)}
 .cap-final .btn-row{justify-content:center;pointer-events:auto}
 .hero[data-final="false"] .cap-final .btn-row{pointer-events:none}
-.hero-mask{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.hero-paper{fill:var(--paper)}
-.hero-logo{color:var(--brand)}
-.h-scroll path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s cubic-bezier(.6,0,.2,1) .45s forwards}
-.h-ring{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s cubic-bezier(.6,0,.2,1) .1s forwards}
-.h-ring.thin{animation-delay:.3s}
-.h-dot,.h-dome,.h-word,.h-sub{opacity:0;animation:fadeup .9s cubic-bezier(.2,.7,.2,1) forwards}
-.h-dome{animation-delay:.7s}
-.h-dot{animation-delay:1.4s}
-.h-word{animation-delay:1s}
-.h-sub{animation-delay:1.3s}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.hero-grid{position:absolute;inset:0;pointer-events:none}
-.hero-ui{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
-.hero-hint{position:absolute;left:50%;bottom:calc(40px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:12px;font:500 11px/1 var(--font-display);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.hero-ui{position:absolute;left:0;right:0;top:0;height:100vh;height:100svh;pointer-events:none}
+.hero-hint{position:absolute;left:50%;bottom:calc(36px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:12px;font:500 11px/1 var(--font-display);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;transition:opacity .3s}
 .hero-hint i{display:block;width:1.5px;height:42px;background:linear-gradient(var(--ink-soft), transparent);animation:hint 1.9s ease-in-out infinite;transform-origin:top}
 @keyframes hint{0%{transform:scaleY(0);opacity:1}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 .hero-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgb(246 239 228 / .16);opacity:0}
-.hero-bar span{display:block;height:100%;background:var(--brass);transform-origin:left;transform:scaleX(0)}
-.hero-meta{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));opacity:0}
+.hero-bar span{display:block;height:100%;background:var(--brass);transform-origin:left;transform:scaleX(0);will-change:transform}
+.hero-meta{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));opacity:0}
 .hero-meta .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;font:500 11.5px/1 var(--font-display);letter-spacing:.2em;text-transform:uppercase}
 .hero-skip{pointer-events:auto;background:none;border:0;color:var(--on-wood);font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;padding:10px 0;display:inline-flex;align-items:center;gap:8px;opacity:.85}
 .hero-skip:hover{opacity:1}
 .hero-skip svg{width:14px;height:14px}
 .hero-count{font-variant-numeric:tabular-nums;opacity:.8}
+.vh-probe{position:fixed;left:0;top:0;width:1px;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
 @media (max-width:760px){
-  .hero{height:430vh;height:430svh}
+  .hero{height:400vh;height:400svh}
   .hero-caps .wrap{align-items:end;padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
   .cap{max-width:100%;align-self:end}
   .cap-final{align-self:center}
@@ -207,35 +192,53 @@ ul,ol{list-style:none}
   .hero-count{display:none}
   .cap-final .cap-k::before,.cap-final .cap-k::after{display:none}
 }
-@media (prefers-reduced-motion: reduce){
-  .h-scroll path,.h-ring{animation:none;stroke-dashoffset:0}
-  .h-dot,.h-dome,.h-word,.h-sub{animation:none;opacity:1}
-  .hero-hint i{animation:none}
-}
+@media (prefers-reduced-motion: reduce){ .hero-hint i{animation:none} }
 
-/* ---------- Ⓐ El bar ---------- */
-.about-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px, 6vw, 96px);align-items:center}
-.about-copy{display:grid;gap:24px;justify-items:start}
-.about-copy p.lead+p.lead{margin-top:-6px}
-.facts{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));border-top:1.5px solid var(--ink);margin-top:clamp(48px, 6vw, 80px)}
-.facts>div{padding:20px 18px 6px 0;display:grid;gap:6px;align-content:start}
-.facts>div+div{padding-left:18px;border-left:1px solid var(--line)}
-.facts dt{font:500 11.5px/1.3 var(--font-display);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);order:2}
-.facts dd{font:600 clamp(30px, 3.4vw, 46px)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums;order:1}
-.facts dd small{font-size:.5em;font-weight:500;letter-spacing:0;color:var(--accent)}
-.photo{position:relative;margin:0;max-width:100%}
-.photo-frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2);box-shadow:0 30px 60px -30px rgb(20 12 6 / .5)}
-.photo-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
-.photo figcaption{display:flex;gap:12px;align-items:baseline;margin-top:14px;font:400 14px/1.5 var(--font-body);color:var(--ink-soft)}
-.photo figcaption b{font:500 11px/1 var(--font-display);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
-.photo .tag{position:absolute;left:-14px;top:24px;z-index:1;background:var(--mustard);color:var(--wood-950);font:600 11.5px/1 var(--font-display);letter-spacing:.18em;text-transform:uppercase;padding:10px 14px}
+/* ---------- Ⓐ La cúpula, trazo a trazo (dibujo a lápiz con el scroll) ---------- */
+.draw-sec{position:relative;height:400vh;height:400svh;background:var(--paper)}
+.draw-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;--tx:-420px;--ty:-160px}
+.draw-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(32px, 5vw, 88px);align-items:center;height:100%;padding-top:var(--header-h)}
+.draw-copy{display:grid;gap:20px;align-content:center;min-width:0}
+.draw-copy .title{font-size:clamp(32px, 3.8vw, 54px)}
+.draw-copy .lead{font-size:clamp(16px, 1.2vw, 18px)}
+.steps{display:grid;border-top:1.5px solid var(--ink);margin-top:6px}
+.step{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:14px;padding:14px 0;border-bottom:1px solid var(--line);opacity:.4;transition:opacity .35s}
+.step[aria-current="true"]{opacity:1}
+.step b{grid-row:1/3;display:grid;place-items:center;width:30px;height:30px;border:1.5px solid var(--accent);color:var(--accent);border-radius:50%;font:500 12.5px/1 var(--font-display)}
+.step[aria-current="true"] b{background:var(--accent);color:var(--paper)}
+.step h3{font:600 17px/1.3 var(--font-display)}
+.step p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:2px}
+.sheet-wrap{position:relative;justify-self:center;height:min(74svh, 760px);aspect-ratio:960/1200;max-width:100%}
+.sheet{position:absolute;inset:0;background-color:#F7F2E8;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .29  0 0 0 0 .21  .55 0 0 0 -.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");box-shadow:0 1px 1px rgb(40 26 14 / .08), 0 24px 50px -22px rgb(40 26 14 / .5)}
+.sheet canvas{position:absolute;left:5%;top:5%;width:90%;height:90%;display:block}
+.sheet-art{position:absolute;left:5%;top:5%;width:90%;height:90%;background:#2B241F;-webkit-mask:url("assets/img/dome.webp") center/contain no-repeat;mask:url("assets/img/dome.webp") center/contain no-repeat;opacity:.85}
+.sheet-art[hidden]{display:none}
+.frame{position:absolute;inset:0;pointer-events:none;box-shadow:0 0 0 14px #F8F4EC, 0 0 0 15px #D9CFBF, 0 0 0 30px #3B2416, 0 0 0 32px #22140B, 0 40px 70px -24px rgb(0 0 0 / .55);opacity:0;will-change:opacity,transform}
+.pencil{transition:opacity .25s;position:absolute;left:0;top:0;width:124px;height:22px;transform-origin:0 50%;pointer-events:none;opacity:0;will-change:transform,opacity;filter:drop-shadow(3px 6px 4px rgb(40 26 14 / .28))}
+.sheet-cap{position:absolute;left:-20px;right:-20px;top:calc(100% + 46px);text-align:center;font:500 11px/1.4 var(--font-display);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);opacity:0}
+.draw-meter{position:absolute;right:max(16px, env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:grid;gap:6px;justify-items:end;font:500 10.5px/1 var(--font-display);letter-spacing:.18em;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.draw-meter i{display:block;width:2px;height:120px;background:var(--line);position:relative}
+.draw-meter i span{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--accent);transform-origin:top;transform:scaleY(0);will-change:transform}
+@media (max-width:1100px){ .draw-meter{display:none} }
 @media (max-width:900px){
-  .about-grid{grid-template-columns:1fr}
-  .photo{order:-1}
-  .photo .tag{left:0}
-  .facts{grid-template-columns:1fr 1fr}
-  .facts>div:nth-child(3){padding-left:0;border-left:0}
-  .facts>div:nth-child(n+3){border-top:1px solid var(--line)}
+  .draw-grid{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:center;gap:14px;padding-top:calc(var(--header-h) + 6px);padding-bottom:12px}
+  .sheet-wrap{order:-1;height:min(50svh, 108vw)}
+  .draw-copy{gap:10px}
+  .draw-copy .title,.draw-copy .lead{display:none}
+  .steps{border-top:0;margin-top:0;display:grid}
+  .step{grid-area:1/1;opacity:0;border-bottom:0;padding:6px 0 0}
+  .step[aria-current="true"]{opacity:1}
+  .sheet-cap{display:none}
+  .pencil{width:96px;height:17px}
+  .draw-grid{gap:30px}
+  .frame{box-shadow:0 0 0 8px #F8F4EC, 0 0 0 9px #D9CFBF, 0 0 0 18px #3B2416, 0 0 0 19px #22140B, 0 24px 40px -18px rgb(0 0 0 / .5)}
+}
+@media (prefers-reduced-motion: reduce){
+  .draw-sec{height:auto}
+  .draw-stage{position:relative;height:auto;padding-block:clamp(72px, 9vw, 120px)}
+  .draw-grid{height:auto}
+  .step{opacity:1}
+  @media (max-width:900px){ .step{grid-area:auto} .draw-copy .title,.draw-copy .lead{display:block} }
 }
 
 /* ---------- Ⓑ Especialidades ---------- */
@@ -291,19 +294,17 @@ ul,ol{list-style:none}
 @media (max-width:980px){ .moments{grid-template-columns:repeat(3, minmax(0,1fr))} .moment:nth-child(4){padding-left:0;border-left:0} .moment:nth-child(n+4){border-top:1px solid var(--line);margin-top:8px} }
 @media (max-width:560px){ .day-top{grid-template-columns:1fr} .now-card{justify-items:start;text-align:left} .moments{grid-template-columns:1fr 1fr} .moment:nth-child(odd){padding-left:0;border-left:0} .moment:nth-child(even){padding-left:16px;border-left:1px solid var(--line)} .moment:nth-child(n+3){border-top:1px solid var(--line);margin-top:8px} .moment:nth-child(4){padding-left:16px;border-left:1px solid var(--line)} }
 
-/* ---------- Ⓓ La cúpula ---------- */
+/* ---------- Ⓓ El nombre ---------- */
 .dome-sec{background:var(--wood-950);overflow:hidden;position:relative}
 .dome-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px, 6vw, 96px);align-items:center}
 .dome-copy{display:grid;gap:24px;justify-items:start}
-.dome-fig{position:relative;margin:34px;aspect-ratio:960/1200;max-width:calc(100% - 68px);width:calc(100% - 68px);background:#F3EEE5;box-shadow:0 0 0 16px #F8F4EC, 0 0 0 17px #D9CFBF, 0 0 0 32px #3B2416, 0 0 0 34px #22140B, 0 50px 80px -24px rgb(0 0 0 / .75)}
-.dome-fig::after{content:"";position:absolute;inset:-16px;pointer-events:none;background:linear-gradient(115deg, rgb(255 255 255 / .16), transparent 40%)}
-.ink-art{position:absolute;inset:0;background:var(--on-wood);-webkit-mask:url("assets/img/dome.webp") center/contain no-repeat;mask:url("assets/img/dome.webp") center/contain no-repeat}
-.dome-fig .ink-art{inset:3%;background:#241A12;clip-path:inset(var(--undrawn, 0%) 0 0 0)}
-.callout{position:absolute;z-index:1;display:flex;align-items:center;gap:8px;font:500 11px/1.25 var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:#7A4A27;white-space:nowrap}
-.callout span{background:#F3EEE5;padding:3px 5px}
-.callout::before{content:"";width:var(--len, 0px);height:1px;background:currentColor;order:var(--o, 0)}
-.callout b{display:grid;place-items:center;width:22px;height:22px;border:1px solid currentColor;border-radius:50%;font-size:11px;letter-spacing:0;background:#F3EEE5}
-.c-left{flex-direction:row-reverse}
+.ink-art{position:absolute;inset:0;-webkit-mask:url("assets/img/dome.webp") center/contain no-repeat;mask:url("assets/img/dome.webp") center/contain no-repeat}
+.photo{position:relative;margin:0;max-width:100%}
+.photo-frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--wood-800);box-shadow:0 30px 60px -30px rgb(0 0 0 / .75)}
+.photo-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.photo figcaption{display:flex;gap:12px;align-items:baseline;margin-top:14px;font:400 14px/1.5 var(--font-body);color:var(--on-wood-soft)}
+.photo figcaption b{font:500 11px/1 var(--font-display);letter-spacing:.2em;text-transform:uppercase;color:var(--brass);white-space:nowrap}
+.photo .tag{position:absolute;left:-14px;top:24px;z-index:1;background:var(--mustard);color:var(--wood-950);font:600 11.5px/1 var(--font-display);letter-spacing:.18em;text-transform:uppercase;padding:10px 14px}
 .dome-facts{display:grid;grid-template-columns:1fr 1fr;width:100%;border-top:1px solid var(--on-wood-line);margin-top:8px}
 .dome-facts>div{padding:18px 16px 18px 0;border-bottom:1px solid var(--on-wood-line)}
 .dome-facts>div:nth-child(even){padding-left:16px;border-left:1px solid var(--on-wood-line)}
@@ -319,11 +320,9 @@ ul,ol{list-style:none}
 .plate-copy .legend b{display:grid;place-items:center;width:22px;height:22px;border:1px solid var(--brass);color:var(--brass);border-radius:50%;font-size:11px;letter-spacing:0}
 @media (max-width:900px){
   .dome-grid{grid-template-columns:1fr}
-  .dome-fig{max-width:min(460px, calc(100% - 68px));justify-self:center}
+  .photo .tag{left:0}
   .plate-strip{grid-template-columns:1fr;justify-items:center;text-align:left}
-  .callout{font-size:10px;letter-spacing:.1em}
 }
-@media (max-width:480px){ .callout span{display:none} }
 
 /* ---------- Ⓔ Opiniones ---------- */
 .reviews-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:clamp(36px, 6vw, 88px);align-items:start}
@@ -333,11 +332,9 @@ ul,ol{list-style:none}
 .stars{display:flex;gap:3px;color:var(--mustard);padding-bottom:8px}
 .stars svg{width:20px;height:20px}
 .score small{font-size:14.5px;color:var(--ink-soft)}
-.dist{display:grid;gap:8px;margin-top:6px}
-.dist div{display:grid;grid-template-columns:22px minmax(0,1fr) 40px;align-items:center;gap:10px;font:500 13px/1 var(--font-body);font-variant-numeric:tabular-nums;color:var(--ink-soft)}
-.dist i{display:block;height:8px;background:var(--line);position:relative;overflow:hidden}
-.dist i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--accent)}
-.dist div span:last-child{text-align:right}
+.praise{display:flex;flex-wrap:wrap;gap:8px}
+.praise span{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 12px;border-radius:999px;font:500 13.5px/1 var(--font-body);color:var(--ink)}
+.praise span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1.5px solid var(--ink)}
 .quote{display:grid;gap:18px;align-content:space-between;padding:28px 28px 28px 0;border-bottom:1px solid var(--line)}
 .quote:nth-child(even){padding-left:28px;padding-right:0;border-left:1px solid var(--line)}
@@ -408,10 +405,10 @@ ul,ol{list-style:none}
 </style>
 </head>
 <body>
-<a class="sr-only skip" href="#el-bar">Saltar al contenido</a>
+<a class="sr-only skip" href="#la-cupula">Saltar al contenido</a>
 
 <!-- Sprite del logo: emblema dibujado + letras trazadas de la taza de la casa -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<svg id="sprite" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="bz-emblem" viewBox="2 2 196 196">
       <g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="100" cy="100" r="91" stroke-width="7"/><circle cx="100" cy="100" r="80.5" stroke-width="2.4"/></g>
@@ -452,10 +449,10 @@ ul,ol{list-style:none}
     </a>
     <nav class="nav" aria-label="Secciones">
       <ul>
-        <li><a href="#el-bar">El bar</a></li>
+        <li><a href="#la-cupula">La cúpula</a></li>
         <li><a href="#especialidades">Especialidades</a></li>
         <li><a href="#horarios">Horarios</a></li>
-        <li><a href="#la-cupula">La cúpula</a></li>
+        <li><a href="#historia">Historia</a></li>
         <li><a href="#opiniones">Opiniones</a></li>
         <li><a href="#visitanos">Cómo llegar</a></li>
       </ul>
@@ -472,10 +469,10 @@ ul,ol{list-style:none}
 <nav class="mnav" id="mnav" aria-label="Menú" hidden>
   <div class="wrap">
     <ul>
-      <li><a href="#el-bar"><b>A</b>El bar</a></li>
+      <li><a href="#la-cupula"><b>A</b>La cúpula</a></li>
       <li><a href="#especialidades"><b>B</b>Especialidades</a></li>
       <li><a href="#horarios"><b>C</b>Horarios</a></li>
-      <li><a href="#la-cupula"><b>D</b>La cúpula</a></li>
+      <li><a href="#historia"><b>D</b>Historia</a></li>
       <li><a href="#opiniones"><b>E</b>Opiniones</a></li>
       <li><a href="#visitanos"><b>F</b>Cómo llegar</a></li>
     </ul>
@@ -503,7 +500,7 @@ ul,ol{list-style:none}
         <div class="cap" data-cap="0.48 0.64">
           <p class="cap-k">Todo el día</p>
           <p class="cap-t">Jazz de fondo, madera y charla.</p>
-          <p class="cap-s">Un salón chico, con láminas de la cúpula de Florencia colgadas en todas las paredes.</p>
+          <p class="cap-s">Un salón de madera, con láminas de la cúpula de Florencia en todas las paredes.</p>
         </div>
         <div class="cap" data-cap="0.65 0.80">
           <p class="cap-k">A la tarde</p>
@@ -525,51 +522,6 @@ ul,ol{list-style:none}
       </div>
     </div>
 
-    <!-- Papel con el logo: el aro del emblema es la ventana al video -->
-    <svg class="hero-mask" aria-hidden="true" focusable="false">
-      <defs>
-        <mask id="heroHole" maskUnits="userSpaceOnUse" x="-50000" y="-50000" width="100000" height="100000">
-          <rect x="-50000" y="-50000" width="100000" height="100000" fill="#fff"/>
-          <circle class="hole" cx="0" cy="0" r="0" fill="#000"/>
-        </mask>
-        <pattern id="heroGrid" width="32" height="32" patternUnits="userSpaceOnUse">
-          <path d="M32 0H0V32" fill="none" stroke="currentColor" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <g mask="url(#heroHole)" class="paper-g">
-        <rect class="hero-paper" x="-50000" y="-50000" width="100000" height="100000"/>
-        <rect class="grid-r" x="-50000" y="-50000" width="100000" height="100000" fill="url(#heroGrid)" style="color:var(--line)"/>
-      </g>
-      <g class="hero-logo">
-        <g class="h-emb" transform="translate(64.85 -2.4) scale(.3)">
-          <g class="h-scroll" fill="none" stroke="currentColor" stroke-width="6.2" stroke-linecap="round">
-            <path pathLength="1" d="M12 122C-2 142-33 146-46 128C-58 111-46 88-27 91C-12 93-11 112-24 114C-32 115-35 106-30 102"/>
-            <path pathLength="1" d="M23 147C6 172-40 182-70 166C-90 155-90 131-73 129C-60 128-58 145-68 147C-74 148-77 141-73 137"/>
-            <g transform="translate(200 0) scale(-1 1)">
-              <path pathLength="1" d="M12 122C-2 142-33 146-46 128C-58 111-46 88-27 91C-12 93-11 112-24 114C-32 115-35 106-30 102"/>
-              <path pathLength="1" d="M23 147C6 172-40 182-70 166C-90 155-90 131-73 129C-60 128-58 145-68 147C-74 148-77 141-73 137"/>
-            </g>
-          </g>
-          <g class="h-dot" fill="currentColor"><circle cx="-30" cy="102" r="5.2"/><circle cx="-73" cy="137" r="4.6"/><circle cx="230" cy="102" r="5.2"/><circle cx="273" cy="137" r="4.6"/></g>
-          <circle class="h-ring" pathLength="1" cx="100" cy="100" r="91" fill="none" stroke="currentColor" stroke-width="7" transform="rotate(-90 100 100)"/>
-          <circle class="h-ring thin" pathLength="1" cx="100" cy="100" r="80.5" fill="none" stroke="currentColor" stroke-width="2.4" transform="rotate(-90 100 100)"/>
-          <g class="h-dome-wrap"><g class="h-dome" fill="currentColor">
-            <path d="M100 17.5c1.9 0 3.4 1.5 3.4 3.4 0 1.4-.8 2.6-2 3.1l3 10.5h-8.8l3-10.5c-1.2-.5-2-1.7-2-3.1 0-1.9 1.5-3.4 3.4-3.4z"/>
-            <rect x="92.5" y="35" width="15" height="3.2" rx=".8"/><path d="M94 39.5h12v8.5H94z"/>
-            <path fill-rule="evenodd" d="M100 50.5C82 66 60 92 52 138h96C140 92 118 66 100 50.5ZM98.6 56.5C86.5 72 76.5 98 73.5 135.5h-4.1C72.6 99 83.2 72.3 98.6 56.5ZM101.4 56.5C113.5 72 123.5 98 126.5 135.5h4.1C127.4 99 116.8 72.3 101.4 56.5ZM98.4 58.5h3.2v77h-3.2z"/>
-            <rect x="47" y="138.5" width="106" height="5" rx="1.2"/>
-            <path fill-rule="evenodd" d="M53 146h94v20H53zM66 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM93.8 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM121.6 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM57 149h4v14h-4zM139 149h4v14h-4z"/>
-            <rect x="46" y="168" width="108" height="4.5" rx="1.2"/>
-          </g></g>
-        </g>
-        <g class="h-word"><use href="#bz-word" x="0" y="53" width="189.7" height="43.5"/></g>
-        <g class="h-sub">
-          <use href="#bz-bar" x="76.1" y="103.5" width="37.5" height="16.74"/>
-          <use href="#bz-desde" x="55.9" y="126.25" width="77.9" height="13.1"/>
-        </g>
-      </g>
-    </svg>
-
     <div class="hero-ui">
       <p class="hero-hint" aria-hidden="true"><span>Deslizá para entrar</span><i></i></p>
       <div class="hero-meta">
@@ -583,32 +535,43 @@ ul,ol{list-style:none}
   </div>
 </section>
 
-<!-- ================= Ⓐ EL BAR ================= -->
-<section class="section drafting-soft" id="el-bar" style="background-color:var(--paper)">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="about-copy rise">
-        <p class="plate-label"><b>A</b>El bar · desde 1976</p>
-        <h2 class="title">Un bar chico, de madera, con <em>jazz todo el día.</em></h2>
-        <p class="lead">Brunellesco abre a las 7 de la mañana en Corrientes 1411, a metros de 9 de Julio. Es un salón chico, con barra de madera, banquetas altas y láminas de arquitectura en todas las paredes.</p>
-        <p class="lead">A la mañana se llena con los que desayunan antes de ir a trabajar. Las porciones son abundantes, los precios son buenos y el dueño atiende en persona. A la tarde se arma la barra para un vermut o un whisky.</p>
-        <div class="btn-row">
-          <a class="btn btn-ink" href="#especialidades">Qué se pide <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-line" href="#horarios">Horarios</a>
-        </div>
+<!-- ================= Ⓐ LA CÚPULA, TRAZO A TRAZO ================= -->
+<section class="draw-sec" id="la-cupula" aria-label="La cúpula, dibujada a lápiz">
+  <div class="draw-stage traces">
+    <div class="wrap draw-grid">
+      <div class="draw-copy">
+        <p class="plate-label"><b>A</b>La cúpula, trazo a trazo</p>
+        <h2 class="title">El dibujo que cuelga <em>en el salón.</em></h2>
+        <p class="lead">La cúpula de Santa Maria del Fiore, dibujada otra vez a lápiz mientras bajás. Es el mismo dibujo que está en las paredes de Brunellesco.</p>
+        <ol class="steps">
+          <li class="step" aria-current="true"><b>1</b><h3>El trazado</h3><p>El eje, la línea de arranque y los dos arcos de quinto agudo que le dan la punta.</p></li>
+          <li class="step" aria-current="false"><b>2</b><h3>El tambor</h3><p>La base octogonal con sus óculos. Sobre ella apoya una cúpula de unos 45 metros de diámetro.</p></li>
+          <li class="step" aria-current="false"><b>3</b><h3>Las dos cáscaras</h3><p>Una cúpula dentro de otra, atadas por ocho costillas de mármol y dieciséis ocultas.</p></li>
+          <li class="step" aria-current="false"><b>4</b><h3>La linterna</h3><p>El último trazo. Corona la cúpula desde el siglo XV, y las paredes del bar desde 1976.</p></li>
+        </ol>
       </div>
-      <figure class="photo rise">
-        <span class="tag">En el salón</span>
-        <div class="photo-frame"><img src="assets/img/cuadros-bar.jpg" alt="Dos láminas enmarcadas de la cúpula de Santa Maria del Fiore colgadas sobre la pared amarilla del bar" loading="lazy" width="1600" height="1200"></div>
-        <figcaption><b>Fig. A</b>La cúpula de Brunelleschi, en lámina y en corte, sobre la pared amarilla del salón.</figcaption>
-      </figure>
+      <div class="sheet-wrap">
+        <div class="sheet" role="img" aria-label="Dibujo a lápiz de la cúpula de Brunelleschi: tambor octogonal con óculos, dos cáscaras con costillas y la linterna">
+          <canvas class="sheet-guides" aria-hidden="true"></canvas>
+          <canvas class="sheet-gl" aria-hidden="true"></canvas>
+          <div class="sheet-art" hidden></div>
+        </div>
+        <div class="frame" aria-hidden="true"></div>
+        <svg class="pencil" viewBox="0 0 124 22" aria-hidden="true" focusable="false">
+          <path d="M0 11 9 8.3v5.4Z" fill="#2B241F"/>
+          <path d="M9 8.3 23 3v16L9 13.7Z" fill="#E4C397"/>
+          <path d="M9 8.3 23 3v5.4Z" fill="#F0D8B3"/>
+          <path d="M23 3h78v16H23z" fill="#D99E2B"/>
+          <path d="M23 3h78v5.3H23z" fill="#EBB64B"/>
+          <path d="M23 13.7h78V19H23z" fill="#B88016"/>
+          <path d="M101 2.4h10v17.2h-10z" fill="#B9B0A2"/>
+          <path d="M104 2.4v17.2M107.6 2.4v17.2" stroke="#8C8478" stroke-width="1"/>
+          <rect x="111" y="2.6" width="12" height="16.8" rx="3" fill="#C4654C"/>
+        </svg>
+        <p class="sheet-cap">Fig. A · En el salón de Corrientes 1411</p>
+      </div>
     </div>
-    <dl class="facts rise">
-      <div><dt>Año de apertura</dt><dd>1976</dd></div>
-      <div><dt>Abre todos los días</dt><dd>7:00</dd></div>
-      <div><dt>638 reseñas en Google</dt><dd>4,7<small> ★</small></dd></div>
-      <div><dt>Música de fondo</dt><dd>Jazz</dd></div>
-    </dl>
+    <div class="draw-meter" aria-hidden="true"><span data-draw-pct>00%</span><i><span></span></i></div>
   </div>
 </section>
 
@@ -647,7 +610,7 @@ ul,ol{list-style:none}
           <span class="dish-n">B·3</span>
         </div>
         <h3>Desayunos completos</h3>
-        <p>Bowls y tostadas en porciones generosas, con jugo y café. El lugar es chico: conviene llegar temprano.</p>
+        <p>Bowls y tostadas en porciones generosas, con jugo y café, para empezar el día temprano.</p>
         <span class="when">Desde las 7:00</span>
       </li>
       <li class="dish">
@@ -686,7 +649,7 @@ ul,ol{list-style:none}
 </section>
 
 <!-- ================= Ⓒ UN DÍA / HORARIOS ================= -->
-<section class="section drafting" id="horarios">
+<section class="section traces" id="horarios" style="background-color:var(--paper);--tx:-760px;--ty:-280px">
   <div class="wrap">
     <div class="day-top rise">
       <div class="head" style="margin:0">
@@ -718,12 +681,12 @@ ul,ol{list-style:none}
   </div>
 </section>
 
-<!-- ================= Ⓓ LA CÚPULA ================= -->
-<section class="section dome-sec on-wood" id="la-cupula">
+<!-- ================= Ⓓ EL NOMBRE ================= -->
+<section class="section dome-sec on-wood" id="historia">
   <div class="wrap">
     <div class="dome-grid">
       <div class="dome-copy rise">
-        <p class="plate-label"><b>D</b>Construcción de la cúpula</p>
+        <p class="plate-label"><b>D</b>El nombre</p>
         <h2 class="title">El nombre viene de <em>Florencia.</em></h2>
         <p class="lead">Filippo Brunelleschi levantó entre 1420 y 1436 la cúpula de Santa Maria del Fiore, la más grande de su tiempo, sin una cimbra de madera que la sostuviera. Su dibujo cuelga en todas las paredes del bar y es el emblema de la taza.</p>
         <dl class="dome-facts">
@@ -733,12 +696,10 @@ ul,ol{list-style:none}
           <div><dd>8</dd><dt>Costillas de mármol</dt></div>
         </dl>
       </div>
-      <figure class="dome-fig" aria-label="Dibujo en corte de la cúpula de Brunelleschi, el mismo que cuelga en el bar">
-        <div class="ink-art"></div>
-        <span class="callout" style="left:56%;top:9%;--len:34px;--o:-1"><b>1</b><span>Linterna</span></span>
-        <span class="callout" style="left:2%;top:40%"><b>2</b><span>Costilla</span></span>
-        <span class="callout c-left" style="right:2%;top:46%"><b>3</b><span>Doble cáscara</span></span>
-        <span class="callout" style="left:2%;top:90%"><b>4</b><span>Óculo del tambor</span></span>
+      <figure class="photo rise">
+        <span class="tag">En el salón</span>
+        <div class="photo-frame"><img src="assets/img/cuadros-bar.jpg" alt="Dos láminas enmarcadas de la cúpula de Santa Maria del Fiore colgadas sobre la pared amarilla del bar" loading="lazy" width="1600" height="1200"></div>
+        <figcaption><b>Fig. D</b>La cúpula, en lámina y en corte, sobre la pared amarilla del salón.</figcaption>
       </figure>
     </div>
 
@@ -769,28 +730,24 @@ ul,ol{list-style:none}
           <span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg style="opacity:.55"><use href="#i-star"/></svg></span>
         </div>
         <small>Promedio de 638 reseñas en Google Maps.</small>
-        <div class="dist" role="img" aria-label="Distribución: 488 de cinco estrellas, 109 de cuatro, 20 de tres, 10 de dos y 11 de una.">
-          <div><span>5</span><i style="--w:76.5%"></i><span>488</span></div>
-          <div><span>4</span><i style="--w:17.1%"></i><span>109</span></div>
-          <div><span>3</span><i style="--w:3.1%"></i><span>20</span></div>
-          <div><span>2</span><i style="--w:1.6%"></i><span>10</span></div>
-          <div><span>1</span><i style="--w:1.7%"></i><span>11</span></div>
+        <div class="praise" aria-label="Lo que más se destaca">
+          <span>Desayuno abundante</span><span>Buena atención</span><span>Buenos precios</span><span>Jazz de fondo</span><span>Decoración clásica</span>
         </div>
         <div class="rev-actions"><a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Brunellesco%2C%20Corrientes%201411%2C%20Rosario" target="_blank" rel="noopener">Ver reseñas en Google</a></div>
       </div>
       <div class="quotes">
-        <figure class="quote rise"><blockquote>El lugar es chiquito pero las porciones son abundantes y muy ricas.</blockquote><figcaption>Guía de cafés de Rosario · Morfar</figcaption></figure>
+        <figure class="quote rise"><blockquote>…las porciones son abundantes y muy ricas.</blockquote><figcaption>Guía de cafés de Rosario · Morfar</figcaption></figure>
         <figure class="quote rise"><blockquote>Hermoso lugar, tranquilo, buena música, y buena atención.</blockquote><figcaption>Reseña en Facebook</figcaption></figure>
         <figure class="quote rise"><blockquote>El precio es excelente y la atención también.</blockquote><figcaption>Guía de cafés de Rosario · Morfar</figcaption></figure>
         <figure class="quote rise"><blockquote>Abre a las 7 para desayunar antes de ir a trabajar.</blockquote><figcaption>@eugeposti · vía Morfar</figcaption></figure>
-        <figure class="quote wide rise"><blockquote>En resumen, las reseñas destacan el desayuno abundante, la calidad de la comida, la atención, los precios accesibles y la decoración clásica con jazz. El consejo que más se repite es llegar temprano, porque el salón es chico y se llena.</blockquote><figcaption>Resumen de reseñas publicadas en Google y Wanderlog</figcaption></figure>
+        <figure class="quote wide rise"><blockquote>Las reseñas destacan el desayuno abundante, la calidad de la comida, la atención, los precios accesibles y la decoración clásica con jazz de fondo.</blockquote><figcaption>Resumen de reseñas publicadas en Google y Wanderlog</figcaption></figure>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= Ⓕ PLANTA / CÓMO LLEGAR ================= -->
-<section class="section drafting-soft" id="visitanos" style="background-color:var(--paper)">
+<section class="section traces" id="visitanos" style="background-color:var(--paper);--tx:-180px;--ty:-860px">
   <div class="wrap">
     <div class="head rise">
       <p class="plate-label"><b>F</b>Planta · Cómo llegar</p>
@@ -948,7 +905,7 @@ ul,ol{list-style:none}
     menuBtn.setAttribute('aria-expanded', open); mnav.hidden = !open;
     $('.i-open', menuBtn).hidden = open; $('.i-close', menuBtn).hidden = !open;
     menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-    if (open) header.dataset.state = 'solid'; else onScroll();
+    if (open) setState('solid'); else onScroll();
   };
   menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
   mnav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
@@ -961,131 +918,406 @@ ul,ol{list-style:none}
     try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
   }));
 
-  /* ---------- Hero ---------- */
-  const hero = $('.hero'), stage = $('.hero-stage'), canvas = $('.hero-canvas'), ctx = canvas.getContext('2d');
-  const mask = $('.hero-mask'), hole = $('.hole', mask), logo = $('.hero-logo', mask), dome = $('.h-dome-wrap', mask), paperG = $('.paper-g', mask);
-  const shade = $('.hero-shade'), dim = $('.hero-dim'), hint = $('.hero-hint'), meta = $('.hero-meta'), bar = $('.hero-bar'), barFill = $('.hero-bar span');
-  const caps = $$('.cap').map((c) => { const [a, b] = c.dataset.cap.split(' ').map(Number); return { c, a, b, final: c.classList.contains('cap-final') }; });
-  const N = 120, IW = 1280, IH = 720;
-  // logo en unidades propias: ancho 189.7, centro del aro (94.85, 27.6), radio interior 24.15
-  const LW = 189.7, LH = 140.4, CX = 94.85, CY = 27.6, RIN = 24.0;
-  let W = 0, H = 0, dpr = 1, set = 'd', imgs = [], ready = new Uint8Array(N), p = 0, raf = 0, lastKey = '';
-  const src = (i) => `assets/frames/${set}/${String(i).padStart(3, '0')}.webp`;
+  /* =====================================================================
+     Escenas con scroll. Rendimiento en iPad y celulares:
+     - todo el hero se pinta en UN canvas (papel, logo y video), sin máscaras SVG;
+     - las posiciones de las secciones se miden solo al cambiar el tamaño, nunca al scrollear;
+     - el progreso se suaviza en un único requestAnimationFrame y solo se dibuja cuando cambia.
+     ===================================================================== */
+  const TAU = Math.PI * 2;
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  const probe = document.createElement('div'); probe.className = 'vh-probe'; probe.setAttribute('aria-hidden', 'true'); document.body.appendChild(probe);
+  let svh = probe.offsetHeight || innerHeight;
+  const scenes = [];
+  const scene = (el, stage, render) => { const s = { el, stage, render, top: 0, len: 1, cur: -1, tgt: 0 }; scenes.push(s); return s; };
+  const NAV_IDS = ['la-cupula', 'especialidades', 'horarios', 'historia', 'opiniones', 'visitanos'];
+  const navLinks = $$('.nav a');
+  let navTops = [], heroEnd = 0, lastNav = null, lastState = null, loopOn = false, lastFrameT = 0;
+  let introT = reduce ? 1 : 0, introRunning = false, introStart = 0, heroDirty = false;
 
+  function measure() {
+    svh = probe.offsetHeight || innerHeight;
+    const y = scrollY;
+    for (const s of scenes) { s.top = s.el.getBoundingClientRect().top + y; s.len = Math.max(1, s.el.offsetHeight - s.stage.offsetHeight); }
+    navTops = NAV_IDS.map((id) => { const e = document.getElementById(id); return e ? e.getBoundingClientRect().top + y : 1e9; });
+    heroEnd = heroScene.top + hero.offsetHeight;
+  }
+  function setState(v) { if (v !== lastState) { lastState = v; header.dataset.state = v; } }
+  function onScroll() {
+    const y = scrollY;
+    for (const s of scenes) s.tgt = reduce ? 1 : clamp((y - s.top) / s.len);
+    if (mnav.hidden) setState((!reduce && heroScene.tgt < 0.27 && y < heroEnd) ? 'intro' : (y + svh * 0.6 < heroEnd ? 'over' : 'solid'));
+    let cur = '';
+    NAV_IDS.forEach((id, i) => { if (navTops[i] < y + svh * 0.4) cur = id; });
+    if (cur !== lastNav) { lastNav = cur; navLinks.forEach((a) => a.setAttribute('aria-current', a.getAttribute('href') === '#' + cur ? 'true' : 'false')); }
+    kick();
+  }
+  function kick() { if (!loopOn) { loopOn = true; lastFrameT = performance.now(); requestAnimationFrame(loop); } }
+  function loop(now) {
+    const dt = Math.min(64, Math.max(1, now - lastFrameT)); lastFrameT = now;
+    const k = 1 - Math.exp(-dt / 85);
+    let busy = false;
+    if (introRunning) { introT = clamp((now - introStart) / 2300); if (introT >= 1) introRunning = false; heroDirty = true; busy = true; }
+    for (const s of scenes) {
+      if (s.cur === s.tgt) continue;
+      if (s.cur < 0) s.cur = s.tgt;
+      else { s.cur += (s.tgt - s.cur) * k; if (Math.abs(s.tgt - s.cur) < 0.0005) s.cur = s.tgt; }
+      s.render(s.cur); busy = true;
+      if (s === heroScene) heroDirty = false;
+    }
+    if (heroDirty) { heroDraw(); heroDirty = false; }
+    if (busy) requestAnimationFrame(loop); else loopOn = false;
+  }
+
+  /* ---------- Hero: papel + logo + video en un canvas ---------- */
+  const hero = $('.hero'), stage = $('.hero-stage'), canvas = $('.hero-canvas'), ctx = canvas.getContext('2d');
+  const shade = $('.hero-shade'), dim = $('.hero-dim'), hint = $('.hero-hint'), meta = $('.hero-meta'), bar = $('.hero-bar'), barFill = $('.hero-bar span');
+  const caps = $$('.cap').map((c) => { const [a, b] = c.dataset.cap.split(' ').map(Number); return { c, a, b, final: c.classList.contains('cap-final'), o: -1, y: -1 }; });
+  const N = 120, IW = 1280, IH = 720;
+  const LW = 189.7, LH = 140.4, CX = 94.85, CY = 27.6, RIN = 24.0;
+  const pathOf = (sel) => new Path2D($(sel).getAttribute('d'));
+  const pWord = pathOf('#bz-word path'), pBar = pathOf('#bz-bar path'), pDesde = pathOf('#bz-desde path');
+  const pDome = new Path2D('M100 17.5c1.9 0 3.4 1.5 3.4 3.4 0 1.4-.8 2.6-2 3.1l3 10.5h-8.8l3-10.5c-1.2-.5-2-1.7-2-3.1 0-1.9 1.5-3.4 3.4-3.4zM92.5 35h15v3.2h-15zM94 39.5h12v8.5H94zM100 50.5C82 66 60 92 52 138h96C140 92 118 66 100 50.5ZM98.6 56.5C86.5 72 76.5 98 73.5 135.5h-4.1C72.6 99 83.2 72.3 98.6 56.5ZM101.4 56.5C113.5 72 123.5 98 126.5 135.5h4.1C127.4 99 116.8 72.3 101.4 56.5ZM98.4 58.5h3.2v77h-3.2zM47 138.5h106v5H47zM53 146h94v20H53zM66 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM93.8 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM121.6 156a6.2 6.2 0 1 0 12.4 0a6.2 6.2 0 1 0-12.4 0zM57 149h4v14h-4zM139 149h4v14h-4zM46 168h108v4.5H46z');
+  const SCR = ['M12 122C-2 142-33 146-46 128C-58 111-46 88-27 91C-12 93-11 112-24 114C-32 115-35 106-30 102', 'M23 147C6 172-40 182-70 166C-90 155-90 131-73 129C-60 128-58 145-68 147C-74 148-77 141-73 137'];
+  const pScroll = SCR.map((d) => new Path2D(d));
+  const sprite = $('#sprite');
+  const scrLen = SCR.map((d) => { const e = document.createElementNS(NS, 'path'); e.setAttribute('d', d); sprite.appendChild(e); let L = 300; try { L = e.getTotalLength(); } catch (err) {} e.remove(); return L; });
+  const DOTS = [[-30, 102, 5.2], [-73, 137, 4.6], [230, 102, 5.2], [273, 137, 4.6]];
+  const BLEND = !coarse;
+  const MAXDPR = coarse ? 1.5 : 2;   // menos píxeles que pintar en tablets y celulares
+  let W = 0, H = 0, dpr = 1, G = null, imgs = [], ready = new Uint8Array(N), set = 'd';
+  let COL = { paper: '#F2ECE2', brand: '#6A4122', trace: 'rgba(138,85,48,.2)' };
+  const paperCv = document.createElement('canvas');
+  const tracesImg = new Image(); tracesImg.decoding = 'async'; tracesImg.src = 'assets/img/trazos.svg';
+  tracesImg.onload = () => { buildPaper(); heroDirty = true; kick(); };
+
+  function readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    const v = (n, d) => (cs.getPropertyValue(n).trim() || d);
+    COL = { paper: v('--paper', COL.paper), brand: v('--brand', COL.brand), trace: v('--trace', COL.trace) };
+    buildPaper(); heroDirty = true; kick();
+  }
+  function buildPaper() {
+    if (!canvas.width) return;
+    paperCv.width = canvas.width; paperCv.height = canvas.height;
+    const p = paperCv.getContext('2d');
+    p.fillStyle = COL.paper; p.fillRect(0, 0, paperCv.width, paperCv.height);
+    if (tracesImg.complete && tracesImg.naturalWidth) {
+      const t = document.createElement('canvas'); t.width = paperCv.width; t.height = paperCv.height;
+      const tc = t.getContext('2d'), tile = (W < 760 ? 1050 : 1500) * dpr;
+      for (let y = -tile * 0.32; y < t.height; y += tile) for (let x = -tile * 0.2; x < t.width; x += tile) tc.drawImage(tracesImg, x, y, tile, tile);
+      tc.globalCompositeOperation = 'source-in'; tc.fillStyle = COL.trace; tc.fillRect(0, 0, t.width, t.height);
+      p.drawImage(t, 0, 0);
+    }
+  }
+  function geometry() {
+    const narrow = W < 760, vis = Math.min(H, svh);
+    const lw = Math.min(narrow ? W * 0.84 : 560, (vis * (narrow ? 0.5 : 0.6)) * LW / LH), k = lw / LW;
+    const ox = (W - lw) / 2, oy = vis * (narrow ? 0.44 : 0.47) - (LH * k) / 2;
+    const cx = ox + CX * k, cy = oy + CY * k, r = RIN * k;
+    const far = Math.max(Math.hypot(cx, cy), Math.hypot(W - cx, cy), Math.hypot(cx, H - cy), Math.hypot(W - cx, H - cy));
+    return { k, ox, oy, cx, cy, r, smax: (far / r) * 1.1, narrow };
+  }
+  function heroResize() {
+    const nw = stage.clientWidth, nh = stage.clientHeight, nd = Math.min(MAXDPR, devicePixelRatio || 1);
+    if (nw === W && nh === H && nd === dpr && canvas.width) return;
+    W = nw; H = nh; dpr = nd;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    G = geometry(); buildPaper(); heroDraw();
+  }
+  const src = (i) => `assets/frames/${set}/${String(i).padStart(3, '0')}.webp`;
   function load(i) {
     return new Promise((res) => {
       const im = new Image(); im.decoding = 'async'; im.src = src(i); imgs[i] = im;
-      const ok = () => { ready[i] = 1; schedule(); res(); };
+      const ok = () => { ready[i] = 1; heroDirty = true; kick(); res(); };
       im.onload = () => (im.decode ? im.decode().catch(() => {}) : Promise.resolve()).then(ok);
       im.onerror = () => res();
     });
   }
   function startLoading() {
     set = Math.max(innerWidth, innerHeight) * Math.min(2, devicePixelRatio || 1) >= 1400 ? 'd' : 'm';
-    load(0).then(() => {
-      let next = 1; const worker = async () => { while (next < N) { const i = next++; await load(i); } };
-      for (let k = 0; k < 6; k++) worker();
-    });
+    load(0).then(() => { let next = 1; const worker = async () => { while (next < N) { const i = next++; await load(i); } }; for (let k = 0; k < 5; k++) worker(); });
   }
   const nearest = (i) => { for (let d = 0; d < N; d++) { if (i - d >= 0 && ready[i - d]) return i - d; if (i + d < N && ready[i + d]) return i + d; } return -1; };
 
-  function geometry() {
-    const narrow = W < 760;
-    const lw = Math.min(narrow ? W * 0.84 : 560, (H * (narrow ? 0.5 : 0.6)) * LW / LH);
-    const k = lw / LW;
-    const ox = (W - lw) / 2, oy = H * (narrow ? 0.44 : 0.47) - (LH * k) / 2;
-    const cx = ox + CX * k, cy = oy + CY * k, r = RIN * k;
-    const far = Math.max(Math.hypot(cx, cy), Math.hypot(W - cx, cy), Math.hypot(cx, H - cy), Math.hypot(W - cx, H - cy));
-    return { k, ox, oy, cx, cy, r, smax: (far / r) * 1.12, narrow };
+  function drawVideo(t, zt) {
+    const cw = canvas.width, ch = canvas.height;
+    const fpos = reduce ? N - 1 : clamp((t - 0.02) / 0.94) * (N - 1);
+    const fi = Math.floor(fpos), fr = fpos - fi, a = nearest(fi);
+    if (a < 0) { ctx.fillStyle = '#110B07'; ctx.fillRect(0, 0, cw, ch); return; }
+    const z = lerp(1.38, 1.0, zt);
+    const cover = Math.max(cw / IW, ch / IH) * z, dw = IW * cover, dh = IH * cover;
+    const scrub = smooth(0.32, 0.92, t);
+    const fx = G.narrow ? lerp(0.335, 0.72, scrub) : lerp(0.335, 0.5, smooth(0.18, 0.40, t));
+    const fy = lerp(0.53, 0.5, zt);
+    const ax = lerp(G.cx, W / 2, zt) * dpr, ay = lerp(G.cy, Math.min(H, svh) / 2, zt) * dpr;
+    let dx = ax - fx * dw, dy = ay - fy * dh;
+    dx = Math.min(0, Math.max(cw - dw, dx)); dy = Math.min(0, Math.max(ch - dh, dy));
+    ctx.globalAlpha = 1; ctx.drawImage(imgs[a], dx, dy, dw, dh);
+    if (BLEND && a === fi && fi + 1 < N && ready[fi + 1] && fr > 0.04 && fr < 0.96) { ctx.globalAlpha = fr; ctx.drawImage(imgs[fi + 1], dx, dy, dw, dh); ctx.globalAlpha = 1; }
   }
-  let G = null;
-  function resize() {
-    dpr = Math.min(2, devicePixelRatio || 1);
-    W = stage.clientWidth; H = stage.clientHeight;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    G = geometry(); lastKey = ''; schedule();
-  }
-
-  function render() {
-    raf = 0; if (!G) return;
-    const t = p;
-    // fases
-    const open = reduce ? 1 : smooth(0.0, 0.06, t);
-    const zt = reduce ? 1 : smooth(0.05, 0.30, t);
-    const s = Math.exp(Math.log(G.smax) * zt);
-    const fpos = reduce ? (N - 1) : clamp((t - 0.02) / 0.94) * (N - 1);
-    const key = [W, H, open.toFixed(4), zt.toFixed(4), fpos.toFixed(3)].join('|');
-    if (key !== lastKey) {
-      lastKey = key;
-      // --- video ---
-      const fi = Math.floor(fpos), fr = fpos - fi, a = nearest(fi);
-      if (a >= 0) {
-        const z = lerp(1.38, 1.0, zt);
-        const cover = Math.max(W / IW, H / IH) * z, dw = IW * cover, dh = IH * cover;
-        // foco: logo de la taza al inicio; luego centro (desktop) o paneo taza → vaso (móvil)
-        const scrub = smooth(0.32, 0.92, t);
-        let fx = G.narrow ? lerp(0.335, 0.72, scrub) : lerp(0.335, 0.5, smooth(0.18, 0.40, t));
-        let fy = lerp(0.53, 0.5, zt);
-        const ax = lerp(G.cx, W / 2, zt), ay = lerp(G.cy, H / 2, zt);
-        let dx = ax - fx * dw, dy = ay - fy * dh;
-        dx = Math.min(0, Math.max(W - dw, dx)); dy = Math.min(0, Math.max(H - dh, dy));
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.globalAlpha = 1; ctx.drawImage(imgs[a], dx, dy, dw, dh);
-        const b = (a === fi && fi + 1 < N && ready[fi + 1] && fr > 0.02) ? fi + 1 : -1;
-        if (b >= 0) { ctx.globalAlpha = fr; ctx.drawImage(imgs[b], dx, dy, dw, dh); ctx.globalAlpha = 1; }
-      }
-      // --- papel + logo ---
-      const showMask = zt < 0.999;
-      mask.style.display = showMask ? '' : 'none';
-      if (showMask) {
-        const T = `translate(${G.cx} ${G.cy}) scale(${s}) translate(${-G.cx} ${-G.cy})`;
-        logo.setAttribute('transform', `${T} translate(${G.ox} ${G.oy}) scale(${G.k})`);
-        hole.setAttribute('cx', G.cx); hole.setAttribute('cy', G.cy);
-        hole.setAttribute('r', Math.max(0, G.r * s * open));
-        dome.style.opacity = 1 - smooth(0.0, 0.75, open);
-        logo.style.opacity = 1 - smooth(0.82, 1, zt);
-      }
+  function drawLogo(s, open, alpha) {
+    const it = introT, sc = G.k * s * dpr;
+    const tx = (G.cx + s * (G.ox - G.cx)) * dpr, ty = (G.cy + s * (G.oy - G.cy)) * dpr;
+    ctx.save();
+    ctx.setTransform(sc, 0, 0, sc, tx, ty);
+    ctx.fillStyle = COL.brand; ctx.strokeStyle = COL.brand; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const wa = ease(clamp((it - 0.42) / 0.35)), sa = ease(clamp((it - 0.58) / 0.35));
+    if (wa > 0) { ctx.globalAlpha = alpha * wa; ctx.save(); ctx.translate(0, 53 + (1 - wa) * 4); ctx.fill(pWord); ctx.restore(); }
+    if (sa > 0) {
+      ctx.globalAlpha = alpha * sa;
+      ctx.save(); ctx.translate(76.1, 103.5 + (1 - sa) * 3); ctx.scale(37.5 / 60.5, 16.74 / 27); ctx.fill(pBar); ctx.restore();
+      ctx.save(); ctx.translate(55.9, 126.25 + (1 - sa) * 3); ctx.scale(77.9 / 99.9, 13.1 / 16.8); ctx.fill(pDesde); ctx.restore();
     }
-    // --- UI y textos ---
-    hint.style.opacity = 1 - smooth(0.0, 0.03, t);
+    ctx.translate(64.85, -2.4); ctx.scale(0.3, 0.3);
+    ctx.globalAlpha = alpha;
+    const r1 = ease(clamp(it / 0.55)), r2 = ease(clamp((it - 0.12) / 0.55));
+    if (r1 > 0) { ctx.lineWidth = 7; ctx.beginPath(); ctx.arc(100, 100, 91, -Math.PI / 2, -Math.PI / 2 + r1 * TAU); ctx.stroke(); }
+    if (r2 > 0) { ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(100, 100, 80.5, -Math.PI / 2, -Math.PI / 2 + r2 * TAU); ctx.stroke(); }
+    const sp = ease(clamp((it - 0.22) / 0.6));
+    if (sp > 0) {
+      ctx.lineWidth = 6.2;
+      for (const m of [1, -1]) {
+        ctx.save(); if (m < 0) { ctx.translate(200, 0); ctx.scale(-1, 1); }
+        pScroll.forEach((p, i) => { if (sp < 1) ctx.setLineDash([scrLen[i] * sp, scrLen[i] + 20]); ctx.stroke(p); });
+        ctx.restore();
+      }
+      ctx.setLineDash([]);
+    }
+    const da = clamp((it - 0.7) / 0.3);
+    if (da > 0) { ctx.globalAlpha = alpha * da; ctx.beginPath(); for (const [x, y, r] of DOTS) { ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, TAU); } ctx.fill(); }
+    const dm = ease(clamp((it - 0.32) / 0.35)) * (1 - smooth(0, 0.75, open));
+    if (dm > 0) { ctx.globalAlpha = alpha * dm; ctx.fill(pDome, 'evenodd'); }
+    ctx.restore();
+  }
+  function heroDraw() {
+    if (!G || !canvas.width) return;
+    const t = Math.max(0, heroScene.cur);
+    const open = reduce ? 1 : smooth(0.0, 0.06, t), zt = reduce ? 1 : smooth(0.05, 0.30, t);
+    const s = Math.exp(Math.log(G.smax) * zt), holeR = G.r * s * open;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    if (holeR > 0.5 || zt >= 0.999) drawVideo(t, zt);
+    if (zt < 0.999) {
+      ctx.save();
+      if (holeR > 0.5) { ctx.beginPath(); ctx.rect(0, 0, canvas.width, canvas.height); ctx.arc(G.cx * dpr, G.cy * dpr, holeR * dpr, 0, TAU); ctx.clip('evenodd'); }
+      ctx.drawImage(paperCv, 0, 0);
+      ctx.restore();
+      const la = 1 - smooth(0.82, 1, zt);
+      if (la > 0.01) drawLogo(s, open, la);
+    }
+  }
+  const setO = (el, v, key) => { const r = Math.round(v * 1000) / 1000; if (el[key] !== r) { el[key] = r; el.style.opacity = r; } };
+  function heroRender(t) {
+    heroDraw();
+    setO(hint, 1 - smooth(0, 0.03, t), '_o');
     const uiOn = smooth(0.26, 0.32, t);
-    meta.style.opacity = uiOn; bar.style.opacity = uiOn;
-    barFill.style.transform = `scaleX(${clamp((t - 0.3) / 0.7)})`;
-    shade.style.opacity = smooth(0.28, 0.36, t) * (1 - smooth(0.80, 0.86, t));
-    dim.style.opacity = smooth(0.80, 0.9, t);
+    setO(meta, uiOn, '_o'); setO(bar, uiOn, '_o');
+    barFill.style.transform = `scaleX(${clamp((t - 0.3) / 0.7).toFixed(4)})`;
+    setO(shade, smooth(0.28, 0.36, t) * (1 - smooth(0.80, 0.86, t)), '_o');
+    setO(dim, smooth(0.80, 0.9, t), '_o');
     for (const c of caps) {
-      const fadeIn = smooth(c.a, c.a + 0.04, t), fadeOut = c.final ? 0 : smooth(c.b - 0.04, c.b, t);
-      const o = reduce ? (c.final ? 1 : 0) : fadeIn * (1 - fadeOut);
-      c.c.style.opacity = o;
-      c.c.style.transform = reduce ? 'none' : `translateY(${(1 - fadeIn) * 26 - fadeOut * 26}px)`;
+      const fi = smooth(c.a, c.a + 0.04, t), fo = c.final ? 0 : smooth(c.b - 0.04, c.b, t);
+      const o = reduce ? (c.final ? 1 : 0) : Math.round(fi * (1 - fo) * 1000) / 1000;
+      const y = reduce ? 0 : Math.round(((1 - fi) * 26 - fo * 26) * 10) / 10;
+      if (o !== c.o) { c.o = o; c.c.style.opacity = o; c.c.style.visibility = o > 0 ? 'visible' : 'hidden'; }
+      if (y !== c.y) { c.y = y; c.c.style.transform = `translate3d(0,${y}px,0)`; }
     }
-    hero.dataset.final = (reduce || t > 0.86) ? 'true' : 'false';
+    const fin = (reduce || t > 0.86) ? 'true' : 'false';
+    if (hero.dataset.final !== fin) hero.dataset.final = fin;
   }
-  function schedule() { if (!raf) raf = requestAnimationFrame(render); }
+  const heroScene = scene(hero, stage, heroRender);
 
-  function progress() {
-    const r = hero.getBoundingClientRect(), span = r.height - innerHeight;
-    return span <= 0 ? 1 : clamp(-r.top / span);
-  }
-  function onScroll() {
-    p = reduce ? 1 : progress();
-    const heroBottom = hero.getBoundingClientRect().bottom;
-    if (mnav.hidden) header.dataset.state = (!reduce && p < 0.27) ? 'intro' : (heroBottom > innerHeight * 0.4 ? 'over' : 'solid');
-    schedule();
-    // sección activa en la navegación
-    let cur = '';
-    for (const s of ['el-bar', 'especialidades', 'horarios', 'la-cupula', 'opiniones', 'visitanos']) { const e = document.getElementById(s); if (e && e.getBoundingClientRect().top < innerHeight * 0.4) cur = s; }
-    $$('.nav a').forEach((a) => a.setAttribute('aria-current', a.getAttribute('href') === '#' + cur ? 'true' : 'false'));
-    // dibujo de la cúpula que se "termina de entintar" al entrar
-    const fig = $('.dome-fig');
-    if (fig && !reduce) { const fr = fig.getBoundingClientRect(); const v = clamp((innerHeight - fr.top) / (fr.height * 0.9 + innerHeight * 0.25)); fig.style.setProperty('--undrawn', ((1 - smooth(0, 1, v)) * 55).toFixed(1) + '%'); }
-  }
-  $('[data-skip]').addEventListener('click', () => document.getElementById('el-bar').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+  /* ---------- Ⓐ La cúpula a lápiz ---------- */
+  const dsec = $('#la-cupula'), dstage = $('.draw-stage'), sheetWrap = $('.sheet-wrap'), sheet = $('.sheet');
+  const glc = $('.sheet-gl'), gcv = $('.sheet-guides'), gctx = gcv.getContext('2d'), sheetArt = $('.sheet-art');
+  const frameEl = $('.frame'), pencil = $('.pencil'), sheetCap = $('.sheet-cap'), steps = $$('.step');
+  const meterFill = $('.draw-meter i span'), meterPct = $('[data-draw-pct]');
+  const PEN = [[0.0, 0.1406, 0.9692], [0.0143, 0.1406, 0.8458], [0.0285, 0.1812, 0.7408], [0.0428, 0.3, 0.7225], [0.0571, 0.4552, 0.7392], [0.0616, 0.1344, 0.7433], [0.0668, 0.1094, 0.7233], [0.0719, 0.0969, 0.72], [0.077, 0.0948, 0.765], [0.0816, 0.1854, 0.8692], [0.0862, 0.1885, 0.8292], [0.0907, 0.1906, 0.7892], [0.0953, 0.2062, 0.8125], [0.0991, 0.4604, 0.8067], [0.1031, 0.4365, 0.8258], [0.1071, 0.3927, 0.8175], [0.1111, 0.349, 0.8083], [0.1151, 0.3188, 0.8183], [0.1182, 0.7229, 0.9725], [0.1214, 0.725, 0.945], [0.1245, 0.7271, 0.9175], [0.1276, 0.7583, 0.9117], [0.1311, 0.5479, 0.9017], [0.1339, 0.5469, 0.8767], [0.1368, 0.551, 0.8517], [0.1396, 0.5562, 0.8283], [0.1428, 0.1792, 0.9567], [0.1453, 0.174, 0.9342], [0.1479, 0.1833, 0.915], [0.1505, 0.1688, 0.9017], [0.153, 0.1406, 0.9058], [0.156, 0.5323, 0.8658], [0.1586, 0.5354, 0.8433], [0.1611, 0.5198, 0.8342], [0.1637, 0.5167, 0.8567], [0.1664, 0.7177, 0.8433], [0.1689, 0.7271, 0.8258], [0.1715, 0.7188, 0.81], [0.1741, 0.7115, 0.8292], [0.177, 0.1208, 0.8167], [0.179, 0.126, 0.7992], [0.181, 0.124, 0.7817], [0.183, 0.1167, 0.7642], [0.1856, 0.7479, 0.9833], [0.1876, 0.75, 0.9658], [0.1896, 0.751, 0.9483], [0.1916, 0.7531, 0.9308], [0.1936, 0.7542, 0.9133], [0.1955, 0.7708, 0.8825], [0.1972, 0.7875, 0.8675], [0.1989, 0.8052, 0.8525], [0.2006, 0.8219, 0.8375], [0.2024, 0.5281, 0.9067], [0.2038, 0.5125, 0.9092], [0.2053, 0.5031, 0.9183], [0.2067, 0.4875, 0.92], [0.2081, 0.4719, 0.9217], [0.2099, 0.5604, 0.925], [0.2114, 0.576, 0.9233], [0.2128, 0.5917, 0.9208], [0.2142, 0.6073, 0.9192], [0.2159, 0.1406, 0.7833], [0.2171, 0.1375, 0.7733], [0.2182, 0.1365, 0.7633], [0.2193, 0.1365, 0.7533], [0.2211, 0.5156, 0.8775], [0.2222, 0.5281, 0.8767], [0.2233, 0.5323, 0.8833], [0.2245, 0.5323, 0.8933], [0.2256, 0.5312, 0.9033], [0.2272, 0.3302, 0.7742], [0.2284, 0.3323, 0.7642], [0.2295, 0.3448, 0.7642], [0.2307, 0.3385, 0.7725], [0.232, 0.399, 0.8017], [0.2328, 0.3979, 0.7942], [0.2337, 0.4042, 0.7925], [0.2346, 0.4135, 0.7933], [0.2354, 0.4219, 0.7983], [0.2367, 0.1594, 0.8675], [0.2375, 0.1604, 0.86], [0.2384, 0.1615, 0.8525], [0.2392, 0.1615, 0.845], [0.2401, 0.1615, 0.8375], [0.2413, 0.751, 0.835], [0.2422, 0.751, 0.8275], [0.243, 0.7521, 0.82], [0.2439, 0.751, 0.8125], [0.2447, 0.7417, 0.8108], [0.246, 0.7458, 0.775], [0.2468, 0.7479, 0.7675], [0.2477, 0.7479, 0.76], [0.2485, 0.7479, 0.7525], [0.25, 0.4385, 0.965], [0.2508, 0.4469, 0.9583], [0.2517, 0.4562, 0.9525], [0.2525, 0.4625, 0.9458], [0.2538, 0.6198, 0.9033], [0.2546, 0.6271, 0.8983], [0.2555, 0.6354, 0.8917], [0.2563, 0.6448, 0.8842], [0.2578, 0.7552, 0.7775], [0.2583, 0.749, 0.7808], [0.2589, 0.7458, 0.7842], [0.2595, 0.7427, 0.7892], [0.2601, 0.7406, 0.7942], [0.2606, 0.7396, 0.7992], [0.2618, 0.6812, 0.7708], [0.2623, 0.6875, 0.7708], [0.2629, 0.6938, 0.77], [0.2635, 0.7, 0.77], [0.264, 0.7062, 0.7692], [0.2646, 0.7125, 0.7683], [0.2658, 0.3135, 0.8783], [0.2663, 0.3198, 0.8783], [0.2669, 0.326, 0.8783], [0.2675, 0.3323, 0.8767], [0.268, 0.3385, 0.8767], [0.2691, 0.7656, 0.7775], [0.2697, 0.7604, 0.7825], [0.2702, 0.7604, 0.7875], [0.2708, 0.7604, 0.7925], [0.2714, 0.7583, 0.7975], [0.2725, 0.3156, 0.7525], [0.2731, 0.3125, 0.7475], [0.2737, 0.3094, 0.745], [0.2742, 0.3031, 0.745], [0.2748, 0.3052, 0.74], [0.2758, 0.0927, 0.8133], [0.2764, 0.0896, 0.8083], [0.277, 0.0844, 0.8042], [0.2776, 0.0792, 0.8], [0.2781, 0.075, 0.7967], [0.2792, 0.5833, 0.8833], [0.2797, 0.5771, 0.8833], [0.2803, 0.5708, 0.8825], [0.2809, 0.5646, 0.8808], [0.2815, 0.5583, 0.8775], [0.2826, 0.8156, 0.76], [0.2832, 0.8146, 0.755], [0.2837, 0.8146, 0.75], [0.2843, 0.8156, 0.745], [0.2854, 0.2552, 0.7458], [0.286, 0.249, 0.745], [0.2866, 0.2448, 0.7408], [0.2872, 0.25, 0.7375], [0.2882, 0.4219, 0.785], [0.2888, 0.4281, 0.7842], [0.2893, 0.4281, 0.78], [0.2899, 0.426, 0.7775], [0.2911, 0.7583, 0.8758], [0.2913, 0.7615, 0.875], [0.2916, 0.7646, 0.8733], [0.2919, 0.7667, 0.8708], [0.2922, 0.7698, 0.8692], [0.2925, 0.7729, 0.8667], [0.2928, 0.774, 0.8642], [0.2931, 0.7719, 0.8633], [0.2939, 0.6115, 0.8708], [0.2942, 0.6146, 0.8708], [0.2945, 0.6177, 0.8717], [0.2948, 0.6188, 0.8692], [0.2951, 0.6198, 0.8667], [0.2953, 0.6198, 0.8642], [0.2956, 0.6208, 0.8617], [0.2965, 0.1583, 0.75], [0.2968, 0.1615, 0.75], [0.2971, 0.1646, 0.75], [0.2973, 0.1677, 0.7492], [0.2976, 0.1708, 0.7492], [0.2979, 0.174, 0.7483], [0.2982, 0.1771, 0.7483], [0.2985, 0.1802, 0.7483], [0.2993, 0.3979, 0.815], [0.2996, 0.3979, 0.8125], [0.2999, 0.3948, 0.8108], [0.3002, 0.3927, 0.8083], [0.3005, 0.3896, 0.8067], [0.3008, 0.3865, 0.8058], [0.301, 0.3833, 0.8042], [0.3019, 0.1115, 0.8225], [0.3022, 0.1104, 0.82], [0.3025, 0.1083, 0.8175], [0.3028, 0.1052, 0.8167], [0.303, 0.1021, 0.8158], [0.3033, 0.099, 0.8158], [0.3042, 0.5927, 0.8825], [0.3045, 0.5906, 0.88], [0.3048, 0.5896, 0.8775], [0.305, 0.5875, 0.8758], [0.3053, 0.5865, 0.8733], [0.3056, 0.5865, 0.8708], [0.3059, 0.5865, 0.8683], [0.3068, 0.201, 0.7717], [0.307, 0.1979, 0.7717], [0.3073, 0.1948, 0.7708], [0.3076, 0.1917, 0.7708], [0.3079, 0.1885, 0.77], [0.3082, 0.1854, 0.77], [0.3085, 0.1823, 0.77], [0.3093, 0.2146, 0.7242], [0.3096, 0.2115, 0.725], [0.3099, 0.2083, 0.7242], [0.3102, 0.2062, 0.7225], [0.3105, 0.2073, 0.72], [0.3108, 0.2083, 0.7175], [0.3116, 0.2469, 0.775], [0.3119, 0.25, 0.775], [0.3122, 0.2531, 0.7742], [0.3125, 0.2542, 0.7725], [0.3127, 0.2573, 0.7725], [0.313, 0.2604, 0.7733], [0.3139, 0.2271, 0.755], [0.3142, 0.2302, 0.755], [0.3145, 0.2333, 0.755], [0.3147, 0.2344, 0.7525], [0.315, 0.2354, 0.75], [0.3153, 0.2333, 0.7483], [0.3162, 0.4823, 0.8725], [0.3165, 0.4854, 0.8717], [0.3167, 0.4885, 0.8717], [0.317, 0.4917, 0.8717], [0.3173, 0.4948, 0.8717], [0.3176, 0.4979, 0.8708], [0.3185, 0.6646, 0.8283], [0.3187, 0.6615, 0.8267], [0.319, 0.6594, 0.8242], [0.3193, 0.6583, 0.8217], [0.3196, 0.6562, 0.8192], [0.3199, 0.6552, 0.8167], [0.3207, 0.1667, 0.7125], [0.321, 0.1698, 0.7125], [0.3213, 0.1729, 0.7125], [0.3216, 0.176, 0.7125], [0.3219, 0.1792, 0.7125], [0.3227, 0.5823, 0.8658], [0.323, 0.5812, 0.8633], [0.3233, 0.5812, 0.8608], [0.3236, 0.5812, 0.8583], [0.3239, 0.5812, 0.8558], [0.3242, 0.5802, 0.8533], [0.325, 0.1594, 0.8283], [0.3253, 0.1562, 0.8283], [0.3256, 0.1531, 0.8283], [0.3259, 0.15, 0.8283], [0.3262, 0.1469, 0.8283], [0.327, 0.825, 0.8017], [0.3273, 0.8271, 0.7992], [0.3276, 0.8302, 0.7983], [0.3279, 0.8333, 0.7983], [0.3287, 0.3115, 0.8433], [0.329, 0.3146, 0.8408], [0.3293, 0.3177, 0.84], [0.3296, 0.3208, 0.8383], [0.3299, 0.324, 0.8383], [0.3307, 0.5594, 0.7825], [0.331, 0.5562, 0.7808], [0.3313, 0.5531, 0.78], [0.3316, 0.55, 0.7792], [0.3319, 0.5469, 0.78], [0.3327, 0.1469, 0.7117], [0.333, 0.1438, 0.7108], [0.3333, 0.1406, 0.7092], [0.3336, 0.1406, 0.7067], [0.3344, 0.3125, 0.845], [0.3347, 0.3156, 0.845], [0.335, 0.3188, 0.845], [0.3353, 0.3219, 0.845], [0.3356, 0.325, 0.845], [0.3364, 0.6208, 0.7733], [0.3367, 0.624, 0.7733], [0.337, 0.6271, 0.7733], [0.3373, 0.6302, 0.7725], [0.3381, 0.1896, 0.9242], [0.3384, 0.1885, 0.9217], [0.3387, 0.1875, 0.9192], [0.339, 0.1844, 0.9167], [0.3399, 0.2396, 0.9225], [0.34, 0.0177, 0.9533], [0.34, 0.0802, 0.7983], [0.34, 0.0927, 0.8383], [0.34, 0.0958, 0.8392], [0.34, 0.099, 0.84], [0.34, 0.1167, 0.7975], [0.34, 0.1167, 0.8], [0.34, 0.1177, 0.7967], [0.34, 0.1229, 0.8717], [0.34, 0.126, 0.7775], [0.34, 0.1271, 0.8733], [0.34, 0.1292, 0.7775], [0.34, 0.1302, 0.8733], [0.34, 0.1323, 0.7758], [0.34, 0.1354, 0.7742], [0.34, 0.151, 0.7575], [0.34, 0.1542, 0.7575], [0.34, 0.1573, 0.7333], [0.34, 0.1583, 0.7258], [0.34, 0.1583, 0.7283], [0.34, 0.1583, 0.7308], [0.34, 0.1583, 0.7683], [0.34, 0.1615, 0.7708], [0.34, 0.1625, 0.7733], [0.34, 0.1625, 0.7758], [0.34, 0.1771, 0.8142], [0.34, 0.1823, 0.8275], [0.34, 0.1833, 0.8275], [0.34, 0.1865, 0.8275], [0.34, 0.1948, 0.7508], [0.34, 0.1969, 0.7508], [0.34, 0.2, 0.7508], [0.34, 0.2031, 0.7492], [0.34, 0.2052, 0.7717], [0.34, 0.2083, 0.7717], [0.34, 0.2281, 0.9317], [0.34, 0.2302, 0.9258], [0.34, 0.2312, 0.9275], [0.34, 0.2312, 0.93], [0.34, 0.2375, 0.9083], [0.34, 0.2396, 0.9208], [0.34, 0.2406, 0.92], [0.34, 0.2417, 0.9175], [0.34, 0.2427, 0.855], [0.34, 0.2438, 0.915], [0.34, 0.2458, 0.855], [0.34, 0.249, 0.855], [0.34, 0.2521, 0.7525], [0.34, 0.2542, 0.7542], [0.34, 0.2677, 0.76], [0.34, 0.2708, 0.7625], [0.34, 0.2719, 0.8742], [0.34, 0.274, 0.8767], [0.34, 0.2969, 0.925], [0.34, 0.2979, 0.9233], [0.34, 0.3073, 0.7692], [0.34, 0.3094, 0.7658], [0.34, 0.3125, 0.765], [0.34, 0.3198, 0.7883], [0.34, 0.3281, 0.7525], [0.34, 0.3292, 0.9267], [0.34, 0.3312, 0.7517], [0.34, 0.3427, 0.9283], [0.34, 0.3438, 0.7942], [0.34, 0.3438, 0.7967], [0.34, 0.3438, 0.7992], [0.34, 0.3646, 0.7608], [0.34, 0.3677, 0.7608], [0.34, 0.3698, 0.7933], [0.34, 0.3698, 0.7958], [0.34, 0.3719, 0.7575], [0.34, 0.3719, 0.76], [0.34, 0.374, 0.7617], [0.34, 0.375, 0.7642], [0.34, 0.376, 0.91], [0.34, 0.3792, 0.9108], [0.34, 0.4031, 0.7675], [0.34, 0.4062, 0.7675], [0.34, 0.4385, 0.8025], [0.34, 0.4417, 0.8025], [0.34, 0.4448, 0.8025], [0.34, 0.45, 0.8283], [0.34, 0.451, 0.8308], [0.34, 0.4698, 0.8292], [0.34, 0.5271, 0.9308], [0.34, 0.5292, 0.7867], [0.34, 0.5302, 0.9317], [0.34, 0.5323, 0.7875], [0.34, 0.5333, 0.9317], [0.34, 0.5354, 0.7875], [0.34, 0.576, 0.9242], [0.34, 0.6104, 0.8625], [0.34, 0.6292, 0.7667], [0.34, 0.6344, 0.7533], [0.34, 0.6396, 0.8892], [0.34, 0.6427, 0.8908], [0.34, 0.651, 0.81], [0.34, 0.6542, 0.8092], [0.34, 0.6573, 0.8092], [0.34, 0.6604, 0.8092], [0.34, 0.7115, 0.7517], [0.34, 0.7115, 0.7542], [0.34, 0.7115, 0.7567], [0.34, 0.7125, 0.7575], [0.34, 0.7365, 0.9308], [0.34, 0.8125, 0.8183], [0.34, 0.8156, 0.8183], [0.34, 0.825, 0.8792], [0.34, 0.8312, 0.7417], [0.34, 0.8323, 0.7442], [0.34, 0.8354, 0.7575], [0.34, 0.8469, 0.7617], [0.3719, 0.7479, 0.7167], [0.4038, 0.726, 0.5367], [0.4357, 0.6354, 0.3567], [0.4677, 0.5615, 0.3167], [0.4778, 0.5948, 0.7833], [0.4916, 0.5927, 0.7083], [0.5053, 0.6375, 0.6883], [0.5191, 0.6281, 0.765], [0.5285, 0.4302, 0.7533], [0.5378, 0.3646, 0.7425], [0.5471, 0.299, 0.7308], [0.5565, 0.2333, 0.72], [0.5644, 0.65, 0.53], [0.5715, 0.6938, 0.5392], [0.5786, 0.6938, 0.5667], [0.5857, 0.6531, 0.5617], [0.5928, 0.6667, 0.5325], [0.5972, 0.5979, 0.4592], [0.6021, 0.5719, 0.4508], [0.607, 0.5802, 0.43], [0.6119, 0.6135, 0.4392], [0.6172, 0.624, 0.5667], [0.6212, 0.6052, 0.5767], [0.6252, 0.5854, 0.5692], [0.6291, 0.5844, 0.5467], [0.6337, 0.3542, 0.3325], [0.6377, 0.3812, 0.3183], [0.6417, 0.4073, 0.3108], [0.6457, 0.4302, 0.2933], [0.6497, 0.4365, 0.2717], [0.6537, 0.5167, 0.425], [0.6568, 0.5177, 0.4075], [0.6599, 0.5375, 0.4025], [0.663, 0.549, 0.4133], [0.6664, 0.625, 0.5742], [0.669, 0.6365, 0.5675], [0.6717, 0.6333, 0.5525], [0.6744, 0.625, 0.5375], [0.677, 0.6062, 0.5358], [0.6803, 0.2938, 0.5133], [0.6825, 0.2896, 0.5258], [0.6847, 0.2854, 0.5383], [0.6869, 0.2802, 0.5508], [0.6896, 0.2104, 0.5475], [0.6918, 0.2188, 0.535], [0.694, 0.225, 0.5225], [0.6962, 0.2281, 0.51], [0.6984, 0.2396, 0.5008], [0.7007, 0.4083, 0.5558], [0.7024, 0.4115, 0.5458], [0.7042, 0.4115, 0.5358], [0.706, 0.4156, 0.5258], [0.708, 0.6, 0.3483], [0.7094, 0.5917, 0.3425], [0.7107, 0.5844, 0.335], [0.712, 0.5802, 0.3275], [0.7134, 0.574, 0.32], [0.7154, 0.7042, 0.7525], [0.7168, 0.7042, 0.745], [0.7181, 0.7062, 0.7375], [0.7194, 0.7094, 0.73], [0.7207, 0.7094, 0.7225], [0.7227, 0.2021, 0.6733], [0.724, 0.1969, 0.68], [0.7253, 0.1948, 0.6875], [0.7267, 0.1938, 0.695], [0.728, 0.1938, 0.7025], [0.7299, 0.6354, 0.6158], [0.7312, 0.6406, 0.6117], [0.7326, 0.6396, 0.6042], [0.7339, 0.6354, 0.5975], [0.7358, 0.5812, 0.4708], [0.7367, 0.5875, 0.47], [0.7376, 0.5938, 0.47], [0.7385, 0.6, 0.4692], [0.7394, 0.6062, 0.4692], [0.741, 0.5719, 0.4367], [0.7419, 0.5781, 0.4358], [0.7428, 0.5844, 0.435], [0.7436, 0.5906, 0.435], [0.7445, 0.5969, 0.4342], [0.7454, 0.6031, 0.4325], [0.747, 0.126, 0.6875], [0.7479, 0.126, 0.6825], [0.7488, 0.126, 0.6775], [0.7497, 0.126, 0.6725], [0.7515, 0.6208, 0.7358], [0.7524, 0.6146, 0.735], [0.7533, 0.6083, 0.735], [0.7541, 0.6021, 0.7325], [0.755, 0.5958, 0.7308], [0.7567, 0.4583, 0.76], [0.7575, 0.4583, 0.755], [0.7584, 0.4573, 0.75], [0.7593, 0.4552, 0.745], [0.7609, 0.6646, 0.7], [0.7618, 0.6646, 0.695], [0.7627, 0.6646, 0.69], [0.7636, 0.6646, 0.685], [0.7654, 0.5604, 0.6658], [0.7658, 0.5604, 0.6633], [0.7663, 0.5604, 0.6608], [0.7667, 0.5615, 0.6583], [0.7671, 0.5625, 0.6558], [0.7676, 0.5625, 0.6533], [0.768, 0.5625, 0.6508], [0.7685, 0.5646, 0.6483], [0.7698, 0.7198, 0.46], [0.7702, 0.7219, 0.4575], [0.7707, 0.724, 0.455], [0.7711, 0.7271, 0.4542], [0.7716, 0.7302, 0.4525], [0.772, 0.7333, 0.4508], [0.7725, 0.7365, 0.45], [0.7738, 0.1656, 0.7042], [0.7742, 0.1688, 0.7033], [0.7747, 0.1719, 0.7033], [0.7751, 0.175, 0.7025], [0.7756, 0.174, 0.7], [0.776, 0.174, 0.6975], [0.7764, 0.1719, 0.695], [0.7778, 0.8219, 0.6717], [0.7782, 0.825, 0.67], [0.7787, 0.8281, 0.6675], [0.7791, 0.8312, 0.6658], [0.7796, 0.8344, 0.665], [0.78, 0.8365, 0.6625], [0.7813, 0.2062, 0.6883], [0.7818, 0.2062, 0.6858], [0.7822, 0.2073, 0.6833], [0.7827, 0.2083, 0.6808], [0.7831, 0.2052, 0.6792], [0.7835, 0.2021, 0.6792], [0.7849, 0.5948, 0.3692], [0.7853, 0.5979, 0.3683], [0.7858, 0.601, 0.3683], [0.7862, 0.6042, 0.3683], [0.7866, 0.6073, 0.3683], [0.7871, 0.6104, 0.3683], [0.7884, 0.7083, 0.4308], [0.7889, 0.7115, 0.43], [0.7893, 0.7146, 0.43], [0.7897, 0.7177, 0.43], [0.7902, 0.7208, 0.43], [0.7906, 0.724, 0.4292], [0.792, 0.4604, 0.7192], [0.7924, 0.4635, 0.7183], [0.7928, 0.4667, 0.7175], [0.7933, 0.4698, 0.7175], [0.7937, 0.4729, 0.7175], [0.7951, 0.4458, 0.7608], [0.7955, 0.4458, 0.7583], [0.796, 0.4427, 0.7558], [0.7964, 0.4396, 0.7558], [0.7977, 0.8385, 0.6792], [0.7982, 0.8375, 0.6817], [0.7986, 0.8375, 0.6842], [0.7991, 0.8385, 0.6867], [0.7995, 0.8417, 0.6892], [0.8, 0.1219, 0.6517], [0.8, 0.1229, 0.6533], [0.8, 0.125, 0.6483], [0.8, 0.1417, 0.6417], [0.8, 0.1615, 0.6958], [0.8, 0.1625, 0.6933], [0.8, 0.1646, 0.6925], [0.8, 0.1677, 0.69], [0.8, 0.174, 0.6108], [0.8, 0.1771, 0.6125], [0.8, 0.1802, 0.615], [0.8, 0.1833, 0.5725], [0.8, 0.1865, 0.575], [0.8, 0.2229, 0.6117], [0.8, 0.224, 0.6108], [0.8, 0.225, 0.61], [0.8, 0.2281, 0.5], [0.8, 0.2281, 0.5025], [0.8, 0.2281, 0.505], [0.8, 0.2292, 0.6408], [0.8, 0.2323, 0.6408], [0.8, 0.2354, 0.6425], [0.8, 0.2792, 0.6608], [0.8, 0.2812, 0.4], [0.8, 0.2865, 0.3942], [0.8, 0.2896, 0.3917], [0.8, 0.2917, 0.39], [0.8, 0.2948, 0.3867], [0.8, 0.4052, 0.3008], [0.8, 0.4073, 0.3033], [0.8, 0.4094, 0.7558], [0.8, 0.4115, 0.3067], [0.8, 0.4125, 0.7517], [0.8, 0.4479, 0.3367], [0.8, 0.449, 0.3358], [0.8, 0.45, 0.3342], [0.8, 0.4531, 0.33], [0.8, 0.501, 0.5717], [0.8, 0.524, 0.405], [0.8, 0.5333, 0.44], [0.8, 0.5521, 0.4617], [0.8, 0.5521, 0.4642], [0.8, 0.5521, 0.4667], [0.8, 0.5531, 0.2617], [0.8, 0.5542, 0.425], [0.8, 0.574, 0.3583], [0.8, 0.6031, 0.6425], [0.8, 0.6062, 0.6433], [0.8, 0.6094, 0.6442], [0.8, 0.6115, 0.3258], [0.8, 0.6281, 0.7217], [0.8, 0.6312, 0.7208], [0.8, 0.6344, 0.7208], [0.8, 0.6365, 0.6508], [0.8, 0.6417, 0.3475], [0.8, 0.6448, 0.345], [0.8, 0.6667, 0.7133], [0.8, 0.6698, 0.7133], [0.8, 0.775, 0.4842], [0.8, 0.776, 0.4825], [0.8, 0.85, 0.6725], [0.8, 0.851, 0.66], [0.8, 0.851, 0.6625], [0.8, 0.8521, 0.6717], [0.8119, 0.5573, 0.2158], [0.8297, 0.5427, 0.1458], [0.8475, 0.5271, 0.0883], [0.8653, 0.5281, 0.0233], [0.875, 0.5438, 0.2008], [0.8795, 0.5427, 0.2183], [0.8839, 0.5427, 0.2358], [0.8884, 0.5427, 0.2533], [0.8928, 0.5469, 0.2542], [0.8973, 0.6125, 0.3025], [0.9011, 0.5938, 0.2975], [0.9049, 0.6031, 0.31], [0.9087, 0.6208, 0.3225], [0.9134, 0.5333, 0.2675], [0.9166, 0.5177, 0.2667], [0.9197, 0.5125, 0.2775], [0.9229, 0.5125, 0.29], [0.9265, 0.4875, 0.2825], [0.9291, 0.4854, 0.2725], [0.9316, 0.4865, 0.2625], [0.9342, 0.4865, 0.2525], [0.9367, 0.4896, 0.2433], [0.9401, 0.5417, 0.1683], [0.942, 0.5323, 0.1683], [0.9439, 0.5229, 0.1675], [0.9458, 0.5135, 0.1675], [0.9488, 0.5792, 0.2842], [0.9501, 0.5792, 0.2792], [0.9513, 0.5812, 0.2742], [0.9526, 0.5812, 0.2692], [0.9539, 0.5833, 0.2642], [0.9551, 0.5896, 0.2675], [0.9577, 0.5125, 0.1625], [0.959, 0.5135, 0.1575], [0.9602, 0.5156, 0.1525], [0.9615, 0.5188, 0.1483], [0.9628, 0.5188, 0.1433], [0.9653, 0.5635, 0.2517], [0.9666, 0.5635, 0.2467], [0.9679, 0.5635, 0.2417], [0.9691, 0.5615, 0.2367], [0.9704, 0.5625, 0.2317], [0.9723, 0.5896, 0.2958], [0.9729, 0.5865, 0.2958], [0.9736, 0.5833, 0.2942], [0.9742, 0.5802, 0.2942], [0.9748, 0.5771, 0.2925], [0.9755, 0.574, 0.2908], [0.9774, 0.5167, 0.1642], [0.978, 0.5198, 0.1617], [0.9787, 0.5219, 0.1592], [0.9793, 0.5219, 0.1567], [0.9799, 0.5208, 0.1542], [0.9806, 0.5188, 0.1517], [0.9825, 0.5094, 0.2775], [0.9831, 0.5062, 0.2775], [0.9838, 0.5031, 0.2767], [0.9844, 0.5, 0.2767], [0.985, 0.4969, 0.2767], [0.9869, 0.5135, 0.285], [0.9876, 0.5167, 0.285], [0.9882, 0.5198, 0.2842], [0.9888, 0.5229, 0.2842], [0.9895, 0.526, 0.2833], [0.9901, 0.5292, 0.2825], [0.992, 0.525, 0.0583], [0.9927, 0.525, 0.0558], [0.9933, 0.525, 0.0533], [0.9939, 0.5229, 0.0508], [0.9946, 0.5198, 0.0483], [0.9965, 0.5406, 0.0108], [0.9971, 0.5375, 0.01], [0.9977, 0.5344, 0.01], [0.9984, 0.5312, 0.0117], [1.0, 0.4312, 0.2775], [1.0, 0.4312, 0.28], [1.0, 0.4323, 0.2767], [1.0, 0.4344, 0.2767], [1.0, 0.449, 0.2975], [1.0, 0.451, 0.2692], [1.0, 0.4521, 0.2958], [1.0, 0.4542, 0.2692], [1.0, 0.4552, 0.2942], [1.0, 0.4604, 0.1767], [1.0, 0.4635, 0.1775], [1.0, 0.4667, 0.1783], [1.0, 0.4708, 0.1558], [1.0, 0.4719, 0.1533], [1.0, 0.4729, 0.1583], [1.0, 0.476, 0.1608], [1.0, 0.4781, 0.1783], [1.0, 0.4812, 0.18], [1.0, 0.4844, 0.1808], [1.0, 0.5021, 0.2267], [1.0, 0.5052, 0.2275], [1.0, 0.5083, 0.2283], [1.0, 0.5094, 0.2283], [1.0, 0.5104, 0.3067], [1.0, 0.5188, 0.0108], [1.0, 0.5208, 0.0117], [1.0, 0.5219, 0.0792], [1.0, 0.524, 0.0792], [1.0, 0.5427, 0.2117], [1.0, 0.5448, 0.2117], [1.0, 0.549, 0.29], [1.0, 0.5625, 0.2642], [1.0, 0.5938, 0.2817]];
+  const IMW = 960, IMH = 1200;
+  const GUIDES = [
+    { k: 'line', x1: 504, y1: 30, x2: 504, y2: 1185, dash: [14, 6, 2, 6], w: [0, 0.3] },
+    { k: 'line', x1: 36, y1: 786, x2: 924, y2: 786, dash: [10, 6, 2, 6], w: [0.08, 0.36] },
+    { k: 'arc', cx: 567, cy: 786, r: 440, a0: Math.PI, a1: 4.626, ccw: false, w: [0.26, 0.6] },
+    { k: 'arc', cx: 348, cy: 786, r: 465, a0: 0, a1: -1.271, ccw: true, w: [0.32, 0.66] },
+    { k: 'cross', x: 567, y: 786, w: [0.5, 0.56] },
+    { k: 'cross', x: 348, y: 786, w: [0.54, 0.6] },
+    { k: 'line', x1: 567, y1: 786, x2: 507, y2: 350, dash: [4, 7], w: [0.56, 0.74] },
+    { k: 'line', x1: 348, y1: 786, x2: 507, y2: 350, dash: [4, 7], w: [0.6, 0.78] },
+    { k: 'ellipse', cx: 478, cy: 872, rx: 432, ry: 92, dash: [3, 7], w: [0.66, 0.94] },
+    { k: 'line', x1: 440, y1: 372, x2: 440, y2: 110, w: [0.72, 0.86] },
+    { k: 'line', x1: 570, y1: 372, x2: 570, y2: 110, w: [0.74, 0.88] },
+    { k: 'line', x1: 405, y1: 372, x2: 605, y2: 372, w: [0.76, 0.9] },
+    { k: 'dim', x1: 127, y1: 1190, x2: 813, y2: 1190, label: '≈ 45 m', w: [0.84, 1] }
+  ];
+  let gl = null, glOk = false, uP = null, gw = 0, gh = 0, sw = 0, sh = 0, pw = 124, ph = 22, ddpr = 1;
+  let lastG = -1, lastT = -1, lastStep = -1, lastPct = -1;
 
-  if (reduce) { hero.style.height = '100svh'; }
-  let tick = false;
-  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(() => { tick = false; onScroll(); }); } }, { passive: true });
-  addEventListener('resize', () => { resize(); onScroll(); drawRuler(status()); });
+  function guidePoint(gd, q) {
+    if (gd.k === 'line' || gd.k === 'dim') return [lerp(gd.x1, gd.x2, q), lerp(gd.y1, gd.y2, q)];
+    if (gd.k === 'arc') { const a = lerp(gd.a0, gd.a1, q); return [gd.cx + gd.r * Math.cos(a), gd.cy + gd.r * Math.sin(a)]; }
+    if (gd.k === 'ellipse') { const a = Math.PI + q * TAU; return [gd.cx + gd.rx * Math.cos(a), gd.cy + gd.ry * Math.sin(a)]; }
+    return [gd.x, gd.y];
+  }
+  function guidesDraw(g) {
+    const c = gctx, s = gcv.width / IMW;
+    c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, gcv.width, gcv.height);
+    if (g <= 0) return;
+    c.setTransform(s, 0, 0, s, 0, 0);
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    const lw = 1.15 * IMW / Math.max(1, gw);
+    for (const pass of [0, 1]) {
+      c.strokeStyle = pass ? 'rgba(70,56,44,.16)' : 'rgba(58,46,36,.36)';
+      c.lineWidth = lw * (pass ? 1.8 : 1);
+      const o = pass ? 0.9 : 0;
+      for (const gd of GUIDES) {
+        const q = clamp((g - gd.w[0]) / (gd.w[1] - gd.w[0]));
+        if (q <= 0) continue;
+        c.setLineDash(gd.dash || []);
+        c.beginPath();
+        if (gd.k === 'line') { c.moveTo(gd.x1 + o, gd.y1 + o); c.lineTo(lerp(gd.x1, gd.x2, q) + o, lerp(gd.y1, gd.y2, q) + o); }
+        else if (gd.k === 'arc') c.arc(gd.cx + o, gd.cy + o, gd.r, gd.a0, lerp(gd.a0, gd.a1, q), gd.ccw);
+        else if (gd.k === 'ellipse') { if (c.ellipse) c.ellipse(gd.cx + o, gd.cy + o, gd.rx, gd.ry, 0, Math.PI, Math.PI + q * TAU); }
+        else if (gd.k === 'cross') { const r = 12 * q; c.moveTo(gd.x - r, gd.y); c.lineTo(gd.x + r, gd.y); c.moveTo(gd.x, gd.y - r); c.lineTo(gd.x, gd.y + r); c.moveTo(gd.x + 7 * q, gd.y); c.arc(gd.x, gd.y, 7 * q, 0, TAU); }
+        else if (gd.k === 'dim') {
+          const x2 = lerp(gd.x1, gd.x2, q);
+          c.moveTo(gd.x1, gd.y1); c.lineTo(x2, gd.y2);
+          c.moveTo(gd.x1 - 8, gd.y1 + 8); c.lineTo(gd.x1 + 8, gd.y1 - 8);
+          if (q > 0.98) { c.moveTo(gd.x2 - 8, gd.y2 + 8); c.lineTo(gd.x2 + 8, gd.y2 - 8); }
+        }
+        c.stroke();
+        if (gd.k === 'dim' && !pass && q > 0.6) {
+          c.setLineDash([]); c.globalAlpha = clamp((q - 0.6) / 0.4);
+          c.fillStyle = 'rgba(58,46,36,.62)'; c.font = 'italic 500 26px Poppins, sans-serif'; c.textAlign = 'left';
+          c.fillText(gd.label, gd.x2 + 18, gd.y2 + 9); c.globalAlpha = 1;
+        }
+      }
+    }
+    c.setLineDash([]);
+  }
+  function guideTip(g) {
+    let best = null;
+    for (const gd of GUIDES) { const q = (g - gd.w[0]) / (gd.w[1] - gd.w[0]); if (q > 0 && q < 1) best = guidePoint(gd, q); }
+    return best ? [best[0] / IMW, best[1] / IMH] : null;
+  }
+  function tipAt(T) {
+    let lo = 0, hi = PEN.length - 1;
+    if (T <= PEN[0][0]) return [PEN[0][1], PEN[0][2]];
+    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (PEN[m][0] <= T) lo = m; else hi = m; }
+    const a = PEN[lo], b = PEN[hi], f = b[0] > a[0] ? clamp((T - a[0]) / (b[0] - a[0])) : 0;
+    return [lerp(a[1], b[1], f), lerp(a[2], b[2], f)];
+  }
+
+  const VS = 'attribute vec2 p;varying vec2 uv;void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}';
+  const FS = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform sampler2D tT;uniform sampler2D tI;uniform float uP;varying vec2 uv;
+float h(vec2 q){return fract(sin(dot(q,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 q){vec2 i=floor(q),f=fract(q);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}
+void main(){
+  vec4 tt=texture2D(tT,uv);
+  float t=(tt.r*65280.+tt.g*255.)/65535.;
+  float ink=texture2D(tI,uv).b;
+  float d=uP-t;
+  float vis=clamp(d/.004+.5,0.,1.);
+  vec2 q=uv*vec2(960.,1200.);
+  float g=n(q*vec2(.55,1.6))*.5+n(q*1.9+17.)*.3+h(floor(q*1.5))*.2;
+  float a=ink*vis*(.58+.42*g);
+  float fresh=(1.-clamp(d/.025,0.,1.))*vis;
+  vec3 col=mix(vec3(.19,.16,.135),vec3(.09,.075,.06),fresh*.75);
+  a=min(a*(1.+fresh*.25),.94);
+  gl_FragColor=vec4(col*a,a);
+}`;
+  function glFallback() { glOk = false; glc.hidden = true; sheetArt.hidden = false; lastT = -1; }
+  function initGL(img) {
+    try { gl = glc.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false, preserveDrawingBuffer: false }) || glc.getContext('experimental-webgl'); } catch (e) { gl = null; }
+    if (!gl) return glFallback();
+    const mk = (type, srcTxt) => { const o = gl.createShader(type); gl.shaderSource(o, srcTxt); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; };
+    const vs = mk(gl.VERTEX_SHADER, VS), fs = mk(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return glFallback();
+    const pr = gl.createProgram(); gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return glFallback();
+    gl.useProgram(pr);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const tex = (unit, filter) => {
+      const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE); gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);
+    };
+    tex(0, gl.NEAREST); tex(1, gl.LINEAR);
+    gl.uniform1i(gl.getUniformLocation(pr, 'tT'), 0); gl.uniform1i(gl.getUniformLocation(pr, 'tI'), 1);
+    uP = gl.getUniformLocation(pr, 'uP');
+    gl.clearColor(0, 0, 0, 0);
+    glc.addEventListener('webglcontextlost', (e) => { e.preventDefault(); glFallback(); drawRender(drawScene.cur); });
+    glOk = true; lastT = -1;
+  }
+  function drawGL(T) {
+    if (!glOk) return;
+    gl.viewport(0, 0, glc.width, glc.height); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(uP, T * 1.006 - 0.003); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+  function drawSizes() {
+    sw = sheetWrap.clientWidth; sh = sheetWrap.clientHeight; pw = pencil.clientWidth || 124; ph = pencil.clientHeight || 22;
+    ddpr = Math.min(MAXDPR, devicePixelRatio || 1);
+    gw = Math.round(sw * 0.9); gh = Math.round(sh * 0.9);
+    const cw = Math.max(1, Math.round(gw * ddpr)), ch = Math.max(1, Math.round(gh * ddpr));
+    if (glc.width !== cw || glc.height !== ch) { glc.width = cw; glc.height = ch; }
+    if (gcv.width !== cw || gcv.height !== ch) { gcv.width = cw; gcv.height = ch; }
+    lastG = -1; lastT = -1;
+  }
+  function drawRender(p) {
+    const g = reduce ? 1 : clamp(p / 0.2), T = reduce ? 1 : clamp((p - 0.16) / 0.7);
+    if (g !== lastG) { guidesDraw(g); lastG = g; }
+    if (T !== lastT) {
+      if (glOk) drawGL(T);
+      else if (!sheetArt.hidden) sheetArt.style.clipPath = `inset(${((1 - T) * 100).toFixed(2)}% 0 0 0)`;
+      lastT = T;
+    }
+    const f = reduce ? 1 : smooth(0.86, 0.96, p);
+    setO(frameEl, f, '_o'); setO(sheetCap, f, '_o');
+    frameEl.style.transform = `scale(${(1.05 - 0.05 * f).toFixed(4)})`;
+    const st = p < 0.17 ? 0 : p < 0.40 ? 1 : p < 0.72 ? 2 : 3;
+    if (st !== lastStep) { lastStep = st; steps.forEach((s, i) => s.setAttribute('aria-current', i === st ? 'true' : 'false')); }
+    meterFill.style.transform = `scaleY(${p.toFixed(4)})`;
+    const pct = Math.round(p * 100); if (pct !== lastPct) { lastPct = pct; meterPct.textContent = String(pct).padStart(2, '0') + '%'; }
+    let pos = null;
+    if (!reduce) { if (T > 0 && T < 1) pos = tipAt(T); else if (g > 0 && g < 1) pos = guideTip(g); }
+    const on = pos && p > 0.004 && p < 0.86 ? 1 : 0;
+    if (pos) { const x = (0.05 + 0.9 * pos[0]) * sw, y = (0.05 + 0.9 * pos[1]) * sh; pencil.style.transform = `translate3d(${x.toFixed(1)}px,${(y - ph / 2).toFixed(1)}px,0) rotate(-38deg)`; }
+    setO(pencil, on, '_o');
+  }
+  const drawScene = scene(dsec, dstage, drawRender);
+  const dimg = new Image(); dimg.decoding = 'async'; dimg.src = 'assets/img/dome-draw.png';
+  dimg.onload = () => { initGL(dimg); lastT = -1; drawRender(Math.max(0, drawScene.cur)); };
+  dimg.onerror = () => { glFallback(); drawRender(Math.max(0, drawScene.cur)); };
+
+  /* ---------- Medidas, eventos e inicio ---------- */
+  $('[data-skip]').addEventListener('click', () => document.getElementById('la-cupula').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+  if (reduce) hero.style.height = '100svh';
+  let lastW = innerWidth, lastH = innerHeight;
+  function relayout(force) {
+    const big = Math.abs(innerHeight - lastH) > 160;
+    if (!force && innerWidth === lastW && !big) return;
+    lastW = innerWidth; lastH = innerHeight;
+    heroResize(); G = geometry(); drawSizes(); measure(); drawRuler(status());
+    for (const s of scenes) s.cur = -1;
+    onScroll();
+  }
+  addEventListener('resize', () => relayout(false));
+  addEventListener('orientationchange', () => setTimeout(() => relayout(true), 250));
+  addEventListener('load', () => { measure(); onScroll(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); lastG = -1; onScroll(); });
+  if ('ResizeObserver' in window) new ResizeObserver(() => { measure(); onScroll(); }).observe(document.querySelector('main'));
+  matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', readColors);
+  new MutationObserver(readColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  addEventListener('scroll', onScroll, { passive: true });
 
   /* ---------- Entrada de bloques ---------- */
   const rises = $$('.rise');
@@ -1096,7 +1328,8 @@ ul,ol{list-style:none}
 
   drawPlan();
   paintStatus(); setInterval(paintStatus, 30000);
-  resize(); onScroll(); startLoading();
+  readColors(); heroResize(); drawSizes(); measure(); onScroll(); startLoading();
+  if (!reduce) { introRunning = true; introStart = performance.now(); kick(); }
 })();
 </script>
 </body>
